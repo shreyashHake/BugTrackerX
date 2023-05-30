@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <div class="border-0">
+    <a class="navbar-brand">eBug Tracker</a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/"
+            >Home</a
+          >
+        </li>
+      </ul>
+      <button
+        *ngIf="!isLoggedIn()"
+        type="button"
+        class="btn btn-success"
+        routerLink="/login"
+        (click)="defaultUser()"
+      >
+        Login
+      </button>
+      <button
+        *ngIf="isLoggedIn()"
+        type="button"
+        class="btn btn-danger"
+        (click)="logout()"
+      >
+        Logout
+      </button>
+    </div>
+  </div>
+</nav>
