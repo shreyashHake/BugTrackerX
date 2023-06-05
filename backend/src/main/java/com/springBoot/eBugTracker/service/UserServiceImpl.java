@@ -31,6 +31,15 @@ public class UserServiceImpl implements IUserService {
         return userRepo.save(user);
     }
 
+    @Override
+    public User createNewStaff(User staff) {
+        Role role = roleRepo.findById("Staff").get();
+
+        staff.setUserRole(new HashSet<>(Collections.singletonList(role)));
+        staff.setUserPassword(getEncodedPassword(staff.getUserPassword()));
+        return userRepo.save(staff);
+    }
+
     public void initRoleAndUser() {
         //1. setting demo Admin :
         Role adminRole = new Role(

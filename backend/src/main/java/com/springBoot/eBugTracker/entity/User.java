@@ -16,6 +16,7 @@ import java.util.Set;
 @Table(name = "_user")
 public class User {
     @Id
+    @Column(unique = true)
     private String userName;
     private String userFirstName;
     private String userLastName;
