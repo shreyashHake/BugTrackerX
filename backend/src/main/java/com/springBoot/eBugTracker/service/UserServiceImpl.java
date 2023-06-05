@@ -2,6 +2,8 @@ package com.springBoot.eBugTracker.service;
 
 import com.springBoot.eBugTracker.entity.Role;
 import com.springBoot.eBugTracker.entity.User;
+import com.springBoot.eBugTracker.repository.IRoleRepository;
+import com.springBoot.eBugTracker.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -10,23 +12,23 @@ import java.util.Collections;
 import java.util.HashSet;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
     @Autowired
-    private com.springBoot.eBugTracker.repository.IUserRepository IUserRepository;
+    private IUserRepository userRepo;
 
     @Autowired
-    private com.springBoot.eBugTracker.repository.IRoleRepository IRoleRepository;
+    private IRoleRepository roleRepo;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public User createNewUser(User user) {
-        Role role = IRoleRepository.findById("User").get();
+        Role role = roleRepo.findById("Customer").get();
 
         user.setUserRole(new HashSet<>(Collections.singletonList(role)));
         user.setUserPassword(getEncodedPassword(user.getUserPassword()));
 
-        return IUserRepository.save(user);
+        return userRepo.save(user);
     }
 
     public void initRoleAndUser() {
@@ -35,7 +37,7 @@ public class UserServiceImpl implements UserService {
                 "Admin",
                 "Admin of the system"
         );
-        IRoleRepository.save(adminRole);
+        roleRepo.save(adminRole);
 
         User admin = new User(
                 "admin123",
@@ -44,14 +46,14 @@ public class UserServiceImpl implements UserService {
                 getEncodedPassword("Pass@123"),
                 new HashSet<>(Collections.singletonList(adminRole))
         );
-        IUserRepository.save(admin);
+        userRepo.save(admin);
 
         //2. Setting demo Customer
         Role customerRole = new Role(
                 "Customer",
                 "Default role of newly registered user"
         );
-        IRoleRepository.save(customerRole);
+        roleRepo.save(customerRole);
 
         User customer = new User(
                 "customer123",
@@ -61,14 +63,14 @@ public class UserServiceImpl implements UserService {
                 new HashSet<>(Collections.singletonList(customerRole))
 
         );
-        IUserRepository.save(customer);
+        userRepo.save(customer);
 
         //3. Setting demo Staff
         Role staffRole = new Role(
                 "Staff",
                 "Those who will solve the bugs"
         );
-        IRoleRepository.save(staffRole);
+        roleRepo.save(staffRole);
 
         User staff = new User(
                 "staff123",
@@ -78,7 +80,7 @@ public class UserServiceImpl implements UserService {
                 new HashSet<>(Collections.singletonList(staffRole))
 
         );
-        IUserRepository.save(staff);
+        userRepo.save(staff);
 
 
     }

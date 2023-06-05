@@ -1,7 +1,7 @@
 package com.springBoot.eBugTracker.controller;
 
 import com.springBoot.eBugTracker.entity.User;
-import com.springBoot.eBugTracker.service.UserService;
+import com.springBoot.eBugTracker.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 @RequiredArgsConstructor
 public class UserController {
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     // default 'Admin' and 'User' of the application
     @PostConstruct
