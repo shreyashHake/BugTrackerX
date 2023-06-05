@@ -1,42 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <div class="border-0">
-    <a class="navbar-brand">eBug Tracker</a>
+      <a class="navbar-brand">eBug Tracker</a>
     </div>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- Home without login -->
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/"
-            >Home</a
-          >
+          <a *ngIf="!isLoggedIn()" class="nav-link active" aria-current="page" routerLink="/">Home</a>
         </li>
+
+        <!-- Home if Admin -->
+        <li class="nav-item">
+          <a *ngIf="isAdmin()"  class="nav-link active" aria-current="page" routerLink="/admin">Home</a>
+        </li>
+        <li *ngIf="isAdmin()" class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/staff-handling">Staff</a>
+        </li>
+
+        <!-- Home if Staff -->
+        <li class="nav-item">
+          <a *ngIf="isStaff()"  class="nav-link active" aria-current="page" routerLink="/staff">Home</a>
+        </li>
+
+        <!-- Home if Customer -->
+        <li class="nav-item">
+          <a *ngIf="isCustomer()"  class="nav-link active" aria-current="page" routerLink="/customer">Home</a>
+        </li>
+
       </ul>
-      <button
-        *ngIf="!isLoggedIn()"
-        type="button"
-        class="btn btn-success"
-        routerLink="/login-landing"
-        (click)="defaultUser()"
-      >
+      <button *ngIf="!isLoggedIn()" type="button" class="btn btn-success" routerLink="/login-landing"
+        (click)="defaultUser()">
         Login
       </button>
-      <button
-        *ngIf="isLoggedIn()"
-        type="button"
-        class="btn btn-danger"
-        (click)="logout()"
-      >
+      <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">
         Logout
       </button>
     </div>

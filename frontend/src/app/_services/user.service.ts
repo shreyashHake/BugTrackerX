@@ -23,10 +23,19 @@ export class UserService {
     return this.httpClient.post(`${this.PATH_OF_API}/authenticate`, loginData, { headers: this.requestHeader })
   }
 
-
-
-  public register(user: any): Observable<any> {
+  public registerCustomer(user: any): Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/createNewUser`, user)
+      .pipe(
+        catchError(error => {
+          console.log(error);
+          alert('Database is not connected');
+          return of(null);
+        })
+      )
+  }
+
+  public registerStaff(user: any): Observable<any> {
+    return this.httpClient.post(`${this.PATH_OF_API}/createNewStaff`, user)
       .pipe(
         catchError(error => {
           console.log(error);

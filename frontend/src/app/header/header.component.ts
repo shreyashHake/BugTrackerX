@@ -32,4 +32,19 @@ export class HeaderComponent {
     this.userAuthService.clearLocalStorage();
     this.router.navigate(['/']);
   }
+
+  public isAdmin() {
+    const role  = this.userAuthService.getRole();
+    return role === 'Admin';
+  }
+
+  public isStaff() {
+    const role  = this.userAuthService.getRole();
+    return role === 'Staff';
+  }
+
+  public isCustomer() {
+    const role  = this.userAuthService.getRole();
+    return role === 'Customer';
+  }
 }

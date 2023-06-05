@@ -9,7 +9,9 @@ import { AuthGuard } from './_auth/auth.guard';
 import { RegisterComponent } from './register/register.component';
 import { CustomerComponent } from './customer/customer.component';
 import { StaffComponent } from './staff/staff.component';
-import { LoginLandingComponent } from './login-landing/login-landing.component';
+import { LoginLandingComponent } from './login/login-landing/login-landing.component';
+import { StaffHandlingComponent } from './staff/staff-handling/staff-handling.component';
+import { AddStaffComponent } from './staff/add-staff/add-staff.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -18,7 +20,11 @@ const routes: Routes = [
   { path: 'login-landing', component: LoginLandingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forbidden', component: ForbiddenComponent },
+
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'staff-handling', component: StaffHandlingComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'add-staff', component: AddStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+
   { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'staff', component: StaffComponent, canActivate: [AuthGuard], data: { roles: ['Staff'] } }
 ];

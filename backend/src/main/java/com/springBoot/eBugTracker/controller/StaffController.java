@@ -14,7 +14,7 @@ public class StaffController {
     private IUserService userService;
 
     @PostMapping({"/createNewStaff"})
-//    @PreAuthorize("hasRole('Admin')")
+    @PreAuthorize("hasRole('Admin')")
     public User createNewStaff(@RequestBody User staff) {
         return userService.createNewStaff(staff);
     }

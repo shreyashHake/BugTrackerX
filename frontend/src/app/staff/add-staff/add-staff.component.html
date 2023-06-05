@@ -1,0 +1,131 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">Add new Staff</h4>
+        </div>
+        <div class="card-body">
+          <form class="mt-1" [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form-row">
+              <div class="form-group">
+
+                <!-- UserName -->
+                <label for="first_name">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userName"
+                  placeholder="Enter first name"
+                  formControlName="userName"
+                  [class.is-invalid]="
+                    registerForm.get('userName')?.invalid &&
+                    registerForm.get('userName')?.touched
+                  "
+                />
+                <div
+                  *ngIf="registerForm.get('userName')?.hasError('required')"
+                  class="invalid-feedback"
+                  class="invalid-feedback"
+                >
+                  Please enter username.
+                </div>
+
+                <!-- First anem -->
+                <label for="userFirstName">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userFirstName"
+                  placeholder="Enter first name"
+                  formControlName="userFirstName"
+                  [class.is-invalid]="
+                    registerForm.get('userFirstName')?.invalid &&
+                    registerForm.get('userFirstName')?.touched
+                  "
+                />
+                <div
+                  *ngIf="registerForm.get('userFirstName')?.hasError('required')"
+                  class="invalid-feedback"
+                  class="invalid-feedback"
+                >
+                  Please enter first name.
+                </div>
+              </div>
+
+              <!-- Last Name -->
+              <div class="form-group">
+                <label for="userLastName">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="userLastName"
+                  placeholder="Enter last name"
+                  formControlName="userLastName"
+                  [class.is-invalid]="
+                    registerForm.get('userLastName')?.invalid &&
+                    registerForm.get('userLastName')?.touched
+                  "
+                />
+                <div
+                  *ngIf="registerForm.get('userLastName')?.hasError('required')"
+                  class="invalid-feedback"
+                  class="invalid-feedback"
+                >
+                  Please enter last name.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label for="userPassword">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="userPassword"
+                placeholder="Password"
+                formControlName="userPassword"
+                [class.is-invalid]="
+                  registerForm.get('userPassword')?.invalid &&
+                  registerForm.get('userPassword')?.touched
+                "
+              />
+
+              <div
+                *ngIf="registerForm.get('userPassword')?.hasError('required')"
+                class="invalid-feedback"
+              >
+                Please enter password.
+              </div>
+              <div
+                *ngIf="registerForm.get('userPassword')?.hasError('pattern')"
+                class="invalid-feedback"
+              >
+                Password must be 6+ chars with 1 uppercase, 1 lowercase, 1
+                digit, and 1 special character.
+              </div>
+            </div>
+            <div class="text-center mt-2">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!registerForm.valid"
+              >
+                Add Staff
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                style="margin-left: 20px;"
+                (click)="backToStaff()"
+              >
+                Back
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

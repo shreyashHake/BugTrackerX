@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -39,6 +40,12 @@ public class UserServiceImpl implements IUserService {
         staff.setUserPassword(getEncodedPassword(staff.getUserPassword()));
         return userRepo.save(staff);
     }
+
+//    @Override
+//    public List<User> getUserByRoleName(String roleName) {
+//        Role role = roleRepo.findByName(roleName);
+//        return userRepo.findUserByUserRole(role);
+//    }
 
     public void initRoleAndUser() {
         //1. setting demo Admin :

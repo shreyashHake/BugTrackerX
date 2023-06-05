@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -26,15 +27,10 @@ public class UserController {
         return userService.createNewUser(user);
     }
 
-    @GetMapping({"/forAdmin"})
-    @PreAuthorize("hasRole('Admin')")
-    public String forAdmin(){
-        return "This is only for admin";
-    }
+//    @GetMapping({"/getUserByRoleName/{roleName}"})
+//    @PreAuthorize("hasRole('Admin')")
+//    public List<User> getUserByRoleName(@PathVariable String roleName) {
+//        return userService.getUserByRoleName(roleName);
+//    }
 
-    @GetMapping({"/forUser"})
-    @PreAuthorize("hasRole('User')")
-    public String forUser(){
-        return "This is for all user";
-    }
 }
