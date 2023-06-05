@@ -14,8 +14,8 @@ import { LoginLandingComponent } from './login-landing/login-landing.component';
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
   { path: '', component: HomeComponent },
-  // { path: 'login', component: LoginComponent },
-  { path: 'login', component: LoginLandingComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'login-landing', component: LoginLandingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },

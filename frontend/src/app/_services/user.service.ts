@@ -67,4 +67,17 @@ export class UserService {
 
     return isMathch;
   }
+
+  // for removing 'sign-up' from 'Admin' and 'Staff'
+
+  private isCustomer = false;
+
+  setIsCustomer(value: boolean): void {
+    this.isCustomer = value;
+  }
+
+  getIsCustomer(): boolean {
+    return this.isCustomer;
+  }
+
 }

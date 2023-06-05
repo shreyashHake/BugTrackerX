@@ -38,8 +38,6 @@ export class LoginComponent {
         this.userAuthService.setRole(role);
         this.userAuthService.setToken(response.jwtToken);
 
-
-
         if (role === 'Admin') {
           this.router.navigate(['/admin']);
         } else if (role === 'Staff') {
@@ -52,5 +50,9 @@ export class LoginComponent {
         console.log(error);
       }
     })
+  }
+
+  get isCustomer(): boolean {
+    return this.userService.getIsCustomer();
   }
 }

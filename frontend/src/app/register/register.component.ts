@@ -17,7 +17,7 @@ export class RegisterComponent {
     private userService: UserService,
     private router: Router
   ) {
-    this.initializeForm();
+    // this.initializeForm();
   }
 
   initializeForm() {
@@ -30,7 +30,7 @@ export class RegisterComponent {
   }
 
   ngOnInit(): void {
-
+    this.initializeForm();
   }
 
   register() {

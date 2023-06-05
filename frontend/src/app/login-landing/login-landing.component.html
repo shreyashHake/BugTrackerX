@@ -1,15 +1,20 @@
 <header></header>
 <div class="container">
-  <div class="card" onclick="handleButtonClick(1)">
-    <h3>Card 1</h3>
-    <p>This is the first card</p>
+  <!-- Admin -->
+   <div class="card" (click)="handleButtonClick(1)">
+    <h3><i class="bi bi-person-lock"></i></h3>
+    <p>Enter to Admin dashboard</p>
   </div>
-  <div class="card" onclick="handleButtonClick(2)">
-    <h3>Card 2</h3>
-    <p>This is the second card</p>
+
+  <!-- Staff -->
+  <div class="card" (click)="handleButtonClick(2)">
+    <h3><i class="bi bi-person-gear"></i></h3>
+    <p>Enter to Staff dashboard</p>
   </div>
-  <div class="card" onclick="handleButtonClick(3)">
-    <h3>Card 3</h3>
-    <p>This is the third card</p>
+
+  <!-- Customer -->
+  <div class="card" (click)="handleButtonClick(3)">
+    <h3><i class="bi bi-person"></i></h3>
+    <p>Enter to Customer dashboard</p>
   </div>
 </div>

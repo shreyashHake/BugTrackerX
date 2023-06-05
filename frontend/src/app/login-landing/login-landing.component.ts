@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from '../_services/user.service';
 
 @Component({
   selector: 'app-login-landing',
@@ -6,9 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-landing.component.scss']
 })
 export class LoginLandingComponent {
+  constructor(
+    private router: Router,
+    private userService: UserService) {}
+
 
   public handleButtonClick(cardNumber: any) {
-    console.log('Clicked on card', cardNumber);
-    // Add your desired functionality here
+    if (cardNumber === 3) {
+      this.userService.setIsCustomer(true);
+    } else {
+      this.userService.setIsCustomer(false);
+    }
+    this.router.navigate(['/login']);
   }
 }

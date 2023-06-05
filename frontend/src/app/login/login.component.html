@@ -61,7 +61,8 @@
                 </button>
                 <br />
               </div>
-              <div class="text-center mt-2">
+
+              <div *ngIf="isCustomer" class="text-center mt-2">
                 <span
                   >Don't have an account?
                   <a routerLink="/register">Sign up</a></span
