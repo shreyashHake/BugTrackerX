@@ -46,11 +46,20 @@ public class UserServiceImpl implements IUserService {
         return userRepo.findAll();
     }
 
-//    @Override
-//    public List<User> getUserByRoleName(String roleName) {
-//        Role role = roleRepo.findByName(roleName);
-//        return userRepo.findUserByUserRole(role);
-//    }
+    @Override
+    public User deleteStaffById(String userName) {
+        User user = userRepo.findUserByUserName(userName);
+        if (user != null) {
+            Role staffRole = roleRepo.findById("Staff").orElse(null);
+
+            user.removeRole(staffRole);
+            userRepo.save(user);
+
+            userRepo.deleteById(userName);
+        }
+        return user;
+    }
+
 
     public void initRoleAndUser() {
         //1. setting demo Admin :

@@ -34,7 +34,14 @@ export class StaffHandlingComponent implements OnInit {
     return Array.from(user.userRole).some((role: Role) => role.roleName === roleName);
   }
 
-  deleteStaffUser(userId: string) {
-    
+  deleteStaffUser(userName: string) {
+    this.staffService.deleteStaffUser(userName).subscribe({
+      next: (response) => {
+        this.getStaffUsers();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

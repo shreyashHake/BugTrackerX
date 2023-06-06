@@ -34,4 +34,8 @@ public class User {
             }
     )
     private Set<Role> userRole;
+
+    public void removeRole(Role role) {
+        userRole.remove(role);
+    }
 }

@@ -27,12 +27,6 @@ public class UserController {
         return userService.createNewUser(user);
     }
 
-//    @GetMapping({"/getUserByRoleName/{roleName}"})
-//    @PreAuthorize("hasRole('Admin')")
-//    public List<User> getUserByRoleName(@PathVariable String roleName) {
-//        return userService.getUserByRoleName(roleName);
-//    }
-
     @GetMapping({"/getAll"})
     @PreAuthorize("hasRole('Admin')")
     public List<User> getAll() {
