@@ -41,6 +41,11 @@ public class UserServiceImpl implements IUserService {
         return userRepo.save(staff);
     }
 
+    @Override
+    public List<User> getAllUser() {
+        return userRepo.findAll();
+    }
+
 //    @Override
 //    public List<User> getUserByRoleName(String roleName) {
 //        Role role = roleRepo.findByName(roleName);

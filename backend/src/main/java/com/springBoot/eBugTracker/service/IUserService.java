@@ -11,5 +11,7 @@ public interface IUserService {
 
     User createNewStaff(User staff);
 
+    List<User> getAllUser();
+
 //    List<User> getUserByRoleName(String roleName);
 }

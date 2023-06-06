@@ -33,4 +33,10 @@ public class UserController {
 //        return userService.getUserByRoleName(roleName);
 //    }
 
+    @GetMapping({"/getAll"})
+    @PreAuthorize("hasRole('Admin')")
+    public List<User> getAll() {
+        return  userService.getAllUser();
+    }
+
 }

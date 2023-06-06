@@ -20,6 +20,7 @@ export class AddStaffComponent {
     private router: Router
   ) {
     this.initializeForm();
+
    }
 
   initializeForm() {
@@ -33,10 +34,10 @@ export class AddStaffComponent {
 
   ngOnInit(): void {
     this.initializeForm();
+
   }
 
   register() {
-    console.log(this.registerForm);
     this.staffService.registerStaff(this.registerForm.value).subscribe({
       next: (response) => {
         this.registerForm.reset();
@@ -52,4 +53,16 @@ export class AddStaffComponent {
   public backToStaff() {
     this.router.navigate((["/staff-handling"]))
   }
+
+  public getAll() {
+    this.staffService.getAlluser().subscribe({
+      next: (response) => {
+        console.log(response)
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
 }
