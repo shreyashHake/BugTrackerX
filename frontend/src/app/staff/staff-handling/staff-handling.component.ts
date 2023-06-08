@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Role } from 'src/app/_model/role.model';
 import { User } from 'src/app/_model/user.model';
 import { StaffService } from 'src/app/_services/staff.service';
-import { Modal } from 'bootstrap'
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-staff-handling',
@@ -13,6 +14,8 @@ export class StaffHandlingComponent implements OnInit {
   staffUsers: User[] = [];
 
   constructor(
+    private router : Router,
+    private userService : UserService,
     private staffService: StaffService) { }
 
   ngOnInit(): void {
@@ -54,4 +57,10 @@ export class StaffHandlingComponent implements OnInit {
       this.deleteStaffUser(staffUsername);
     }
   }
+
+  // editing staff user
+  public editStaffUser(userName: string) {
+    this.router.navigate(['/edit-staff', userName]);
+  }
+
 }

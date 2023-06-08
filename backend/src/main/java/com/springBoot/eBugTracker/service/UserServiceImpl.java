@@ -60,6 +60,24 @@ public class UserServiceImpl implements IUserService {
         return user;
     }
 
+    @Override
+    public User getUserByUserName(String userName) {
+        return userRepo.findUserByUserName(userName);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        System.out.println(user);
+        User changedUser = userRepo.findUserByUserName(user.getUserName());
+
+        changedUser.setUserName(user.getUserName());
+        changedUser.setUserFirstName(user.getUserFirstName());
+        changedUser.setUserLastName(user.getUserLastName());
+
+        userRepo.save(changedUser);
+        return changedUser;
+    }
+
 
     public void initRoleAndUser() {
         //1. setting demo Admin :

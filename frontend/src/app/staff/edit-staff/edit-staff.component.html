@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">Edit Staff User</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="editForm" (ngSubmit)="updateUser()">
+            <div class="form-group">
+              <label for="userName">Username</label>
+              <input
+                type="text"
+                class="form-control"
+                id="userName"
+                formControlName="userName"
+                readonly
+              />
+            </div>
+            <div class="form-group">
+              <label for="userFirstName">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="userFirstName"
+                formControlName="userFirstName"
+              />
+            </div>
+            <div class="form-group">
+              <label for="userLastName">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="userLastName"
+                formControlName="userLastName"
+              />
+            </div>
+            <div class="text-center mt-2">
+              <button type="submit" class="btn btn-primary">Update</button>
+              <button
+                type="button"
+                class="btn btn-primary"
+                style="margin-left: 20px;"
+                (click)="cancelEdit()"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,4 +33,16 @@ public class UserController {
         return  userService.getAllUser();
     }
 
+    // getting user by username
+    @GetMapping("/getUserByUserName/{userName}")
+    @PreAuthorize("hasRole('Admin')")
+    public User getUserByUserName(@PathVariable String userName) {
+        return userService.getUserByUserName(userName);
+    }
+
+    // Updating user
+    @PatchMapping("/updateUser")
+    public User updateUser(@RequestBody User user){
+        return userService.updateUser(user);
+    }
 }

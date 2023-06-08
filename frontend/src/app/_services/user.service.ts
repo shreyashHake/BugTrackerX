@@ -88,5 +88,4 @@ export class UserService {
   getIsCustomer(): boolean {
     return this.isCustomer;
   }
-
 }

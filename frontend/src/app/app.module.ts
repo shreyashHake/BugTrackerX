@@ -21,6 +21,7 @@ import { StaffComponent } from './staff/staff.component';
 import { LoginLandingComponent } from './login/login-landing/login-landing.component';
 import { StaffHandlingComponent } from './staff/staff-handling/staff-handling.component';
 import { AddStaffComponent } from './staff/add-staff/add-staff.component';
+import { EditStaffComponent } from './staff/edit-staff/edit-staff.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,9 @@ import { AddStaffComponent } from './staff/add-staff/add-staff.component';
     StaffComponent,
     LoginLandingComponent,
     StaffHandlingComponent,
-    AddStaffComponent],
+    AddStaffComponent,
+    EditStaffComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

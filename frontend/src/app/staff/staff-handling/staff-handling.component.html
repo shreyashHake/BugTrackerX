@@ -25,17 +25,25 @@
               <td>{{ user.userFirstName }}</td>
               <td>{{ user.userLastName }}</td>
               <td>
-                <button type="button" class="btn btn-outline-success ">
+                <button type="button" class="btn btn-outline-success">
                   <i class="bi bi-bag-plus-fill"></i>
                 </button>
               </td>
               <td>
-                <button type="button" class="btn btn-outline-primary ">
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  (click)="editStaffUser(user.userName)"
+                >
                   <i class="bi bi-pencil"></i>
                 </button>
               </td>
               <td>
-                <button type="button" class="btn btn-outline-danger" (click)="warnAdmin(user.userName)">
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  (click)="warnAdmin(user.userName)"
+                >
                   <i class="bi bi-trash3"></i>
                 </button>
               </td>
@@ -46,4 +54,3 @@
     </div>
   </div>
 </div>
-

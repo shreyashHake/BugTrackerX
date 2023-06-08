@@ -15,4 +15,7 @@ public interface IUserService {
 
     User deleteStaffById(String userName);
 
+    User getUserByUserName(String userName);
+
+    User updateUser(User user);
 }

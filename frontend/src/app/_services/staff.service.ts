@@ -20,8 +20,14 @@ export class StaffService {
   }
 
   public deleteStaffUser(userName: string) {
-    console.log(userName);
-
     return this.httpClient.delete(`${this.PATH_OF_API}/deleteStaff/${userName}`);
+  }
+
+  public getUserByUserName(userName : string): Observable<User> {
+    return this.httpClient.get<User>(`${this.PATH_OF_API}/getUserByUserName/${userName}`);
+  }
+
+  public updateUser(user: any) {
+    return this.httpClient.patch(`${this.PATH_OF_API}/updateUser`, user);
   }
 }
