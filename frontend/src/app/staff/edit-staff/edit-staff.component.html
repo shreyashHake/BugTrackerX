@@ -15,7 +15,11 @@
                 id="userName"
                 formControlName="userName"
                 readonly
+                (click)="showUsernameWarning()"
               />
+              <small *ngIf="showWarning" class="text-danger">
+                You cannot change the username.
+              </small>
             </div>
             <div class="form-group">
               <label for="userFirstName">First Name</label>
@@ -36,10 +40,10 @@
               />
             </div>
             <div class="text-center mt-2">
-              <button type="submit" class="btn btn-primary">Update</button>
+              <button type="submit" class="btn btn-outline-success">Update</button>
               <button
                 type="button"
-                class="btn btn-primary"
+                class="btn btn-outline-danger"
                 style="margin-left: 20px;"
                 (click)="cancelEdit()"
               >

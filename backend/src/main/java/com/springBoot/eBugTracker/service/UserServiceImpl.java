@@ -67,7 +67,6 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User updateUser(User user) {
-        System.out.println(user);
         User changedUser = userRepo.findUserByUserName(user.getUserName());
 
         changedUser.setUserName(user.getUserName());

@@ -16,8 +16,7 @@ export class EditStaffComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private userService: UserService,
+    private router: Router, 
     private formBuilder: FormBuilder,
     private staffService: StaffService
   ) {
@@ -73,4 +72,11 @@ export class EditStaffComponent implements OnInit {
   public cancelEdit(): void {
     this.router.navigate(['/staff-handling']);
   }
+
+  public showWarning: boolean = false;
+
+public showUsernameWarning(): void {
+  this.showWarning = true;
+}
+
 }
