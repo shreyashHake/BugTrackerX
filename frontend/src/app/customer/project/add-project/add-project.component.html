@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">Create a new Project</h4>
+        </div>
+        <div class="card-body">
+          <form
+            class="mt-1"
+            [formGroup]="creatProject"
+            (ngSubmit)="addProject()"
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label for="title">Title</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="title"
+                  placeholder="Enter title"
+                  formControlName="title"
+                  [class.is-invalid]="
+                    creatProject.get('title')?.invalid &&
+                    creatProject.get('title')?.touched
+                  "
+                />
+                <div
+                  *ngIf="creatProject.get('title')?.hasError('required')"
+                  class="invalid-feedback"
+                  class="invalid-feedback"
+                >
+                  Please enter title.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="description">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  placeholder="Enter description"
+                  formControlName="description"
+                  [class.is-invalid]="
+                    creatProject.get('description')?.invalid &&
+                    creatProject.get('description')?.touched
+                  "
+                />
+                <div
+                  *ngIf="creatProject.get('description')?.hasError('required')"
+                  class="invalid-feedback"
+                  class="invalid-feedback"
+                >
+                  Please enter description.
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="priority">Priority</label>
+
+              <select
+                class="form-control"
+                id="priority"
+                formControlName="priority"
+                [class.is-invalid]="
+                  creatProject.get('priority')?.invalid &&
+                  creatProject.get('priority')?.touched
+                "
+              >
+                <option value="" disabled selected>Select priority</option>
+                <option value="high">High</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+              </select>
+
+              <div
+                *ngIf="creatProject.get('priority')?.hasError('required')"
+                class="invalid-feedback"
+              >
+                Please select priority.
+              </div>
+            </div>
+            <div class="text-center mt-2">
+              <button
+                type="submit"
+                class="btn btn-outline-success"
+                [disabled]="!creatProject.valid"
+              >
+                Add Project
+              </button>
+              <button
+                type="submit"
+                class="btn btn-outline-danger"
+                style="margin-left: 20px"
+                (click)="backToProject()"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

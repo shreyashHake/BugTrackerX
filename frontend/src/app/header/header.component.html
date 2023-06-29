@@ -17,10 +17,21 @@
 
         <!-- Home if Admin -->
         <li class="nav-item">
-          <a *ngIf="isAdmin()"  class="nav-link active" aria-current="page" routerLink="/admin">Home</a>
+          <a *ngIf="isAdmin()"  class="nav-link active"  routerLink="/admin">
+            Home
+          </a>
         </li>
+
         <li *ngIf="isAdmin()" class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/staff-handling">Staff</a>
+          <a class="nav-link active" aria-current="page" routerLink="/staff-handling">
+            Staff
+          </a>
+        </li>
+
+        <li *ngIf="isAdmin()" class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/project">
+            Project
+          </a>
         </li>
 
         <!-- Home if Staff -->
@@ -31,6 +42,15 @@
         <!-- Home if Customer -->
         <li class="nav-item">
           <a *ngIf="isCustomer()"  class="nav-link active" aria-current="page" routerLink="/customer">Home</a>
+        </li>
+
+        <!-- for customer -->
+        <li class="nav-item">
+          <a *ngIf="isCustomer()"  class="nav-link active" aria-current="page" routerLink="/project">Project</a>
+        </li>
+
+        <li class="nav-item">
+          <a *ngIf="isCustomer()"  class="nav-link active" aria-current="page" routerLink="/customer-profile">Profile</a>
         </li>
 
       </ul>

@@ -1,23 +1,24 @@
 package com.springBoot.eBugTracker.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import java.util.Set;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Role {
+public class Project {
     @Id
-    private String roleName;
-    private String roleDescription;
+    @GeneratedValue()
+    private Integer id;
+    private String title;
+    private String description;
+    private String priority;
 }

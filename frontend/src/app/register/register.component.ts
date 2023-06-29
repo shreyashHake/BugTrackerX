@@ -32,7 +32,6 @@ export class RegisterComponent {
   }
 
   register() {
-    console.log(this.registerForm);
     this.userService.registerCustomer(this.registerForm.value).subscribe({
       next: (response) => {
         this.registerForm.reset();

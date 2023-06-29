@@ -22,6 +22,12 @@ import { LoginLandingComponent } from './login/login-landing/login-landing.compo
 import { StaffHandlingComponent } from './staff/staff-handling/staff-handling.component';
 import { AddStaffComponent } from './staff/add-staff/add-staff.component';
 import { EditStaffComponent } from './staff/edit-staff/edit-staff.component';
+import { ProjectComponent } from './customer/project/project.component';
+import { CutomerProfileComponent } from './customer/cutomer-profile/cutomer-profile.component';
+import { ViewProjectComponent } from './admin/view-project/view-project.component';
+import { AddProjectComponent } from './customer/project/add-project/add-project.component';
+import { EditProjectComponent } from './customer/project/edit-project/edit-project.component';
+import { BugComponent } from './customer/bug/bug.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +45,12 @@ import { EditStaffComponent } from './staff/edit-staff/edit-staff.component';
     StaffHandlingComponent,
     AddStaffComponent,
     EditStaffComponent,
+    ProjectComponent,
+    CutomerProfileComponent,
+    ViewProjectComponent,
+    AddProjectComponent,
+    EditProjectComponent,
+    BugComponent,
     ],
   imports: [
     BrowserModule,

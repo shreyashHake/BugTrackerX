@@ -1,0 +1,50 @@
+<div class="container mt-2">
+  <div class="card">
+    <div class="text-center">
+      <a routerLink="/add-project">
+        <button type="button" class="btn btn-success mt-2">Add Project</button>
+      </a>
+    </div>
+    <hr />
+    <div class="text-center" style="color: green; padding: 20px">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Issue Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Priority</th>
+            <th>Add bug</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let project of projectRec">
+            <td>{{project.id}}</td>
+            <td>{{project.title}}</td>
+            <td>{{project.description}}</td>
+            <td>{{project.priority}}</td>
+            <td>
+              <button type="button" class="btn btn-outline-success" (click)="showModal = true">
+                <i class="bi bi-bug"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-primary">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-danger">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-bug [showModal]="showModal" (closeModalEvent)="onModalClosed()"> </app-bug>

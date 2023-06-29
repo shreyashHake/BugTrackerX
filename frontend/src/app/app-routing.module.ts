@@ -12,6 +12,10 @@ import { LoginLandingComponent } from './login/login-landing/login-landing.compo
 import { StaffHandlingComponent } from './staff/staff-handling/staff-handling.component';
 import { AddStaffComponent } from './staff/add-staff/add-staff.component';
 import { EditStaffComponent } from './staff/edit-staff/edit-staff.component';
+import { CutomerProfileComponent } from './customer/cutomer-profile/cutomer-profile.component';
+import { ProjectComponent } from './customer/project/project.component';
+import { ViewProjectComponent } from './admin/view-project/view-project.component';
+import { AddProjectComponent } from './customer/project/add-project/add-project.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -25,8 +29,13 @@ const routes: Routes = [
   { path: 'staff-handling', component: StaffHandlingComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'add-staff', component: AddStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'edit-staff/:userName', component: EditStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'view-project', component: ViewProjectComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 
   { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  { path: 'customer-profile', component: CutomerProfileComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  { path: 'project', component: ProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  { path: 'add-project', component: AddProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+
   { path: 'staff', component: StaffComponent, canActivate: [AuthGuard], data: { roles: ['Staff'] } }
 ];
 

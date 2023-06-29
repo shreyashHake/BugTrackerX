@@ -9,7 +9,7 @@ import { User } from '../_model/user.model';
 export class StaffService {
   PATH_OF_API = "http://localhost:8080";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { } 
 
   public registerStaff(user: any): Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/createNewStaff`, user);
