@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'view-project', component: ViewProjectComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 
   { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
-  { path: 'customer-profile', component: CutomerProfileComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  { path: 'customer-profile/:userName', component: CutomerProfileComponent},
   { path: 'project', component: ProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'add-project', component: AddProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
 

@@ -21,9 +21,9 @@ export class ProjectService {
 
   public saveProject(project: any): Observable<any> {
   const headers = new HttpHeaders({
-    Authorization: 'Bearer ' + this.userAuthUser.getToken() 
+    Authorization: 'Bearer ' + this.userAuthUser.getToken()
   });
 
-  return this.httpClient.post(`${this.PATH_OF_API}/addProject`, project, { headers });
+  return this.httpClient.post(`${this.PATH_OF_API}/createCustomerProject`, project, { headers });
 }
 }

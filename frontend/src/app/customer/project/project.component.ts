@@ -16,22 +16,22 @@ export class ProjectComponent {
   constructor(private router: Router, private projectService: ProjectService) {}
 
   ngOnInit(): void {
-    this.getStaffUsers();
+    // this.getStaffUsers();
   }
 
-  getStaffUsers(): void {
-    this.projectService.getAllProject().subscribe({
-      next: (projects: Project[]) => {
-        this.projectRec = projects;
+  // getStaffUsers(): void {
+  //   this.projectService.getAllProject().subscribe({
+  //     next: (projects: Project[]) => {
+  //       this.projectRec = projects;
 
-        console.log(this.projectRec);
-      },
+  //       console.log(this.projectRec);
+  //     },
 
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 
   onModalClosed() {
     this.showModal = false;

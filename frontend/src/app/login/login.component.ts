@@ -36,6 +36,7 @@ export class LoginComponent {
         const role = response.user.userRole[0].roleName;
 
         this.userAuthService.setRole(role);
+        this.userAuthService.setUserName(response.user.userName);
         this.userAuthService.setToken(response.jwtToken);
 
         if (role === 'Admin') {

@@ -10,13 +10,13 @@
             <div class="form-row">
               <div class="form-group">
 
-                <!-- UserName -->
-                <label for="first_name">Username</label>
+                <!-- userEmail -->
+                <label for="Email">Email address</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="userName"
-                  placeholder="Enter first name"
+                  placeholder="Enter email address"
                   formControlName="userName"
                   [class.is-invalid]="
                     registerForm.get('userName')?.invalid &&
@@ -28,11 +28,11 @@
                   class="invalid-feedback"
                   class="invalid-feedback"
                 >
-                  Please enter username.
+                  Please enter email.
                 </div>
 
-                <!-- First anem -->
-                <label for="userFirstName">First Name</label>
+
+                <!-- <label for="userFirstName">First Name</label>
                 <input
                   type="text"
                   class="form-control"
@@ -50,11 +50,12 @@
                   class="invalid-feedback"
                 >
                   Please enter first name.
-                </div>
+                </div> -->
+
+
               </div>
 
-              <!-- Last Name -->
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <label for="userLastName">Last Name</label>
                 <input
                   type="text"
@@ -74,7 +75,7 @@
                 >
                   Please enter last name.
                 </div>
-              </div>
+              </div> -->
 
             </div>
 

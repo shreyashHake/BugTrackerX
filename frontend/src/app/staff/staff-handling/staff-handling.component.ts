@@ -18,20 +18,20 @@ export class StaffHandlingComponent implements OnInit {
     private staffService: StaffService) { }
 
   ngOnInit(): void {
-    this.getStaffUsers();
+    // this.getStaffUsers();
   }
 
   // getting user :
-  getStaffUsers(): void {
-    this.staffService.getAlluser().subscribe(
-      (users: User[]) => {
-        this.staffUsers = users;
-      },
-      (error) => {
-        console.error('Error retrieving staff users:', error);
-      }
-    );
-  }
+  // getStaffUsers(): void {
+  //   this.staffService.getAlluser().subscribe(
+  //     (users: User[]) => {
+  //       this.staffUsers = users;
+  //     },
+  //     (error) => {
+  //       console.error('Error retrieving staff users:', error);
+  //     }
+  //   );
+  // }
 
   // checking if thre role matches to 'staff'
   hasUserRole(user: User, roleName: string): boolean {
@@ -39,21 +39,21 @@ export class StaffHandlingComponent implements OnInit {
   }
 
   // deleting staff
-  deleteStaffUser(userName: string) {
-    this.staffService.deleteStaffUser(userName).subscribe({
-      next: (response) => {
-        this.getStaffUsers();
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    })
-  }
+  // deleteStaffUser(userName: string) {
+  //   this.staffService.deleteStaffUser(userName).subscribe({
+  //     next: (response) => {
+  //       this.getStaffUsers();
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     }
+  //   })
+  // }
 
   // warning to delete staff
   public warnAdmin(staffUsername : string) {
     if(confirm("Are you sure to delete : '"+ staffUsername + "' ?")) {
-      this.deleteStaffUser(staffUsername);
+      // this.deleteStaffUser(staffUsername);
     }
   }
 

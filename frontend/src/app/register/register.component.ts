@@ -9,6 +9,7 @@ import { UserService } from '../_services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent {
+  [x: string]: any;
   registerForm!: FormGroup;
 
   passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
@@ -21,8 +22,6 @@ export class RegisterComponent {
   initializeForm() {
     this.registerForm = new FormGroup({
       userName: new FormControl('', Validators.required),
-      userFirstName: new FormControl('', [Validators.required]),
-      userLastName: new FormControl('', [Validators.required]),
       userPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)])
     });
   }
@@ -34,8 +33,9 @@ export class RegisterComponent {
   register() {
     this.userService.registerCustomer(this.registerForm.value).subscribe({
       next: (response) => {
+        const id = this.registerForm.value.userName;
         this.registerForm.reset();
-        this.router.navigate(['/login']);
+        this.router.navigate(['/customer-profile', id]);
       },
       error: (err) => {
         console.log(err);

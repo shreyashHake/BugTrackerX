@@ -22,9 +22,9 @@
         <tbody>
           <tr *ngFor="let project of projectRec">
             <td>{{project.id}}</td>
-            <td>{{project.title}}</td>
-            <td>{{project.description}}</td>
-            <td>{{project.priority}}</td>
+            <td>{{project.projectName}}</td>
+            <td>{{project.projectDesc}}</td>
+            <td>{{project.projectPriority}}</td>
             <td>
               <button type="button" class="btn btn-outline-success" (click)="showModal = true">
                 <i class="bi bi-bug"></i>

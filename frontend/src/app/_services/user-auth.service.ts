@@ -26,6 +26,14 @@ export class UserAuthService {
     return localStorage.getItem('jwtToken') || '';
   }
 
+  public setUserName(userName: string) {
+    localStorage.setItem("userName",userName);
+  }
+
+  public getUserName() {
+    return localStorage.getItem('userName') || '';
+  }
+
   public clearLocalStorage() {
     localStorage.clear();
   }

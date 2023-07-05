@@ -23,9 +23,10 @@ export class AddProjectComponent {
 
   initializeForm() {
     this.creatProject = new FormGroup({
-      title: new FormControl('', Validators.required),
-      description: new FormControl('', [Validators.required]),
-      priority: new FormControl('', [Validators.required])
+      projectName: new FormControl('', Validators.required),
+      projectDomain: new FormControl('', Validators.required),
+      projectDesc: new FormControl('', [Validators.required]),
+      projectPriority: new FormControl('', [Validators.required])
     });
   }
 
@@ -52,6 +53,6 @@ export class AddProjectComponent {
     this.router.navigate((["/project"]))
   }
 
-  
+
 
 }

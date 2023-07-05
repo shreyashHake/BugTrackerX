@@ -13,20 +13,20 @@
           >
             <div class="form-row">
               <div class="form-group">
-                <label for="title">Title</label>
+                <label for="projectName">Title</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="title"
+                  id="projectName"
                   placeholder="Enter title"
-                  formControlName="title"
+                  formControlName="projectName"
                   [class.is-invalid]="
-                    creatProject.get('title')?.invalid &&
-                    creatProject.get('title')?.touched
+                    creatProject.get('projectName')?.invalid &&
+                    creatProject.get('projectName')?.touched
                   "
                 />
                 <div
-                  *ngIf="creatProject.get('title')?.hasError('required')"
+                  *ngIf="creatProject.get('projectName')?.hasError('required')"
                   class="invalid-feedback"
                   class="invalid-feedback"
                 >
@@ -35,20 +35,42 @@
               </div>
 
               <div class="form-group">
-                <label for="description">Description</label>
+                <label for="projectDomain">Domain</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="description"
-                  placeholder="Enter description"
-                  formControlName="description"
+                  id="projectDomain"
+                  placeholder="Enter project domain"
+                  formControlName="projectDomain"
                   [class.is-invalid]="
-                    creatProject.get('description')?.invalid &&
-                    creatProject.get('description')?.touched
+                    creatProject.get('projectDomain')?.invalid &&
+                    creatProject.get('projectDomain')?.touched
                   "
                 />
                 <div
-                  *ngIf="creatProject.get('description')?.hasError('required')"
+                  *ngIf="creatProject.get('projectDomain')?.hasError('required')"
+                  class="invalid-feedback"
+                  class="invalid-feedback"
+                >
+                  Please enter domain.
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="projectDesc">Description</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="projectDesc"
+                  placeholder="Enter projectDesc"
+                  formControlName="projectDesc"
+                  [class.is-invalid]="
+                    creatProject.get('projectDesc')?.invalid &&
+                    creatProject.get('projectDesc')?.touched
+                  "
+                />
+                <div
+                  *ngIf="creatProject.get('projectDesc')?.hasError('required')"
                   class="invalid-feedback"
                   class="invalid-feedback"
                 >
@@ -58,15 +80,15 @@
             </div>
 
             <div class="form-group">
-              <label for="priority">Priority</label>
+              <label for="projectPriority">Priority</label>
 
               <select
                 class="form-control"
-                id="priority"
-                formControlName="priority"
+                id="projectPriority"
+                formControlName="projectPriority"
                 [class.is-invalid]="
-                  creatProject.get('priority')?.invalid &&
-                  creatProject.get('priority')?.touched
+                  creatProject.get('projectPriority')?.invalid &&
+                  creatProject.get('projectPriority')?.touched
                 "
               >
                 <option value="" disabled selected>Select priority</option>
@@ -76,7 +98,7 @@
               </select>
 
               <div
-                *ngIf="creatProject.get('priority')?.hasError('required')"
+                *ngIf="creatProject.get('projectPriority')?.hasError('required')"
                 class="invalid-feedback"
               >
                 Please select priority.
