@@ -1,20 +1,19 @@
 package com.springBoot.eBugTracker.controller;
 
 import com.springBoot.eBugTracker.entity.User;
-import com.springBoot.eBugTracker.service.IUserService;
+import com.springBoot.eBugTracker.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 public class UserController {
     @Autowired
-    private IUserService userService;
+    private UserService userService;
 
     // default 'Admin' and 'User' of the application
     @PostConstruct
@@ -27,22 +26,21 @@ public class UserController {
         return userService.createNewUser(user);
     }
 
-    @GetMapping({"/getAll"})
+    @GetMapping({"/forAdmin"})
     @PreAuthorize("hasRole('Admin')")
-    public List<User> getAll() {
-        return  userService.getAllUser();
+    public String forAdmin(){
+        return "This is only for admin";
     }
 
-    // getting user by username
-    @GetMapping("/getUserByUserName/{userName}")
-    @PreAuthorize("hasRole('Admin')")
-    public User getUserByUserName(@PathVariable String userName) {
-        return userService.getUserByUserName(userName);
+    @GetMapping({"/forCustomer"})
+    @PreAuthorize("hasRole('Customer')")
+    public String forUser(){
+        return "This is for all Customer";
     }
 
-    // Updating user
-    @PatchMapping("/updateUser")
-    public User updateUser(@RequestBody User user){
-        return userService.updateUser(user);
+    @GetMapping({"/forStaff"})
+    @PreAuthorize("hasRole('Staff')")
+    public String forStaff(){
+        return "This is for all Staff";
     }
 }

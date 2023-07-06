@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Customer_Profile } from 'src/app/_model/customer.model';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -10,11 +11,13 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class CutomerProfileComponent {
   customerProfile!: FormGroup;
+  profile !: Customer_Profile;
 
   constructor(
     private userService: UserService,
-    private router: Router
-  ) {  }
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   initializeForm() {
     this.customerProfile = new FormGroup({
@@ -28,22 +31,15 @@ export class CutomerProfileComponent {
     this.initializeForm();
   }
 
-  register() {
-    console.log(this.customerProfile.value);
-    this.router.navigate(['/login']);
+  completeProfile() {
+
+    const userName = this.route.snapshot.paramMap.get('userName');
+    const profile: Customer_Profile = {
+      ...this.customerProfile.value,
+      isActive: true,
+      userName: userName
+    };
 
 
-  //   this.userService.registerCustomer(this.customerProfile.value).subscribe({
-  //     next: (response) => {
-  //       console.log(this.customerProfile.value);
-
-  //       this.customerProfile.reset();
-  //       this.router.navigate(['/login']);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //       window.alert("User name already exists");
-  //     }
-  //   })
   }
 }
