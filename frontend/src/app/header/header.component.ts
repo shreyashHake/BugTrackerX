@@ -20,12 +20,12 @@ export class HeaderComponent {
   }
 
   public defaultUser() {
-    window.alert(
-      "Here are demo user for login :"+
-      "\n -> Admin: \n username: admin123 \n password: Pass@123" +
-      "\n -> Staff: \n username: staff123 \n   password: Pass@123" +
-      "\n -> Customer: \n username: customer123 \n password: Pass@123" +
-      "\n \n Click on login to view demo users again")
+    // window.alert(
+    //   "Here are demo user for login :"+
+    //   "\n -> Admin: \n username: admin123 \n password: Pass@123" +
+    //   "\n -> Staff: \n username: staff123 \n   password: Pass@123" +
+    //   "\n -> Customer: \n username: customer123 \n password: Pass@123" +
+    //   "\n \n Click on login to view demo users again")
   }
 
   public logout() {

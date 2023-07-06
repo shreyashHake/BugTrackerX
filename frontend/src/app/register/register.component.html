@@ -12,22 +12,13 @@
 
                 <!-- userEmail -->
                 <label for="Email">Email address</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="userName"
-                  placeholder="Enter email address"
-                  formControlName="userName"
-                  [class.is-invalid]="
+                <input type="email" class="form-control" id="userName" placeholder="Enter email address"
+                  formControlName="userName" [class.is-invalid]="
                     registerForm.get('userName')?.invalid &&
                     registerForm.get('userName')?.touched
-                  "
-                />
-                <div
-                  *ngIf="registerForm.get('userName')?.hasError('required')"
-                  class="invalid-feedback"
-                  class="invalid-feedback"
-                >
+                  " />
+                <div *ngIf="registerForm.get('userName')?.hasError('required')" class="invalid-feedback"
+                  class="invalid-feedback">
                   Please enter email.
                 </div>
               </div>
@@ -35,38 +26,22 @@
 
             <div class="form-group">
               <label for="userPassword">Password</label>
-              <input
-                type="password"
-                class="form-control"
-                id="userPassword"
-                placeholder="Password"
-                formControlName="userPassword"
-                [class.is-invalid]="
+              <input type="password" class="form-control" id="userPassword" placeholder="Password"
+                formControlName="userPassword" [class.is-invalid]="
                   registerForm.get('userPassword')?.invalid &&
                   registerForm.get('userPassword')?.touched
-                "
-              />
+                " />
 
-              <div
-                *ngIf="registerForm.get('userPassword')?.hasError('required')"
-                class="invalid-feedback"
-              >
+              <div *ngIf="registerForm.get('userPassword')?.hasError('required')" class="invalid-feedback">
                 Please enter password.
               </div>
-              <div
-                *ngIf="registerForm.get('userPassword')?.hasError('pattern')"
-                class="invalid-feedback"
-              >
+              <div *ngIf="registerForm.get('userPassword')?.hasError('pattern')" class="invalid-feedback">
                 Password must be 6+ chars with 1 uppercase, 1 lowercase, 1
                 digit, and 1 special character.
               </div>
             </div>
             <div class="text-center mt-2">
-              <button
-                type="submit"
-                class="btn btn-primary"
-                [disabled]="!registerForm.valid"
-              >
+              <button type="submit" class="btn btn-primary" [disabled]="!registerForm.valid">
                 Register
               </button>
             </div>
