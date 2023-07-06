@@ -1,7 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-Secondary">
   <div class="container-fluid">
     <div class="border-0">
-      <a class="navbar-brand">eBug Tracker</a>
+      <a class="navbar-brand">  <img src="../../assets/images/titleLogo.png" alt="Bootstrap" style="height: 50px; width:auto"></a>
     </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,7 @@
         </li>
 
       </ul>
-      <button *ngIf="!isLoggedIn()" type="button" class="btn btn-success" routerLink="/login-landing"
+      <button *ngIf="!isLoggedIn()" type="button" class="btn btn-dark" routerLink="/login-landing"
         (click)="defaultUser()">
         Login
       </button>
