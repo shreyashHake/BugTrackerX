@@ -31,7 +31,7 @@ export class RegisterComponent {
   }
 
   register() {
-    this.userService.registerCustomer(this.registerForm.value).subscribe({
+    this.userService.registerUser(this.registerForm.value).subscribe({
       next: (response) => {
         const id = this.registerForm.value.userName;
         this.registerForm.reset();

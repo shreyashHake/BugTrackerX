@@ -40,8 +40,6 @@ export class EditStaffComponent implements OnInit {
         this.user = user;
         this.editForm.patchValue({
           userName: user.userName,
-          userFirstName: user.userFirstName,
-          userLastName: user.userLastName
         });
       },
       error: (err) => {
@@ -54,8 +52,6 @@ export class EditStaffComponent implements OnInit {
     if (this.editForm.valid) {
       const updatedUser: User = {
         ...this.user,
-        userFirstName: this.editForm.value.userFirstName,
-        userLastName: this.editForm.value.userLastName
       };
 
       this.staffService.updateUser(updatedUser).subscribe(

@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="text-center">Add new Staff</h4>
+        </div>
+        <div class="card-body">
+          <form class="mt-1" [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="form-row">
+              <div class="form-group">
+
+                <!-- Name -->
+                <label for="staffName">Name</label>
+                <input type="text" class="form-control" id="staffName" placeholder="Enter Name"
+                  formControlName="staffName" [class.is-invalid]="
+                    registerForm.get('staffName')?.invalid &&
+                    registerForm.get('staffName')?.touched
+                  " />
+                <div *ngIf="registerForm.get('staffName')?.hasError('required')" class="invalid-feedback"
+                  class="invalid-feedback">
+                  Please enter Name.
+                </div>
+
+                <!-- Email -->
+                <label for="staffEmail">Email</label>
+                <input type="email" class="form-control" id="staffEmail" placeholder="Enter Email"
+                  formControlName="staffEmail" [class.is-invalid]="
+                    registerForm.get('staffEmail')?.invalid &&
+                    registerForm.get('staffEmail')?.touched
+                  " />
+                <div *ngIf="registerForm.get('staffEmail')?.hasError('required')" class="invalid-feedback"
+                  class="invalid-feedback">
+                  Please enter staffEmail.
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label for="staffPhone">Phone</label>
+                <input type="text" class="form-control" id="staffPhone" placeholder="Enter Phone"
+                  formControlName="staffPhone" [class.is-invalid]="
+                    registerForm.get('staffPhone')?.invalid &&
+                    registerForm.get('staffPhone')?.touched
+                  " />
+                <div *ngIf="registerForm.get('staffPhone')?.hasError('required')" class="invalid-feedback"
+                  class="invalid-feedback">
+                  Please enter Phone Number.
+                </div>
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label for="userPassword">Password</label>
+              <input type="password" class="form-control" id="userPassword" placeholder="Password"
+                formControlName="userPassword" [class.is-invalid]="
+                  registerForm.get('userPassword')?.invalid &&
+                  registerForm.get('userPassword')?.touched
+                " />
+
+              <div *ngIf="registerForm.get('userPassword')?.hasError('required')" class="invalid-feedback">
+                Please enter password.
+              </div>
+              <div *ngIf="registerForm.get('userPassword')?.hasError('pattern')" class="invalid-feedback">
+                Password must be 6+ chars with 1 uppercase, 1 lowercase, 1
+                digit, and 1 special character.
+              </div>
+            </div>
+            <div class="text-center mt-2">
+              <button type="submit" class="btn btn-outline-success" [disabled]="!registerForm.valid">
+                Add Staff
+              </button>
+              <button type="submit" class="btn btn-outline-danger" style="margin-left: 20px;" (click)="backToStaff()">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
