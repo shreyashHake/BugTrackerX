@@ -25,9 +25,9 @@ export class AddStaffComponent {
 
   initializeForm() {
     this.registerForm = new FormGroup({
-      userName: new FormControl('', Validators.required),
-      userFirstName: new FormControl('', [Validators.required]),
-      userLastName: new FormControl('', [Validators.required]),
+      staffName: new FormControl('', Validators.required),
+      staffEmail: new FormControl('', [Validators.required]),
+      staffPhone: new FormControl('', [Validators.required]),
       userPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)])
     });
   }

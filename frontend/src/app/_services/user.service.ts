@@ -23,7 +23,7 @@ export class UserService {
     return this.httpClient.post(`${this.PATH_OF_API}/authenticate`, loginData, { headers: this.requestHeader })
   }
 
-  public registerCustomer(user: any): Observable<any> {
+  public registerUser(user: any): Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/createNewUser`, user)
       .pipe(
         catchError(error => {
