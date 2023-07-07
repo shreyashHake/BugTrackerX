@@ -25,7 +25,7 @@ public class CustomerController {
         return customerService.createCustomerProfile(customerProfile);
     }
     @PostMapping({"/createCustomerProject"})
-    @PreAuthorize("hasRole('Customer')")
+//    @PreAuthorize("hasRole('Customer')")
     public CustomerProjectDTO createCustomerProject(@RequestBody CustomerProject customerProject){
         return customerService.createCustomerProject(customerProject);
     }
@@ -46,6 +46,10 @@ public class CustomerController {
         return customerService.getCustomerProfile(user_id);
     }
 
+    @GetMapping({"/haveCustomerProfile/{username}"})
+    public boolean haveCustomerProfile(@PathVariable String username){
+        return customerService.haveCustomerProfile(username);
+    }
     @GetMapping({"/getCustomerProjects/{profile_id}"})
     public List<CustomerProjectDTO> getCustomerProjects(@PathVariable int profile_id){
         return customerService.getCustomerProjects(profile_id);

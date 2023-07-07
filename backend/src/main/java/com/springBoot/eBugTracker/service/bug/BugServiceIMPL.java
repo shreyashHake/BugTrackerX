@@ -1,13 +1,18 @@
 package com.springBoot.eBugTracker.service.bug;
 
+import com.springBoot.eBugTracker.dtos.bugs.CommentDTO;
 import com.springBoot.eBugTracker.entity.bugs.BugProcess;
+import com.springBoot.eBugTracker.entity.bugs.Comment;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
 import com.springBoot.eBugTracker.repository.bugs.BugProcessRepo;
+import com.springBoot.eBugTracker.repository.bugs.CommentRepo;
 import com.springBoot.eBugTracker.repository.staff.StaffProfileRepo;
 import com.springBoot.eBugTracker.util.DtoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -16,6 +21,8 @@ public class BugServiceIMPL implements BugService{
     private BugProcessRepo bugProcessRepo;
     @Autowired
     private StaffProfileRepo staffProfileRepo;
+    @Autowired
+    private CommentRepo commentRepo;
     @Autowired
     private DtoHelper dtoHelper;
     @Override
@@ -34,5 +41,13 @@ public class BugServiceIMPL implements BugService{
         bugProcess.get().setStaffProfile(staffProfile.get());
         bugProcessRepo.save(bugProcess.get());
         return "Assign Staff To Bug Successfully";
+    }
+
+    @Override
+    public CommentDTO addComment(Comment comment) {
+        Optional<BugProcess> bugProcess = bugProcessRepo.findById(comment.getBugProcess().getBugProcessId());
+        comment.setCommentDateTime(LocalDateTime.now());
+        comment.setBugProcess(bugProcess.get());
+       return dtoHelper.getCommentDto(commentRepo.save(comment));
     }
 }

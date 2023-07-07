@@ -1,12 +1,16 @@
 package com.springBoot.eBugTracker.util;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugDTO;
+import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
+import com.springBoot.eBugTracker.dtos.bugs.CommentDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProfileDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProjectDTO;
 import com.springBoot.eBugTracker.dtos.customer.UserDTO;
 import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;
 import com.springBoot.eBugTracker.entity.User;
 import com.springBoot.eBugTracker.entity.bugs.Bug;
+import com.springBoot.eBugTracker.entity.bugs.BugProcess;
+import com.springBoot.eBugTracker.entity.bugs.Comment;
 import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
@@ -38,7 +42,7 @@ public class DtoHelper {
                 customerProject.getProjectName(),
                 customerProject.getProjectDomain(),
                 customerProject.getProjectDesc(),
-                customerProject.getProjectPriority(),
+                customerProject.getProjectStatus(),
                 customerProject.getCreatedDate(),
                 customerProject.getEndDate(),
                 getCustomerProfileDto(customerProject.getCustomerProfile())
@@ -67,6 +71,27 @@ public class DtoHelper {
                 staffProfile.getIsActive(),
                 staffProfile.getCreatedDate(),
                 getUserDto(staffProfile.getUser())
+        );
+    }
+
+    public BugProcessDTO getBugProcessDto(BugProcess bugProcess){
+        return new BugProcessDTO(
+                bugProcess.getBugProcessId(),
+                bugProcess.getGlobalStatus(),
+                getStaffProfileDto(bugProcess.getStaffProfile()),
+                getBugDto(bugProcess.getBug())
+        );
+    }
+
+    public CommentDTO getCommentDto(Comment comment){
+        return new CommentDTO(
+                comment.getCommentId(),
+                comment.getCommentNumber(),
+                comment.getComment(),
+                comment.getCommentBy(),
+                comment.getCommentDateTime(),
+                getUserDto(comment.getUser()),
+                getBugProcessDto(comment.getBugProcess())
         );
     }
 }

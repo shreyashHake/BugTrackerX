@@ -23,7 +23,7 @@ public class CustomerProject {
     private String projectName;
     private String projectDomain;
     private String projectDesc;
-    private String projectPriority;
+    private String projectStatus;
     @JsonIgnore
     private LocalDate createdDate;
     @JsonIgnore

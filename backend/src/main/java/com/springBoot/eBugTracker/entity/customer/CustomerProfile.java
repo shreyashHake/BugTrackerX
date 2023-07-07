@@ -9,15 +9,13 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class CustomerProfile {
+public class CustomerProfile  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerProfileId;
@@ -31,3 +29,7 @@ public class CustomerProfile {
     @JoinColumn(name = "userName", nullable = false, referencedColumnName = "userName")
     private User user;
 }
+//    @OneToMany
+//    @JoinColumn(name = "customerProjectId",nullable = true,referencedColumnName = "customerProjectId")
+//    private List<CustomerProject> customerProjects;
+

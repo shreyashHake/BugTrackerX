@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Customer_Profile } from 'src/app/_model/customer.model';
+import { Router,ActivatedRoute } from '@angular/router';
+import { CustomerProfile } from 'src/app/_model/customerProfile.model';
+import { CustomerService } from 'src/app/_services/customer.service';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -11,13 +12,14 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class CutomerProfileComponent {
   customerProfile!: FormGroup;
-  profile !: Customer_Profile;
-
+  userName! : string;
+  
   constructor(
     private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private customerService : CustomerService
+  ) {  }
 
   initializeForm() {
     this.customerProfile = new FormGroup({
@@ -28,18 +30,37 @@ export class CutomerProfileComponent {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+     this.userName = params['userName'];
+      // Use the userName parameter as needed
+      console.log(this.userName);
+    });
     this.initializeForm();
   }
 
-  completeProfile() {
+  register() {
 
-    const userName = this.route.snapshot.paramMap.get('userName');
-    const profile: Customer_Profile = {
+   const profile : CustomerProfile = {
       ...this.customerProfile.value,
-      isActive: true,
-      userName: userName
-    };
+      isActive : true,
+      user :{
+        userName : this.userName
+      }
+    }
+    console.log("profile : ",profile);
 
 
+    this.customerService.completeProfile(profile).subscribe({
+      next: (response) => {
+        console.log(this.customerProfile.value);
+
+        this.customerProfile.reset();
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.log(err);
+        window.alert("User name already exists");
+      }
+    })
   }
 }
