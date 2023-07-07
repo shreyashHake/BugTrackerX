@@ -6,118 +6,70 @@
           <h4 class="text-center">Create a new Project</h4>
         </div>
         <div class="card-body">
-          <form
-            class="mt-1"
-            [formGroup]="creatProject"
-            (ngSubmit)="addProject()"
-          >
+          <form class="mt-1" [formGroup]="creatProject" (ngSubmit)="addProject()">
             <div class="form-row">
               <div class="form-group">
                 <label for="projectName">Title</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="projectName"
-                  placeholder="Enter title"
-                  formControlName="projectName"
-                  [class.is-invalid]="
+                <input type="text" class="form-control" id="projectName" placeholder="Enter title"
+                  formControlName="projectName" [class.is-invalid]="
                     creatProject.get('projectName')?.invalid &&
                     creatProject.get('projectName')?.touched
-                  "
-                />
-                <div
-                  *ngIf="creatProject.get('projectName')?.hasError('required')"
-                  class="invalid-feedback"
-                  class="invalid-feedback"
-                >
+                  " />
+                <div *ngIf="creatProject.get('projectName')?.hasError('required')" class="invalid-feedback"
+                  class="invalid-feedback">
                   Please enter title.
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="projectDomain">Domain</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="projectDomain"
-                  placeholder="Enter project domain"
-                  formControlName="projectDomain"
-                  [class.is-invalid]="
+                <input type="text" class="form-control" id="projectDomain" placeholder="Enter project domain"
+                  formControlName="projectDomain" [class.is-invalid]="
                     creatProject.get('projectDomain')?.invalid &&
                     creatProject.get('projectDomain')?.touched
-                  "
-                />
-                <div
-                  *ngIf="creatProject.get('projectDomain')?.hasError('required')"
-                  class="invalid-feedback"
-                  class="invalid-feedback"
-                >
+                  " />
+                <div *ngIf="creatProject.get('projectDomain')?.hasError('required')" class="invalid-feedback"
+                  class="invalid-feedback">
                   Please enter domain.
                 </div>
               </div>
 
               <div class="form-group">
                 <label for="projectDesc">Description</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="projectDesc"
-                  placeholder="Enter projectDesc"
-                  formControlName="projectDesc"
-                  [class.is-invalid]="
+                <input type="text" class="form-control" id="projectDesc" placeholder="Enter projectDesc"
+                  formControlName="projectDesc" [class.is-invalid]="
                     creatProject.get('projectDesc')?.invalid &&
                     creatProject.get('projectDesc')?.touched
-                  "
-                />
-                <div
-                  *ngIf="creatProject.get('projectDesc')?.hasError('required')"
-                  class="invalid-feedback"
-                  class="invalid-feedback"
-                >
+                  " />
+                <div *ngIf="creatProject.get('projectDesc')?.hasError('required')" class="invalid-feedback"
+                  class="invalid-feedback">
                   Please enter description.
                 </div>
               </div>
             </div>
 
             <div class="form-group">
-              <label for="projectPriority">Priority</label>
+              <label for="projectStatus">Status</label>
 
-              <select
-                class="form-control"
-                id="projectPriority"
-                formControlName="projectPriority"
-                [class.is-invalid]="
-                  creatProject.get('projectPriority')?.invalid &&
-                  creatProject.get('projectPriority')?.touched
-                "
-              >
+              <select class="form-control" id="projectStatus" formControlName="projectStatus" [class.is-invalid]="
+                  creatProject.get('projectStatus')?.invalid &&
+                  creatProject.get('projectStatus')?.touched
+                ">
                 <option value="" disabled selected>Select priority</option>
-                <option value="high">High</option>
-                <option value="low">Low</option>
+                <option value="Urgent">High</option>
+                <option value="Important">Low</option>
                 <option value="medium">Medium</option>
               </select>
 
-              <div
-                *ngIf="creatProject.get('projectPriority')?.hasError('required')"
-                class="invalid-feedback"
-              >
-                Please select priority.
+              <div *ngIf="creatProject.get('projectStatus')?.hasError('required')" class="invalid-feedback">
+                Please select Status.
               </div>
             </div>
             <div class="text-center mt-2">
-              <button
-                type="submit"
-                class="btn btn-outline-success"
-                [disabled]="!creatProject.valid"
-              >
+              <button type="submit" class="btn btn-outline-success" [disabled]="!creatProject.valid">
                 Add Project
               </button>
-              <button
-                type="submit"
-                class="btn btn-outline-danger"
-                style="margin-left: 20px"
-                (click)="backToProject()"
-              >
+              <button type="submit" class="btn btn-outline-danger" style="margin-left: 20px" (click)="backToProject()">
                 Cancel
               </button>
             </div>
