@@ -26,10 +26,16 @@ export class CustomerService {
       )
   }
 
-  getCustomerProfile()  : Observable<any> {
+  // getCustomerProfile()  : Observable<any> {
+  //   const userName = this.userAuthService.getUserName();
+  //   return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfile/${userName}`);
+  // }
+
+  getCustomerProfile(): Observable<any> {
     const userName = this.userAuthService.getUserName();
-    return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfile/${userName}`);
+    return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfile/${userName}?fetchUserRole=true`);
   }
+  
 
   // getCustomerProfileId(profile : any):Number{
   //    let projectId : Number;

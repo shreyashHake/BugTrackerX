@@ -26,4 +26,6 @@ export class ProjectService {
 
   return this.httpClient.post(`${this.PATH_OF_API}/customer/createCustomerProject`, project);
 }
+
+
 }

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceIMPL implements CustomerService {
@@ -102,6 +103,16 @@ public class CustomerServiceIMPL implements CustomerService {
             bugDTOS.add(dtoHelper.getBugDto(bug));
         }
         return bugDTOS;
+    }
+
+    @Override
+    public boolean haveCustomerProfile(String username) {
+        Optional<User> user = iUserRepository.findById(username);
+        if (user.isEmpty()){
+            return false;
+        }
+        CustomerProfile customerProfile = customerProfileRepo.findByUser(user.get());
+        return customerProfile != null;
     }
 
 

@@ -21,7 +21,7 @@ export class AddProjectComponent {
     private customerService : CustomerService
   ) {
     this.initializeForm();
-
+    this.getProfile();
    }
 
   initializeForm() {
@@ -38,23 +38,45 @@ export class AddProjectComponent {
     this.getProfile();
   }
 
+  // getProfile() {
+  //   console.log("m1")
+  //   this.customerService.getCustomerProfile().subscribe({
+  //     next: (response) => {
+  //       console.log("m2")
+
+  //       this.profileId = response.customerProfileId;
+  //       console.log("ID1 : "+ this.profileId)
+
+  //     },
+  //     error: (err) => {
+  //           console.log("m3errror")
+
+  //       console.log(err);
+  //     }
+  //   })
+  // }
+
   getProfile() {
-    console.log("m1")
     this.customerService.getCustomerProfile().subscribe({
       next: (response) => {
-        console.log("m2")
-
+        console.log("m2");
+  
         this.profileId = response.customerProfileId;
-        console.log("ID1 : "+ this.profileId)
-
+        console.log("ID1: " + this.profileId);
+        
+        // Handle the eagerly fetched userRole collection
+        const userRoles = response.user.userRole;
+        // Use the userRoles as needed
+        
       },
       error: (err) => {
-            console.log("m3errror")
-
+        console.log("m3error");
+  
         console.log(err);
       }
-    })
+    });
   }
+  
 
   addProject() {
     this.getProfile();
