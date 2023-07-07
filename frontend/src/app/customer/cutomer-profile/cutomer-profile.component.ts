@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
+import { CustomerProfile } from 'src/app/_model/customerProfile.model';
+import { CustomerService } from 'src/app/_services/customer.service';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
@@ -10,10 +12,13 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class CutomerProfileComponent {
   customerProfile!: FormGroup;
-
+  userName! : string;
+  
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
+    private customerService : CustomerService
   ) {  }
 
   initializeForm() {
@@ -25,25 +30,37 @@ export class CutomerProfileComponent {
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+     this.userName = params['userName'];
+      // Use the userName parameter as needed
+      console.log(this.userName);
+    });
     this.initializeForm();
   }
 
   register() {
-    console.log(this.customerProfile.value);
-    this.router.navigate(['/login']);
+
+   const profile : CustomerProfile = {
+      ...this.customerProfile.value,
+      isActive : true,
+      user :{
+        userName : this.userName
+      }
+    }
+    console.log("profile : ",profile);
 
 
-  //   this.userService.registerCustomer(this.customerProfile.value).subscribe({
-  //     next: (response) => {
-  //       console.log(this.customerProfile.value);
+    this.customerService.completeProfile(profile).subscribe({
+      next: (response) => {
+        console.log(this.customerProfile.value);
 
-  //       this.customerProfile.reset();
-  //       this.router.navigate(['/login']);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //       window.alert("User name already exists");
-  //     }
-  //   })
+        this.customerProfile.reset();
+        this.router.navigate(['/login']);
+      },
+      error: (err) => {
+        console.log(err);
+        window.alert("User name already exists");
+      }
+    })
   }
 }

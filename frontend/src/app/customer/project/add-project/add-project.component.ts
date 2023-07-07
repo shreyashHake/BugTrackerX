@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CustomerProject } from 'src/app/_model/customerProject.model';
+import { CustomerService } from 'src/app/_services/customer.service';
 import { ProjectService } from 'src/app/_services/project.service';
 import { StaffService } from 'src/app/_services/staff.service';
 import { UserService } from 'src/app/_services/user.service';
@@ -12,10 +14,11 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class AddProjectComponent {
   creatProject!: FormGroup;
-
+  profileId!: number;
   constructor(
     private router: Router,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private customerService : CustomerService
   ) {
     this.initializeForm();
 
@@ -26,17 +29,44 @@ export class AddProjectComponent {
       projectName: new FormControl('', Validators.required),
       projectDomain: new FormControl('', Validators.required),
       projectDesc: new FormControl('', [Validators.required]),
-      projectPriority: new FormControl('', [Validators.required])
+      projectStatus: new FormControl('', [Validators.required]),
     });
   }
 
   ngOnInit(): void {
     this.initializeForm();
+    this.getProfile();
+  }
+
+  getProfile() {
+    console.log("m1")
+    this.customerService.getCustomerProfile().subscribe({
+      next: (response) => {
+        console.log("m2")
+
+        this.profileId = response.customerProfileId;
+        console.log("ID1 : "+ this.profileId)
+
+      },
+      error: (err) => {
+            console.log("m3errror")
+
+        console.log(err);
+      }
+    })
   }
 
   addProject() {
-    console.log(this.creatProject.value);
-    this.projectService.saveProject(this.creatProject.value).subscribe({
+    this.getProfile();
+    console.log("ID2 : "+ this.profileId)
+    const customerProject : CustomerProject = {
+      ...this.creatProject.value ,
+      customerProfile : {
+        customerProfileId : this.profileId
+      }
+    }
+    console.log(customerProject);
+    this.projectService.saveProject(customerProject).subscribe({
       next: (response) => {
         console.log("it worked" + this.creatProject.value);
 
