@@ -11,7 +11,6 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class CutomerProfileComponent {
   customerProfile!: FormGroup;
-  profile !: Customer_Profile;
 
   constructor(
     private userService: UserService,
