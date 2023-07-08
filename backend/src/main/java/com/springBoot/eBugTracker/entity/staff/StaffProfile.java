@@ -27,7 +27,7 @@ public class StaffProfile
     @JsonIgnore
     private LocalDate createdDate;
     @OneToOne
-    @JoinColumn(name = "userName",nullable = false,referencedColumnName = "userName")
+    @JoinColumn(name = "userName", nullable = false, referencedColumnName = "userName")
     private User user;
 
 }

@@ -13,19 +13,14 @@ export class ProjectService {
   constructor(
     private httpClient: HttpClient,
     private userAuthUser: UserAuthService
-    ) { }
+  ) { }
 
-  public getAllProject(): Observable<Project[]> {
-    return this.httpClient.get<Project[]>(`${this.PATH_OF_API}/getProjects`);
+  public getAllProject(profileId : number): Observable<Project[]> {
+    return this.httpClient.get<Project[]>(`${this.PATH_OF_API}/customer/getCustomerProjects/${profileId}`);
   }
 
   public saveProject(project: any): Observable<any> {
-  // const headers = new HttpHeaders({
-  //   Authorization: 'Bearer ' + this.userAuthUser.getToken()
-  // });
-
-  return this.httpClient.post(`${this.PATH_OF_API}/customer/createCustomerProject`, project);
-}
-
+    return this.httpClient.post(`${this.PATH_OF_API}/customer/createCustomerProject`, project);
+  }
 
 }

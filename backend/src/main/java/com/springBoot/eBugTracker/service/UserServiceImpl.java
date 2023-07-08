@@ -77,6 +77,16 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public User createNewStaff(User user) {
+        Role role = IRoleRepository.findById("Staff").get();
+
+        user.setUserRole(new HashSet<>(Collections.singletonList(role)));
+        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+
+        return IUserRepository.save(user);
+    }
+
     // to get encrypted password
     public String getEncodedPassword(String password) {
         return passwordEncoder.encode(password);

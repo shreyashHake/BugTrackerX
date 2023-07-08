@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, of } from 'rxjs';
 import { User } from '../_model/user.model';
+import { StaffProfile } from '../_model/staffProfile.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,10 @@ import { User } from '../_model/user.model';
 export class StaffService {
   PATH_OF_API = "http://localhost:8080";
 
-  constructor(private httpClient: HttpClient) { } 
+  constructor(private httpClient: HttpClient) { }
 
   public registerStaff(user: any): Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/createNewStaff`, user);
-  }
-
-  public getAlluser(): Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.PATH_OF_API}/getAll`);
   }
 
   public deleteStaffUser(userName: string) {
@@ -29,5 +26,11 @@ export class StaffService {
 
   public updateUser(user: any) {
     return this.httpClient.patch(`${this.PATH_OF_API}/updateUser`, user);
+  }
+
+  // new one
+
+  public createStaffProfile(profile : StaffProfile) {
+    return this.httpClient.post(`${this.PATH_OF_API}/staff/createStaffProfile`, profile);
   }
 }

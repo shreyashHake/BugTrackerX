@@ -25,6 +25,10 @@ public class UserController {
     public User createNewUser(@RequestBody User user) {
         return userService.createNewUser(user);
     }
+    @PostMapping({"/createNewStaff"})
+    public User createNewStaff(@RequestBody User user) {
+        return userService.createNewStaff(user);
+    }
 
     @GetMapping({"/forAdmin"})
     @PreAuthorize("hasRole('Admin')")

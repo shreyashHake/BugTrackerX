@@ -1,8 +1,8 @@
 export interface Project {
-  id:number,
+  projectId:number,
   projectName:string,
   projectDomain:string,
   projectDesc:string,
-  projectPriority:string,
+  projectStatus:string,
   userName:string
 }
