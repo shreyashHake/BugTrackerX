@@ -14,7 +14,7 @@ export class CustomerService {
     private httpClient: HttpClient,
     private userAuthService : UserAuthService
     ) { }
-    
+
   completeProfile(profile: CustomerProfile): Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/customer/createCustomerProfile/`, profile)
       .pipe(
@@ -26,27 +26,19 @@ export class CustomerService {
       )
   }
 
-  // getCustomerProfile()  : Observable<any> {
-  //   const userName = this.userAuthService.getUserName();
-  //   return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfile/${userName}`);
-  // }
-
-  getCustomerProfile(): Observable<any> {
+  getCustomerProfile()  : Observable<any> {
     const userName = this.userAuthService.getUserName();
-    console.log("l user : "+ userName)
     return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfile/${userName}`);
   }
-  
 
-  // getCustomerProfileId(profile : any):Number{
-  //    let projectId : Number;
-  //    this.getCustomerProfile().subscribe(
-  //     (res) => {
-  //         this.projectId
-  //     }
-  //   )
-  // }
+  profileId !: number;
 
+  getProfileId() : number {
+    return this.profileId;
+  }
 
-    
+  setProfileId(id : number) {
+    this.profileId = id;
+  }
+
 }

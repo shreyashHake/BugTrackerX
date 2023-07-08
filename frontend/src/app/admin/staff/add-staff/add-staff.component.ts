@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Register } from 'src/app/_model/register.model';
+import { StaffProfile } from 'src/app/_model/staffProfile.model';
 import { StaffService } from 'src/app/_services/staff.service';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -11,6 +13,7 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class AddStaffComponent {
   registerForm!: FormGroup;
+  registerStaff !: Register;
 
   passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
 
@@ -21,7 +24,7 @@ export class AddStaffComponent {
   ) {
     this.initializeForm();
 
-   }
+  }
 
   initializeForm() {
     this.registerForm = new FormGroup({
@@ -30,17 +33,28 @@ export class AddStaffComponent {
       staffPhone: new FormControl('', [Validators.required]),
       userPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)])
     });
+
+    this.registerStaff = { userName: '', userPassword: '' };
   }
 
   ngOnInit(): void {
     this.initializeForm();
-
   }
 
   register() {
-    this.staffService.registerStaff(this.registerForm.value).subscribe({
+
+    this.registerStaff.userName = this.registerForm.value.staffEmail;
+    this.registerStaff.userPassword = this.registerForm.value.userPassword;
+
+    console.log(this.registerStaff)
+
+
+    this.userService.registerStaff(this.registerStaff).subscribe({
       next: (response) => {
         this.registerForm.reset();
+
+        this.createStaffProfile();
+
         this.router.navigate(['/staff-handling']);
       },
       error: (err) => {
@@ -50,17 +64,36 @@ export class AddStaffComponent {
     })
   }
 
+
   public backToStaff() {
     this.router.navigate((["/staff-handling"]))
   }
 
-  public getAll() {
-    this.staffService.getAlluser().subscribe({
-      next: (response) => {
-        console.log(response)
+
+
+  public createStaffProfile() {
+
+    console.log("reachedd here");
+
+
+    const profile: StaffProfile = {
+      staffName: this.registerForm.value.staffName,
+      staffPhone: this.registerForm.value.staffPhone,
+      staffEmail: this.registerForm.value.staffEmail,
+      isActive: true,
+      user: {
+        userName: this.registerForm.value.staffEmail
+      }
+    }
+
+
+    this.staffService.createStaffProfile(profile).subscribe({
+      next: (res) => {
+        console.log(res);
       },
       error: (err) => {
         console.log(err);
+
       }
     })
   }

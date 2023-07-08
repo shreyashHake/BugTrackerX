@@ -21,7 +21,7 @@ public class User {
     private String userPassword;
 
     // Association :
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "USER_ROLE",
             joinColumns = {

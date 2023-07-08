@@ -13,7 +13,7 @@ import { UserService } from 'src/app/_services/user.service';
 export class CutomerProfileComponent {
   customerProfile!: FormGroup;
   userName! : string;
-  
+
   constructor(
     private userService: UserService,
     private router: Router,

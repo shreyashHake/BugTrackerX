@@ -14,14 +14,13 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class AddProjectComponent {
   creatProject!: FormGroup;
-  profileId!: number;
+
   constructor(
     private router: Router,
     private projectService: ProjectService,
     private customerService : CustomerService
   ) {
     this.initializeForm();
-    // this.getProfile();
    }
 
   initializeForm() {
@@ -35,56 +34,15 @@ export class AddProjectComponent {
 
   ngOnInit(): void {
     this.initializeForm();
-    this.getProfile();
   }
 
-  // getProfile() {
-  //   console.log("m1")
-  //   this.customerService.getCustomerProfile().subscribe({
-  //     next: (response) => {
-  //       console.log("m2")
-
-  //       this.profileId = response.customerProfileId;
-  //       console.log("ID1 : "+ this.profileId)
-
-  //     },
-  //     error: (err) => {
-  //           console.log("m3errror")
-
-  //       console.log(err);
-  //     }
-  //   })
-  // }
-
-  getProfile() {
-    this.customerService.getCustomerProfile().subscribe({
-      next: (response) => {
-        console.log("m2" + response);
-  
-        this.profileId = response.customerProfileId;
-        console.log("ID1: " + this.profileId);
-        
-        // Handle the eagerly fetched userRole collection
-        const userRoles = response.user.userRole;
-        // Use the userRoles as needed
-        
-      },
-      error: (err) => {
-        console.log("m3error");
-  
-        console.log(err);
-      }
-    });
-  }
-  
 
   addProject() {
-    this.getProfile();
-    console.log("ID2 : "+ this.profileId)
+    console.log("ID2 : "+ this.customerService.getProfileId())
     const customerProject : CustomerProject = {
       ...this.creatProject.value ,
       customerProfile : {
-        customerProfileId : this.profileId
+        customerProfileId : this.customerService.getProfileId()
       }
     }
     console.log(customerProject);
