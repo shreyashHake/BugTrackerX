@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Role } from 'src/app/_model/role.model';
+import { StaffProfile } from 'src/app/_model/staffProfile.model';
 import { User } from 'src/app/_model/user.model';
 import { StaffService } from 'src/app/_services/staff.service';
 import { UserService } from 'src/app/_services/user.service';
@@ -12,26 +13,16 @@ import { UserService } from 'src/app/_services/user.service';
 })
 export class StaffHandlingComponent implements OnInit {
   staffUsers: User[] = [];
+  staffs !: StaffProfile[];
 
   constructor(
     private router : Router,
     private staffService: StaffService) { }
 
   ngOnInit(): void {
-    // this.getStaffUsers();
+    this.getAllStaff();
   }
 
-  // getting user :
-  // getStaffUsers(): void {
-  //   this.staffService.getAlluser().subscribe(
-  //     (users: User[]) => {
-  //       this.staffUsers = users;
-  //     },
-  //     (error) => {
-  //       console.error('Error retrieving staff users:', error);
-  //     }
-  //   );
-  // }
 
   // checking if thre role matches to 'staff'
   hasUserRole(user: User, roleName: string): boolean {
@@ -62,4 +53,18 @@ export class StaffHandlingComponent implements OnInit {
     this.router.navigate(['/edit-staff', userName]);
   }
 
+  public getAllStaff() {
+    this.staffService.getAllStaff().subscribe({
+      next: (res) => {
+        console.log(res);
+
+        this.staffs = res;
+        console.log(this.staffs);
+
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 }

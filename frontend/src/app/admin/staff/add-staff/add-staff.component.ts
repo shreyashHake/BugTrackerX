@@ -51,10 +51,10 @@ export class AddStaffComponent {
 
     this.userService.registerStaff(this.registerStaff).subscribe({
       next: (response) => {
-        this.registerForm.reset();
-
         this.createStaffProfile();
 
+        this.registerForm.reset();
+        
         this.router.navigate(['/staff-handling']);
       },
       error: (err) => {
@@ -73,7 +73,7 @@ export class AddStaffComponent {
 
   public createStaffProfile() {
 
-    console.log("reachedd here");
+    console.log("reachedd here" + this.registerForm.value);
 
 
     const profile: StaffProfile = {

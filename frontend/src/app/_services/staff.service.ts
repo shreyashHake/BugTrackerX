@@ -30,7 +30,11 @@ export class StaffService {
 
   // new one
 
-  public createStaffProfile(profile : StaffProfile) {
+  public createStaffProfile(profile : StaffProfile) : Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/staff/createStaffProfile`, profile);
+  }
+
+  public getAllStaff() : Observable<StaffProfile[]> {
+    return this.httpClient.get<StaffProfile[]>(`${this.PATH_OF_API}/staff/getAllStaff`);
   }
 }
