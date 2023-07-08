@@ -21,7 +21,7 @@ export class AddProjectComponent {
     private customerService : CustomerService
   ) {
     this.initializeForm();
-    this.getProfile();
+    // this.getProfile();
    }
 
   initializeForm() {
@@ -59,7 +59,7 @@ export class AddProjectComponent {
   getProfile() {
     this.customerService.getCustomerProfile().subscribe({
       next: (response) => {
-        console.log("m2");
+        console.log("m2" + response);
   
         this.profileId = response.customerProfileId;
         console.log("ID1: " + this.profileId);

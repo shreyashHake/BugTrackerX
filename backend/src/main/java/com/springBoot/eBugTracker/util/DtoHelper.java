@@ -31,8 +31,8 @@ public class DtoHelper {
                 customerProfile.getCustomerCompany(),
                 customerProfile.getCustomerPhone(),
                 customerProfile.getIsActive(),
-                customerProfile.getCreatedDate(),
-                getUserDto(customerProfile.getUser())
+                customerProfile.getCreatedDate()
+//                getUserDto(customerProfile.getUser())
         );
     }
 
