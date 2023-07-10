@@ -19,5 +19,5 @@ public class StaffProfileDTO {
     private String staffEmail;
     private Boolean isActive;
     private LocalDate createdDate;
-    private UserDTO user;
+//    private UserDTO user;
 }
