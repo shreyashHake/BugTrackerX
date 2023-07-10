@@ -31,6 +31,10 @@ export class CustomerService {
     return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfile/${userName}`);
   }
 
+  getAllCustomer() : Observable<any> {
+    return this.httpClient.get(`${this.PATH_OF_API}/customer/getAllCustomer`);
+  }
+
   profileId !: number;
 
   getProfileId() : number {

@@ -56,11 +56,7 @@ export class StaffHandlingComponent implements OnInit {
   public getAllStaff() {
     this.staffService.getAllStaff().subscribe({
       next: (res) => {
-        console.log(res);
-
         this.staffs = res;
-        console.log(this.staffs);
-
       },
       error: (err) => {
         console.log(err);
