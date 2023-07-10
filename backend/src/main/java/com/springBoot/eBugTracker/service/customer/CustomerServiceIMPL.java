@@ -59,8 +59,9 @@ public class CustomerServiceIMPL implements CustomerService {
 
     @Override
     public BugDTO addBug(Bug bug) {
-//        System.out.println("Bug 1 : "+ bug);
-//        System.out.println("pro id : "+bug.getCustomerProject().getProjectId());
+        System.out.println("Bug 1 : "+ bug);
+        System.out.println("pro id : "+bug.getCustomerProject().getProjectId());
+
         CustomerProject customerProject = customerProjectRepo.findById(bug.getCustomerProject().getProjectId()).get();
 //        System.out.println("Customer Project 1 : " +customerProject);
         bug.setCustomerProject(customerProject);

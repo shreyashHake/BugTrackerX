@@ -19,5 +19,5 @@ public class CustomerProjectDTO {
     private String projectStatus;
     private LocalDate createdDate;
     private LocalDate endDate;
-    private CustomerProfileDTO customerProfile;
+//    private CustomerProfileDTO customerProfile;
 }

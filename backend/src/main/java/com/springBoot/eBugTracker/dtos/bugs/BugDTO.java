@@ -20,5 +20,5 @@ public class BugDTO {
     private String bug_priority;
     private LocalDate createdDate;
     private LocalDate endDate;
-    private CustomerProjectDTO customerProject;
+//    private CustomerProjectDTO customerProject;
 }

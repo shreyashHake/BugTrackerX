@@ -28,6 +28,7 @@ import { ViewProjectComponent } from './admin/view-project/view-project.componen
 import { AddProjectComponent } from './customer/project/add-project/add-project.component';
 import { EditProjectComponent } from './customer/project/edit-project/edit-project.component';
 import { BugComponent } from './customer/bug/bug.component';
+import { AddBugComponent } from './customer/bug/add-bug/add-bug.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { BugComponent } from './customer/bug/bug.component';
     AddProjectComponent,
     EditProjectComponent,
     BugComponent,
+    AddBugComponent,
     ],
   imports: [
     BrowserModule,

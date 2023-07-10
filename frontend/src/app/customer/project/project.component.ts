@@ -14,7 +14,7 @@ export class ProjectComponent {
   projects: Project[] = [];
   showModal = false;
   profileId!: number;
-
+  projectId!:number;
   constructor(private router: Router, private projectService: ProjectService,
     private customerService: CustomerService) { }
 

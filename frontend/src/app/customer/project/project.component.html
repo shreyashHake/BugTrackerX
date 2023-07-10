@@ -26,7 +26,7 @@
             <td>{{project.projectDesc}}</td>
             <td>{{project.projectStatus}}</td>
             <td>
-              <button type="button" class="btn btn-outline-success" (click)="showModal = true">
+              <button type="button" class="btn btn-outline-success" (click)="projectId = project.projectId;showModal = true;">
                 <i class="bi bi-bug"></i>
               </button>
             </td>
@@ -46,5 +46,5 @@
     </div>
   </div>
 </div>
+<app-add-bug [showModal]="showModal" [projectId]="projectId" (closeModalEvent)="onModalClosed()"> </app-add-bug>
 
-<app-bug [showModal]="showModal" (closeModalEvent)="onModalClosed()"> </app-bug>

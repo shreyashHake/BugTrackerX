@@ -44,8 +44,8 @@ public class DtoHelper {
                 customerProject.getProjectDesc(),
                 customerProject.getProjectStatus(),
                 customerProject.getCreatedDate(),
-                customerProject.getEndDate(),
-                getCustomerProfileDto(customerProject.getCustomerProfile())
+                customerProject.getEndDate()
+//                getCustomerProfileDto(customerProject.getCustomerProfile())
         );
     }
 
@@ -57,8 +57,8 @@ public class DtoHelper {
                 bug.getBugStatus(),
                 bug.getBugPriority(),
                 bug.getCreatedDate(),
-                bug.getEndDate(),
-                getCustomerProjectDto(bug.getCustomerProject())
+                bug.getEndDate()
+//                getCustomerProjectDto(bug.getCustomerProject())
         );
     }
 
@@ -69,8 +69,8 @@ public class DtoHelper {
                 staffProfile.getStaffPhone(),
                 staffProfile.getStaffEmail(),
                 staffProfile.getIsActive(),
-                staffProfile.getCreatedDate(),
-                getUserDto(staffProfile.getUser())
+                staffProfile.getCreatedDate()
+//                getUserDto(staffProfile.getUser())
         );
     }
 
@@ -90,8 +90,8 @@ public class DtoHelper {
                 comment.getComment(),
                 comment.getCommentBy(),
                 comment.getCommentDateTime(),
-                getUserDto(comment.getUser()),
-                getBugProcessDto(comment.getBugProcess())
+                getUserDto(comment.getUser())
+//                getBugProcessDto(comment.getBugProcess())
         );
     }
 }
