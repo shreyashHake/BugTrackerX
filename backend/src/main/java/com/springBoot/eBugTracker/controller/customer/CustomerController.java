@@ -20,6 +20,8 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    // Customer mappings :
+
     @PostMapping({"/createCustomerProfile"})
     public CustomerProfileDTO createCustomerProfile(@RequestBody CustomerProfile customerProfile){
         return customerService.createCustomerProfile(customerProfile);
@@ -28,10 +30,6 @@ public class CustomerController {
 //    @PreAuthorize("hasRole('Customer')")
     public CustomerProjectDTO createCustomerProject(@RequestBody CustomerProject customerProject){
         return customerService.createCustomerProject(customerProject);
-    }
-    @PostMapping({"/addBug"})
-    public BugDTO addBug(@RequestBody Bug bug){
-        return customerService.addBug(bug);
     }
 
 //    @GetMapping({"/test"})
@@ -55,9 +53,19 @@ public class CustomerController {
         return customerService.getCustomerProjects(profile_id);
     }
 
+    @GetMapping({"/getAllCustomer"})
+    public List<CustomerProfileDTO> getAllCustomer(){
+        return customerService.getAllCustomer();
+    }
+
+    // Bugs
     @GetMapping({"/getBugs/{project_id}"})
     public List<BugDTO> getBugs(@PathVariable int project_id){
         return customerService.getBugs(project_id);
     }
 
+    @PostMapping({"/addBug"})
+    public BugDTO addBug(@RequestBody Bug bug){
+        return customerService.addBug(bug);
+    }
 }
