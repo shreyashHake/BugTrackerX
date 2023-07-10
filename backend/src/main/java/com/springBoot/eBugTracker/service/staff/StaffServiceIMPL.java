@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class StaffServiceIMPL implements StaffService {
@@ -18,7 +19,14 @@ public class StaffServiceIMPL implements StaffService {
 
     @Override
     public StaffProfileDTO createStaffProfile(StaffProfile staffProfile) {
+        System.out.println("Staff profile : " + staffProfile);
         staffProfile.setCreatedDate(LocalDate.now());
-        return dtoHelper.getStaffProfileDto(staffProfileRepo.save(staffProfile));
+
+        StaffProfile staffProfile1 = staffProfileRepo.save(staffProfile);
+        return dtoHelper.getStaffProfileDto(staffProfile1);
+    }
+    @Override
+    public List<StaffProfile> getAllStaff() {
+        return staffProfileRepo.findAll();
     }
 }
