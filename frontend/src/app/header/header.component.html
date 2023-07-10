@@ -27,6 +27,12 @@
             Staff
           </a>
         </li>
+        
+        <li *ngIf="isAdmin()" class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="admin/customers">
+            Customers
+          </a>
+        </li>
 
         <li *ngIf="isAdmin()" class="nav-item">
           <a class="nav-link active" aria-current="page" routerLink="/view-project">
