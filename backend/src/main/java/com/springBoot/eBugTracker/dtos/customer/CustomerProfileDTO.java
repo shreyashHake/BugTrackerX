@@ -18,5 +18,5 @@ public class CustomerProfileDTO {
     private String customerPhone;
     private Boolean isActive;
     private LocalDate createdDate;
-    private UserDTO user ;
+//    private UserDTO user ;
 }

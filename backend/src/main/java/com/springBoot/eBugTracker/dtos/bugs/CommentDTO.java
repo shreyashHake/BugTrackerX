@@ -19,5 +19,5 @@ public class CommentDTO {
     private String commentBy;
     private LocalDateTime commentDateTime;
     private UserDTO user;
-    private BugProcessDTO bugProcess;
+//    private BugProcessDTO bugProcess;
 }

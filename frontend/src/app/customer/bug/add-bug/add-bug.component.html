@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="modal-content">
+    <div class="modal" [ngClass]="{ 'show': showModal }" tabindex="-1" role="dialog" style="display: block;"
+      *ngIf="showModal">
+      <div class="modal-dialog" role="document">
+        <form class="mt-1" [formGroup]="addBug" (ngSubmit)="addBugMethod()">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add Bug</h5>
+              <button type="button" class="close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bugTitle">Title</label>
+                  <input type="text" class="form-control" id="bugTitle" placeholder="Enter Bug Title"
+                    formControlName="bugTitle" [class.is-invalid]="
+                    addBug.get('bugTitle')?.invalid &&
+                    addBug.get('bugTitle')?.touched
+                          " />
+                  <div *ngIf="addBug.get('bugTitle')?.hasError('required')" class="invalid-feedback"
+                    class="invalid-feedback">
+                    Please enter bug title.
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="bugDesc">Description</label>
+                  <input type="text" class="form-control" id="bugDesc" placeholder="Enter Bug Desc"
+                    formControlName="bugDesc" [class.is-invalid]="
+                    addBug.get('bugDesc')?.invalid &&
+                    addBug.get('bugDesc')?.touched
+                          " />
+                  <div *ngIf="addBug.get('bugDesc')?.hasError('required')" class="invalid-feedback"
+                    class="invalid-feedback">
+                    Please enter bug description.
+                  </div>
+                </div>
+
+                <!-- <div class="form-group">
+                  <label for="bugStatus">Status</label>
+
+                  <select class="form-control" id="bugStatus" formControlName="bugStatus" [class.is-invalid]="
+                          creatProject.get('bugStatus')?.invalid &&
+                          creatProject.get('bugStatus')?.touched
+                        ">
+                    <option value="" disabled selected>Select priority</option>
+                    <option value="Urgent">Staff Not Assigned</option>
+                    <option value="Important">Low</option>
+                    <option value="medium">Medium</option>
+                  </select>
+
+                  <div *ngIf="creatProject.get('bugStatus')?.hasError('required')" class="invalid-feedback">
+                    Please select Bug Status.
+                  </div>
+                </div> -->
+
+                <div class="form-group">
+                  <label for="bugPriority">Priority</label>
+
+                  <select class="form-control" id="bugPriority" formControlName="bugPriority" [class.is-invalid]="
+                  addBug.get('bugPriority')?.invalid &&
+                  addBug.get('bugPriority')?.touched
+                        ">
+                    <option value="" disabled selected>Select priority</option>
+                    <option value="High">High</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Low">Low</option>
+                  </select>
+                  <div *ngIf="addBug.get('bugPriority')?.hasError('required')" class="invalid-feedback">
+                    Please select Bug Priority.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+              <button type="submit" class="btn btn-primary">Save Bug</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
