@@ -17,6 +17,7 @@ public class StaffController {
     public StaffProfileDTO createStaffProfile(@RequestBody StaffProfile staffProfile){
         return staffService.createStaffProfile(staffProfile);
     }
+
     @GetMapping({"/getAllStaff"})
     public List<StaffProfile> getAllStaff() {
         return staffService.getAllStaff();

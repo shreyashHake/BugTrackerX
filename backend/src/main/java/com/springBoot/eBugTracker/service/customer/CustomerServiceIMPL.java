@@ -116,5 +116,14 @@ public class CustomerServiceIMPL implements CustomerService {
         return customerProfile != null;
     }
 
+    @Override
+    public List<CustomerProfileDTO> getAllCustomer() {
+        List<CustomerProfileDTO> customerProfileDTOS = new ArrayList<>();
+        for(CustomerProfile customerProfile : customerProfileRepo.findAll()){
+            customerProfileDTOS.add(dtoHelper.getCustomerProfileDto(customerProfile));
+        }
+        return customerProfileDTOS;
+    }
+
 
 }

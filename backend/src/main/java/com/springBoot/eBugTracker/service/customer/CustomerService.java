@@ -23,4 +23,6 @@ public interface CustomerService {
     List<BugDTO> getBugs(int projectId);
 
     boolean haveCustomerProfile(String username);
+
+    List<CustomerProfileDTO> getAllCustomer();
 }

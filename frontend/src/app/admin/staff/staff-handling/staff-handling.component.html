@@ -10,45 +10,22 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Sr. no</th>
             <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
             <th>Status</th>
             <th>Edit</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <!-- <ng-container *ngFor="let user of staffUsers; let i = index">
-            <tr *ngIf="hasUserRole(user, 'Staff')">
-              <td>{{ user.userName }}</td>
-              <td>
-                <button type="button" class="btn btn-outline-success">
-                  <i class="bi bi-bag-plus-fill"></i>
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary"
-                  (click)="editStaffUser(user.userName)"
-                >
-                  <i class="bi bi-pencil"></i>
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger"
-                  (click)="warnAdmin(user.userName)"
-                >
-                  <i class="bi bi-trash3"></i>
-                </button>
-              </td>
-            </tr>
-          </ng-container> -->
-
-          <ng-container >
+          <ng-container *ngFor="let staff of staffs; let i = index">
             <tr >
-              <td>null</td>
+              <td>{{ i + 1 }}</td>
+              <td>{{ staff.staffName }}</td>
+              <td>{{ staff.staffEmail }}</td>
+              <td>{{ staff.staffPhone }}</td>
               <td>
                 <button type="button" class="btn btn-outline-success">
                   <i class="bi bi-bag-plus-fill"></i>
@@ -72,6 +49,7 @@
               </td>
             </tr>
           </ng-container>
+
         </tbody>
       </table>
     </div>
