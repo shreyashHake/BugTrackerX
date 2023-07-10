@@ -8,5 +8,6 @@ import java.util.List;
 public interface StaffService {
     StaffProfileDTO createStaffProfile(StaffProfile staffProfile);
 
+
     List<StaffProfile> getAllStaff();
 }
