@@ -29,7 +29,7 @@ const routes: Routes = [
 
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'admin/customers', component: CustomersComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
-    { path: 'admin/customers/customer_panel/:id', component: CustomerPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+    { path: 'admin/customers/customer_panel/:customer_id', component: CustomerPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'staff-handling', component: StaffHandlingComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'add-staff', component: AddStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'edit-staff/:userName', component: EditStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },

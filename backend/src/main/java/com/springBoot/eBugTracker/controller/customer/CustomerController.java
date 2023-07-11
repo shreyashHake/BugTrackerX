@@ -44,6 +44,11 @@ public class CustomerController {
         return customerService.getCustomerProfile(user_id);
     }
 
+    @GetMapping({"/getCustomerProfileById/{customer_id}"})
+    public CustomerProfileDTO getCustomerProfileById(@PathVariable int customer_id){
+        return customerService.getCustomerProfileById(customer_id);
+    }
+
     @GetMapping({"/haveCustomerProfile/{username}"})
     public boolean haveCustomerProfile(@PathVariable String username){
         return customerService.haveCustomerProfile(username);
