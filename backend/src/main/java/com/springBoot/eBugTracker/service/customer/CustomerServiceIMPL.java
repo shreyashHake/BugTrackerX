@@ -125,5 +125,10 @@ public class CustomerServiceIMPL implements CustomerService {
         return customerProfileDTOS;
     }
 
+    @Override
+    public CustomerProfileDTO getCustomerProfileById(int customerId) {
+        return dtoHelper.getCustomerProfileDto(customerProfileRepo.findById(customerId).get());
+    }
+
 
 }

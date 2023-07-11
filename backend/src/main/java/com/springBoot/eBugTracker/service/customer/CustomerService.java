@@ -25,4 +25,6 @@ public interface CustomerService {
     boolean haveCustomerProfile(String username);
 
     List<CustomerProfileDTO> getAllCustomer();
+
+    CustomerProfileDTO getCustomerProfileById(int customerId);
 }
