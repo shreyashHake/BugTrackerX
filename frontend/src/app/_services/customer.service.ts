@@ -45,4 +45,12 @@ export class CustomerService {
     this.profileId = id;
   }
 
+  getCustomerProfiles() : Observable<any>{
+    return this.httpClient.get(`${this.PATH_OF_API}/customer/getAllCustomer`);
+  }
+
+  getCustomerProfileById(customer_id : number) : Observable<any> {
+    return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfileById/${customer_id}`)
+  }
+
 }
