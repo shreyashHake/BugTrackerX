@@ -31,6 +31,7 @@ import { BugComponent } from './customer/bug/bug.component';
 import { AddBugComponent } from './customer/bug/add-bug/add-bug.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
+import { ProjectPanelComponent } from './admin/customers/project-panel/project-panel.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CustomerPanelComponent } from './admin/customers/customer-panel/custome
     AddBugComponent,
     CustomersComponent,
     CustomerPanelComponent,
+    ProjectPanelComponent,
     ],
   imports: [
     BrowserModule,

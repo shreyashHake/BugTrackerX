@@ -15,7 +15,7 @@
         <div class="col-xl-3 col-sm-6 mb-5" *ngFor="let customer of customerProfiles">
             <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://bootstrapious.com/i/snippets/sn-team/teacher-4.jpg" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
                 <h5 class="mb-0">{{customer.customerName}}</h5><span class="small text-uppercase text-muted">{{customer.customerCompany}}</span><br>
-                <a routerLink="customer_panel/{{customer.customerProfileId}}"><button class="btn btn-dark m-2" type="button">View Project & Bugs</button></a>
+                <a routerLink="customer_panel/{{customer.customerProfileId}}" ><button class="btn btn-dark m-2" type="button">View Project & Bugs</button></a>
             </div>
         </div><!-- End -->
     </div>
