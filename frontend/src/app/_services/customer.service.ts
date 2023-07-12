@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CustomerProfile } from '../_model/customerProfile.model';
-import { Observable, catchError, of } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, of } from 'rxjs';
 import { UserAuthService } from './user-auth.service';
 
 @Injectable({
@@ -14,6 +14,13 @@ export class CustomerService {
     private httpClient: HttpClient,
     private userAuthService : UserAuthService
     ) { }
+
+    private customerSubject = new BehaviorSubject<any>(null);
+    customer$ = this.customerSubject.asObservable();
+  
+    setCustomer(customer: any) {
+      this.customerSubject.next(customer);
+    }
 
   completeProfile(profile: CustomerProfile): Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/customer/createCustomerProfile/`, profile)

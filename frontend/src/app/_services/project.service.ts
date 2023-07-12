@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Project } from '../_model/project.model';
 import { UserAuthService } from './user-auth.service';
 
@@ -14,7 +14,15 @@ export class ProjectService {
     private httpClient: HttpClient,
     private userAuthUser: UserAuthService
   ) { }
+  
+  private projectSubject = new BehaviorSubject<any>(null);
+  project$ = this.projectSubject.asObservable();
 
+  setProject(project: any) {
+    this.projectSubject.next(project);
+  }
+
+  
   public getAllProject(profileId : number): Observable<Project[]> {
     return this.httpClient.get<Project[]>(`${this.PATH_OF_API}/customer/getCustomerProjects/${profileId}`);
   }

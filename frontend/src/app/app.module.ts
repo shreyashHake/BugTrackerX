@@ -30,7 +30,9 @@ import { BugComponent } from './customer/bug/bug.component';
 import { AddBugComponent } from './customer/bug/add-bug/add-bug.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
+import { ProjectPanelComponent } from './admin/customers/project-panel/project-panel.component';
 import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/st
     AddBugComponent,
     CustomersComponent,
     CustomerPanelComponent,
-    StaffPanelComponent,
+    ProjectPanelComponent,
+    StaffPanelComponent
     ],
   imports: [
     BrowserModule,
