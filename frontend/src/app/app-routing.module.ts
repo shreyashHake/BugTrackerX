@@ -18,6 +18,7 @@ import { ViewProjectComponent } from './admin/view-project/view-project.componen
 import { AddProjectComponent } from './customer/project/add-project/add-project.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
+import { ProjectPanelComponent } from './admin/customers/project-panel/project-panel.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -30,6 +31,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'admin/customers', component: CustomersComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'admin/customers/customer_panel/:customer_id', component: CustomerPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+    { path: 'admin/customers/customer_panel/:customer_id/project_panel/:project_id', component: ProjectPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+
   { path: 'staff-handling', component: StaffHandlingComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'add-staff', component: AddStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'edit-staff/:userName', component: EditStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },

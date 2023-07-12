@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerService } from 'src/app/_services/customer.service';
 import { ProjectService } from 'src/app/_services/project.service';
 
@@ -16,7 +16,8 @@ export class CustomerPanelComponent {
   constructor(
     private route: ActivatedRoute,
     private customerService : CustomerService,
-    private projectService : ProjectService
+    private projectService : ProjectService,
+    private router : Router
     ) { }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class CustomerPanelComponent {
     this.getCustomerProfile();
     this.getCustomerProjects();
   }
+
 
   getCustomerProfile(){
     console.log("Out " +this.customerProfileId)

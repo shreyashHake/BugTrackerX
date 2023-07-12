@@ -15,4 +15,7 @@ export class BugService {
   public addBug(bug: any): Observable<any> {
     return this.httpClient.post(`${this.PATH_OF_API}/customer/addBug`, bug);
   }
+  public getBugs(projectId : number) : Observable<any> {
+    return this.httpClient.get(`${this.PATH_OF_API}/customer/getBugs/${projectId}`);
+  }
 }
