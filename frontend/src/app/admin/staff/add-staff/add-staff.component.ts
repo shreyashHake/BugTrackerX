@@ -54,8 +54,8 @@ export class AddStaffComponent {
         this.createStaffProfile();
 
         this.registerForm.reset();
-        
-        this.router.navigate(['/staff-handling']);
+
+        this.router.navigate(['/admin/staff-handling']);
       },
       error: (err) => {
         console.log(err);
@@ -66,7 +66,7 @@ export class AddStaffComponent {
 
 
   public backToStaff() {
-    this.router.navigate((["/staff-handling"]))
+    this.router.navigate((["/admin/staff-handling"]))
   }
 
 
@@ -77,6 +77,7 @@ export class AddStaffComponent {
 
 
     const profile: StaffProfile = {
+      staffProfileId: 0,
       staffName: this.registerForm.value.staffName,
       staffPhone: this.registerForm.value.staffPhone,
       staffEmail: this.registerForm.value.staffEmail,

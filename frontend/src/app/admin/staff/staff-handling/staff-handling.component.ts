@@ -29,18 +29,6 @@ export class StaffHandlingComponent implements OnInit {
     return Array.from(user.userRole).some((role: Role) => role.roleName === roleName);
   }
 
-  // deleting staff
-  // deleteStaffUser(userName: string) {
-  //   this.staffService.deleteStaffUser(userName).subscribe({
-  //     next: (response) => {
-  //       this.getStaffUsers();
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     }
-  //   })
-  // }
-
   // warning to delete staff
   public warnAdmin(staffUsername : string) {
     if(confirm("Are you sure to delete : '"+ staffUsername + "' ?")) {
@@ -54,6 +42,7 @@ export class StaffHandlingComponent implements OnInit {
   }
 
   public getAllStaff() {
+
     this.staffService.getAllStaff().subscribe({
       next: (res) => {
         this.staffs = res;

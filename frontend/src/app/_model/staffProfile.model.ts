@@ -1,4 +1,5 @@
 export interface StaffProfile {
+  staffProfileId: number,
   staffName: string,
   staffPhone: string,
   staffEmail: string,

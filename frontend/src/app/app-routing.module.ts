@@ -14,10 +14,10 @@ import { AddStaffComponent } from './admin/staff/add-staff/add-staff.component';
 import { EditStaffComponent } from './admin/staff/edit-staff/edit-staff.component';
 import { CutomerProfileComponent } from './customer/cutomer-profile/cutomer-profile.component';
 import { ProjectComponent } from './customer/project/project.component';
-import { ViewProjectComponent } from './admin/view-project/view-project.component';
 import { AddProjectComponent } from './customer/project/add-project/add-project.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
+import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -28,12 +28,14 @@ const routes: Routes = [
   { path: 'forbidden', component: ForbiddenComponent },
 
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+
     { path: 'admin/customers', component: CustomersComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'admin/customers/customer_panel/:customer_id', component: CustomerPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
-  { path: 'staff-handling', component: StaffHandlingComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+
+  { path: 'admin/staff-handling', component: StaffHandlingComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'add-staff', component: AddStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'edit-staff/:userName', component: EditStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
-  { path: 'view-project', component: ViewProjectComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'admin/staff-handling/staff_panel/:staff_id', component: StaffPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 
   { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'customer-profile/:userName', component: CutomerProfileComponent},

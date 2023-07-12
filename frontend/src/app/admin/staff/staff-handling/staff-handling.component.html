@@ -1,57 +1,50 @@
-<div class="container mt-2">
-  <div class="card">
-    <div class="text-center">
-      <a routerLink="/add-staff">
-        <button type="button" class="btn btn-success mt-2">Add Staff</button>
-      </a>
+<!-- For demo purpose -->
+<div class="container py-5">
+  <div class="row text-center text-white" >
+    <div class="col-lg-8 mx-auto">
+      <h1 class="display-4" style="text-align: right; margin-right: 20%">
+        Our Staff
+      </h1>
     </div>
-    <hr />
-    <div class="text-center" style="color: green; padding: 20px">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Sr. no</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container *ngFor="let staff of staffs; let i = index">
-            <tr >
-              <td>{{ i + 1 }}</td>
-              <td>{{ staff.staffName }}</td>
-              <td>{{ staff.staffEmail }}</td>
-              <td>{{ staff.staffPhone }}</td>
-              <td>
-                <button type="button" class="btn btn-outline-success">
-                  <i class="bi bi-bag-plus-fill"></i>
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-primary"
-                >
-                  <i class="bi bi-pencil"></i>
-                </button>
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-outline-danger"
-                >
-                  <i class="bi bi-trash3"></i>
-                </button>
-              </td>
-            </tr>
-          </ng-container>
+    <div class="col-lg-4 text-right mt-3">
+      <div class="row">
+        <div class="col">
+          <a routerLink="/add-staff">
+            <button type="button" class="btn btn-success">
+              Add New Staff
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        </tbody>
-      </table>
+<!-- End -->
+
+<div class="container">
+  <div class="row text-center">
+    <!-- Team item -->
+    <div class="col-xl-3 col-sm-6 mb-5" *ngFor="let staff of staffs">
+      <div class="bg-white rounded shadow-sm py-5 px-4">
+        <img
+          src="https://bootstrapious.com/i/snippets/sn-team/teacher-2.jpg"
+          alt=""
+          width="100"
+          class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm"
+        />
+        <h5 class="mb-0">{{ staff.staffName }}</h5>
+        <span class="small text-uppercase text-muted">{{
+          staff.staffPhone
+        }}</span
+        ><br />
+        <a routerLink="staff_panel/{{ staff.staffProfileId }}"
+          ><button class="btn btn-dark m-2" type="button">
+            Working on . . .
+          </button></a
+        >
+      </div>
     </div>
+    <!-- End -->
   </div>
 </div>

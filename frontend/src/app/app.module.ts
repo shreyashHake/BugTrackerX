@@ -24,13 +24,13 @@ import { AddStaffComponent } from './admin/staff/add-staff/add-staff.component';
 import { EditStaffComponent } from './admin/staff/edit-staff/edit-staff.component';
 import { ProjectComponent } from './customer/project/project.component';
 import { CutomerProfileComponent } from './customer/cutomer-profile/cutomer-profile.component';
-import { ViewProjectComponent } from './admin/view-project/view-project.component';
 import { AddProjectComponent } from './customer/project/add-project/add-project.component';
 import { EditProjectComponent } from './customer/project/edit-project/edit-project.component';
 import { BugComponent } from './customer/bug/bug.component';
 import { AddBugComponent } from './customer/bug/add-bug/add-bug.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
+import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
 
 @NgModule({
   declarations: [
@@ -50,13 +50,13 @@ import { CustomerPanelComponent } from './admin/customers/customer-panel/custome
     EditStaffComponent,
     ProjectComponent,
     CutomerProfileComponent,
-    ViewProjectComponent,
     AddProjectComponent,
     EditProjectComponent,
     BugComponent,
     AddBugComponent,
     CustomersComponent,
     CustomerPanelComponent,
+    StaffPanelComponent,
     ],
   imports: [
     BrowserModule,
