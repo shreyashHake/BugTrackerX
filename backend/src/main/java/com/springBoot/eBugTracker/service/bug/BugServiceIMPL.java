@@ -1,10 +1,13 @@
 package com.springBoot.eBugTracker.service.bug;
 
+import com.springBoot.eBugTracker.dtos.bugs.BugDetailsDTO;
 import com.springBoot.eBugTracker.dtos.bugs.CommentDTO;
+import com.springBoot.eBugTracker.entity.bugs.Bug;
 import com.springBoot.eBugTracker.entity.bugs.BugProcess;
 import com.springBoot.eBugTracker.entity.bugs.Comment;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
 import com.springBoot.eBugTracker.repository.bugs.BugProcessRepo;
+import com.springBoot.eBugTracker.repository.bugs.BugRepo;
 import com.springBoot.eBugTracker.repository.bugs.CommentRepo;
 import com.springBoot.eBugTracker.repository.staff.StaffProfileRepo;
 import com.springBoot.eBugTracker.util.DtoHelper;
@@ -17,6 +20,8 @@ import java.util.Optional;
 
 @Service
 public class BugServiceIMPL implements BugService{
+    @Autowired
+    private BugRepo bugRepo;
     @Autowired
     private BugProcessRepo bugProcessRepo;
     @Autowired
@@ -49,5 +54,12 @@ public class BugServiceIMPL implements BugService{
         comment.setCommentDateTime(LocalDateTime.now());
         comment.setBugProcess(bugProcess.get());
        return dtoHelper.getCommentDto(commentRepo.save(comment));
+    }
+
+    @Override
+    public BugDetailsDTO getBugDetails(int bugId) {
+        Optional<Bug> bug = bugRepo.findById(bugId);
+        BugProcess bugProcess = bugProcessRepo.findByBug(bug.get());
+        return dtoHelper.getBugDetailsDto(bug.get(),bugProcess);
     }
 }

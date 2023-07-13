@@ -19,6 +19,8 @@ import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
 import { ProjectPanelComponent } from './admin/customers/project-panel/project-panel.component';
 import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
+import { ProjectViewComponent } from './customer/project/project-view/project-view.component';
+import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -33,13 +35,14 @@ const routes: Routes = [
     { path: 'admin/customers', component: CustomersComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'admin/customers/customer_panel/:customer_id', component: CustomerPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'admin/customers/customer_panel/:customer_id/project_panel/:project_id', component: ProjectPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
-
     { path: 'admin/staff-handling', component: StaffHandlingComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
     { path: 'add-staff', component: AddStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'edit-staff/:userName', component: EditStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'admin/staff-handling/staff_panel/:staff_id', component: StaffPanelComponent , canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 
   { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  { path: 'customer/project_view/:customer_id/:project_id', component: ProjectViewComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  { path: 'customer/project_view/:customer_id/:project_id/bug_view/:bug_id', component: BugViewComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'customer-profile/:userName', component: CutomerProfileComponent},
   { path: 'customer/project', component: ProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'add-project', component: AddProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },

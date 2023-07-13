@@ -1,6 +1,7 @@
 package com.springBoot.eBugTracker.util;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugDTO;
+import com.springBoot.eBugTracker.dtos.bugs.BugDetailsDTO;
 import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
 import com.springBoot.eBugTracker.dtos.bugs.CommentDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProfileDTO;
@@ -15,6 +16,9 @@ import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class DtoHelper {
@@ -69,8 +73,8 @@ public class DtoHelper {
                 staffProfile.getStaffPhone(),
                 staffProfile.getStaffEmail(),
                 staffProfile.getIsActive(),
-                staffProfile.getCreatedDate()
-//                getUserDto(staffProfile.getUser())
+                staffProfile.getCreatedDate(),
+                getUserDto(staffProfile.getUser())
         );
     }
 
@@ -92,6 +96,26 @@ public class DtoHelper {
                 comment.getCommentDateTime(),
                 getUserDto(comment.getUser())
 //                getBugProcessDto(comment.getBugProcess())
+        );
+    }
+
+    public BugDetailsDTO getBugDetailsDto(Bug bug,BugProcess bugProcess){
+        List<CommentDTO> commentDTOS = new ArrayList<>();
+        for(Comment comment : bugProcess.getComments()){
+            commentDTOS.add(getCommentDto(comment));
+        }
+        return new BugDetailsDTO(
+                bug.getBugId(),
+                bug.getBugTitle(),
+                bug.getBugDesc(),
+                bug.getBugStatus(),
+                bug.getBugPriority(),
+                bug.getCreatedDate(),
+                bug.getEndDate(),
+                bugProcess.getBugProcessId(),
+                bugProcess.getGlobalStatus(),
+//                getStaffProfileDto(bugProcess.getStaffProfile()),
+                commentDTOS
         );
     }
 }

@@ -18,4 +18,8 @@ export class BugService {
   public getBugs(projectId : number) : Observable<any> {
     return this.httpClient.get(`${this.PATH_OF_API}/customer/getBugs/${projectId}`);
   }
+
+  public getBugDetails(bugId : number) : Observable<any>{
+    return this.httpClient.get(`${this.PATH_OF_API}/bug/getBugDetails/${bugId}`);
+  }
 }

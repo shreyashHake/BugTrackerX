@@ -11,7 +11,7 @@ import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;
 import com.springBoot.eBugTracker.repository.IUserRepository;
 import com.springBoot.eBugTracker.repository.bugs.BugProcessRepo;
-import com.springBoot.eBugTracker.repository.customer.BugRepo;
+import com.springBoot.eBugTracker.repository.bugs.BugRepo;
 import com.springBoot.eBugTracker.repository.customer.CustomerProfileRepo;
 import com.springBoot.eBugTracker.repository.customer.CustomerProjectRepo;
 import com.springBoot.eBugTracker.util.DtoHelper;

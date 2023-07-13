@@ -32,6 +32,8 @@ import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
 import { ProjectPanelComponent } from './admin/customers/project-panel/project-panel.component';
 import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
+import { ProjectViewComponent } from './customer/project/project-view/project-view.component';
+import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
 import { AssingStaffComponent } from './admin/customers/project-panel/assing-staff/assing-staff.component';
 
 
@@ -61,6 +63,8 @@ import { AssingStaffComponent } from './admin/customers/project-panel/assing-sta
     CustomerPanelComponent,
     ProjectPanelComponent,
     StaffPanelComponent,
+    ProjectViewComponent,
+    BugViewComponent,
     AssingStaffComponent
     ],
   imports: [
