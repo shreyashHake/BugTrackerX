@@ -1,4 +1,4 @@
-package com.springBoot.eBugTracker.repository.customer;
+package com.springBoot.eBugTracker.repository.bugs;
 
 import com.springBoot.eBugTracker.entity.bugs.Bug;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;

@@ -10,7 +10,7 @@ import { ProjectService } from '../_services/project.service';
 })
 export class CustomerComponent {
   customerProfile : any;
-  customerProjects! : any[];
+  
   projects: Project[] = [];
   profileId!: number;
 
@@ -18,11 +18,12 @@ export class CustomerComponent {
     private customerService : CustomerService,
     private projectService : ProjectService
     ) {
-      this.getCustomerProfile();
+      
      }
 
   ngOnInit() {
-
+    this.getCustomerProfile();
+  
   }
 
   getCustomerProfile(){
@@ -33,6 +34,7 @@ export class CustomerComponent {
 
           this.customerProfile = res;
           console.log("Customer_Profile : "+ this.customerProfile);
+          this.getAllProject();
         },
         error : (error) =>{
           console.log("Error while fetching customer profile : "+error);
@@ -42,7 +44,7 @@ export class CustomerComponent {
   }
 
   getAllProject() {
-    this.projectService.getAllProject(this.profileId).subscribe({
+    this.projectService.getAllProject(this.customerProfile.customerProfileId).subscribe({
       next: (response) => {
         this.projects = response;
       },
