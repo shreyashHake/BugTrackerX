@@ -32,9 +32,9 @@
                     "
                   >
                     <option value="" disabled selected>Select staff from list</option>
-                    <div *ngFor="let staff of staffs">
-                      <option [value]="staff.staffProfileId">{{ staff.staffName }} - {{ staff.user.userName }}</option>
-                    </div>
+                    <ng-container *ngFor="let staff of staffs">
+                      <option [value]="staff.staffProfileId">{{ staff.staffName }}</option>
+                    </ng-container>
                   </select>
 
                   <div
@@ -57,10 +57,10 @@
               </button>
               <button
                 type="submit"
-                class="btn btn-primary"
+                class="btn btn-dark"
                 [disabled]="!selectStaff.valid"
               >
-                Save Bug
+                Assign
               </button>
             </div>
           </div>

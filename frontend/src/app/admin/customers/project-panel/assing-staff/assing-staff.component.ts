@@ -11,6 +11,7 @@ import { StaffService } from 'src/app/_services/staff.service';
 export class AssingStaffComponent {
   selectStaff!: FormGroup;
   staffs !: StaffProfile[];
+  staffProfileId !: number;
 
   @Input() showModal = false;
   @Input() projectId !: number;
@@ -20,8 +21,8 @@ export class AssingStaffComponent {
   constructor(
     private staffService: StaffService
   ) {
-    this.initializeForm();
-
+    // this.initializeForm();
+    // this.getAllStaff();
    }
 
   initializeForm() {
@@ -37,7 +38,14 @@ export class AssingStaffComponent {
 
 
   assignStaff() {
+    console.log("Staff id is : " + this.selectStaff.value.staff);
+    this.staffProfileId = +this.selectStaff.value.staff;
 
+    console.log(typeof(this.selectStaff.value.staff));
+
+    // converting to number to use in bug-process . . . .
+    console.log(typeof(this.staffProfileId));
+    this.closeModal();
   }
 
   public getAllStaff() {
@@ -45,8 +53,6 @@ export class AssingStaffComponent {
     this.staffService.getAllStaff().subscribe({
       next: (res) => {
         this.staffs = res;
-        console.log("Staff details " + this.staffs);
-
       },
       error: (err) => {
         console.log(err);

@@ -51,7 +51,7 @@ export class AddProjectComponent {
         console.log("it worked" + this.creatProject.value);
 
         this.creatProject.reset();
-        this.router.navigate(['/customer/project'])
+        this.router.navigate(['/customer'])
       },
       error: (err) => {
         console.log(err);
@@ -60,8 +60,11 @@ export class AddProjectComponent {
   }
 
   public backToProject() {
-    this.router.navigate((["/project"]))
+
+    this.router.navigate((["/customer"]))
   }
+
+
 
 
 

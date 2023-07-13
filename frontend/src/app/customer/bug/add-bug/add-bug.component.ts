@@ -16,7 +16,7 @@ export class AddBugComponent {
   @Input() projectId !: number;
   @Output() closeModalEvent = new EventEmitter<void>();
 
- 
+
   constructor(
     private router: Router,
    private bugService : BugService
@@ -51,7 +51,6 @@ export class AddBugComponent {
         console.log("it worked" + response);
         this.addBug.reset();
         this.closeModal();
-        this.router.navigate(['/project'])
       },
       error: (err) => {
         console.log(err);
@@ -59,13 +58,9 @@ export class AddBugComponent {
     })
   }
 
-  public backToProject() {
-    this.router.navigate((["/project"]))
-  }
   closeModal() {
     this.showModal = false;
     this.closeModalEvent.emit();
 
   }
-  
 }

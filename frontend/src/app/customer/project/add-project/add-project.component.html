@@ -6,7 +6,7 @@
           <h4 class="text-center">Create a new Project</h4>
         </div>
         <div class="card-body">
-          <form class="mt-1" [formGroup]="creatProject" (ngSubmit)="addProject()">
+          <form class="mt-1" [formGroup]="creatProject" >
             <div class="form-row">
               <div class="form-group">
                 <label for="projectName">Title</label>
@@ -56,9 +56,9 @@
                   creatProject.get('projectStatus')?.touched
                 ">
                 <option value="" disabled selected>Select priority</option>
-                <option value="Urgent">High</option>
-                <option value="Important">Low</option>
-                <option value="medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
               </select>
 
               <div *ngIf="creatProject.get('projectStatus')?.hasError('required')" class="invalid-feedback">
@@ -66,10 +66,10 @@
               </div>
             </div>
             <div class="text-center mt-2">
-              <button type="submit" class="btn btn-outline-success" [disabled]="!creatProject.valid">
+              <button class="btn btn-outline-success" [disabled]="!creatProject.valid" (click)="addProject()">
                 Add Project
               </button>
-              <button type="submit" class="btn btn-outline-danger" style="margin-left: 20px" (click)="backToProject()">
+              <button  class="btn btn-outline-danger" style="margin-left: 20px" (click)="backToProject()">
                 Cancel
               </button>
             </div>
