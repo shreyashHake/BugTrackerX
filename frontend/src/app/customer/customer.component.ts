@@ -29,9 +29,8 @@ export class CustomerComponent {
     this.customerService.getCustomerProfile().subscribe(
       {
         next : (res) => {
-          console.log("Working nicely here ; " + res.customerName);
-
           this.customerProfile = res;
+          console.log("Working nicely here ; " + res.customerName);
           console.log("Customer_Profile : "+ this.customerProfile);
         },
         error : (error) =>{
@@ -41,17 +40,17 @@ export class CustomerComponent {
     )
   }
 
-  getAllProject() {
-    this.projectService.getAllProject(this.profileId).subscribe({
-      next: (response) => {
-        this.projects = response;
-      },
+  // getAllProject() {
+  //   this.projectService.getAllProject(1).subscribe({
+  //     next: (response) => {
+  //       this.projects = response;
+  //     },
 
-      error: (err) => {
-        console.log(err);
+  //     error: (err) => {
+  //       console.log(err);
 
-      }
-    })
-  }
+  //     }
+  //   })
+  // }
 
 }

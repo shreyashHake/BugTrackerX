@@ -1,0 +1,72 @@
+<div class="container">
+  <div class="modal-content">
+    <div
+      class="modal"
+      [ngClass]="{ show: showModal }"
+      tabindex="-1"
+      role="dialog"
+      style="display: block"
+      *ngIf="showModal"
+    >
+      <div class="modal-dialog" role="document">
+        <form class="mt-1" [formGroup]="selectStaff" (ngSubmit)="assignStaff()">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Assign Staff</h5>
+              <button type="button" class="close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="staff">Choose staff</label>
+                  <hr>
+                  <select
+                    class="form-control"
+                    id="staff"
+                    formControlName="staff"
+                    [class.is-invalid]="
+                    selectStaff.get('projectStatus')?.invalid &&
+                    selectStaff.get('projectStatus')?.touched
+                    "
+                  >
+                    <option value="" disabled selected>Select staff from list</option>
+                    <div *ngFor="let staff of staffs">
+                      <option [value]="staff.staffProfileId">{{ staff.staffName }} - {{ staff.user.userName }}</option>
+                    </div>
+                  </select>
+
+                  <div
+                    *ngIf="selectStaff.get('staff')?.hasError('required')"
+                    class="invalid-feedback"
+                    class="invalid-feedback"
+                  >
+                    Please select staff.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="closeModal()"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!selectStaff.valid"
+              >
+                Save Bug
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

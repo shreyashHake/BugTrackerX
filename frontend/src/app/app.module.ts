@@ -32,6 +32,7 @@ import { CustomersComponent } from './admin/customers/customers.component';
 import { CustomerPanelComponent } from './admin/customers/customer-panel/customer-panel.component';
 import { ProjectPanelComponent } from './admin/customers/project-panel/project-panel.component';
 import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
+import { AssingStaffComponent } from './admin/customers/project-panel/assing-staff/assing-staff.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/st
     CustomersComponent,
     CustomerPanelComponent,
     ProjectPanelComponent,
-    StaffPanelComponent
+    StaffPanelComponent,
+    AssingStaffComponent
     ],
   imports: [
     BrowserModule,
