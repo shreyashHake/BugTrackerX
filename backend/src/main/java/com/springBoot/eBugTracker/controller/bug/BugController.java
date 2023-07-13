@@ -1,5 +1,6 @@
 package com.springBoot.eBugTracker.controller.bug;
 
+import com.springBoot.eBugTracker.dtos.bugs.BugDetailsDTO;
 import com.springBoot.eBugTracker.dtos.bugs.CommentDTO;
 import com.springBoot.eBugTracker.entity.bugs.Comment;
 import com.springBoot.eBugTracker.service.bug.BugService;
@@ -20,6 +21,10 @@ public class BugController {
         return bugService.assignStaff(bugProcessId,staffProfileId);
     }
 
+    @GetMapping({"/getBugDetails/{bugId}"})
+    public BugDetailsDTO getBugDetails(@PathVariable int bugId){
+        return bugService.getBugDetails(bugId);
+    }
     @PostMapping({"/addComment"})
     public CommentDTO addComment(@RequestBody Comment comment){
         return bugService.addComment(comment);
