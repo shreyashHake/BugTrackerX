@@ -44,6 +44,7 @@ public class BugServiceIMPL implements BugService{
         }
         System.out.println("staffProfile : "+staffProfile.get());
         bugProcess.get().setStaffProfile(staffProfile.get());
+        bugProcess.get().setGlobalStatus("Staff "+staffProfile.get().getStaffName()+" Assigned");
         bugProcessRepo.save(bugProcess.get());
         return "Assign Staff To Bug Successfully";
     }

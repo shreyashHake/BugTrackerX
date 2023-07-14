@@ -14,6 +14,7 @@ export class ProjectPanelComponent {
   projectId!: any;
   project!: any;
   Bugs!: any;
+  currentBugId:any;
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,

@@ -26,7 +26,6 @@ export class CommentBoxComponent {
   accessTextareaValue() {
     if (this.editor) {
         const commentTextValue = this.editor.getContent();
-        alert(commentTextValue);
         this.passComment.emit(commentTextValue);
     }
   }

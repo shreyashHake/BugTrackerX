@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Comment } from 'src/app/_model/Comment.model';
 import { BugService } from 'src/app/_services/bug.service';
+import { UserAuthService } from 'src/app/_services/user-auth.service';
 
 @Component({
   selector: 'app-bug-view',
@@ -14,12 +16,12 @@ export class BugViewComponent {
   bugId!: any;
   BugDetails!: any;
   commentText!: any;
-  sanitizedHtml!: SafeHtml;
+ 
 
   constructor(
     private route: ActivatedRoute,
     private bugService: BugService,
-    private sanitizer: DomSanitizer
+    private userAuthService:UserAuthService
   ) {
 
   }
@@ -36,8 +38,36 @@ export class BugViewComponent {
   }
 
   getComment(comment: any) {
-      this.commentText = comment;
-    this.sanitizedHtml = this.sanitizer.bypassSecurityTrustHtml(this.commentText);
+    this.commentText = comment;
+    if (this.commentText == "") {
+      alert("Please Write Something ...");
+    } else {
+      let userName = this.userAuthService.getUserName();
+      let comment: Comment = {
+        commentNumber: 3,
+        comment: this.commentText,
+        commentBy: "customer",
+        user: {
+          userName: userName
+        },
+        bugProcess: {
+          bugProcessId: this.BugDetails.bugProcessId
+        }
+      }
+      this.bugService.addCommentToBug(comment).subscribe(
+        {
+          next:(res)=>{
+            // alert("Thread added");
+            this.getBugDetails();
+          },
+          error:(error)=>{
+            alert("Failed To add Thread");
+          }
+        }
+      )
+     
+    }
+
   }
   getBugDetails() {
     this.bugService.getBugDetails(this.bugId).subscribe(

@@ -63,7 +63,6 @@
                 <div class="col-sm-1">
                   <i class="bi bi-bug-fill"></i>
                 </div>
-
                 <div class="col-sm-11">
                   <div class="d-flex justify-content-between">
                     <div>
@@ -72,14 +71,11 @@
                       </a>
                     </div>
                     <div>
-                      <button type="button" class="btn btn-outline-dark" style="margin-bottom: 10px;" (click)="projectId = project.projectId;showModal = true;">Assign
+                      <button type="button" class="btn btn-outline-dark" style="margin-bottom: 10px;" (click)="currentBugId=bug.bug_id ; projectId = project.projectId;showModal = true;">Assign
                         Staff</button>
                     </div>
                   </div>
                 </div>
-
-
-
                 <hr />
               </div>
             </ng-container>
@@ -170,4 +166,4 @@
     </div>
   </div>
 </section>
-<app-assing-staff [showModal]="showModal" [projectId]="projectId" (closeModalEvent)="onModalClosed()"> </app-assing-staff>
+<app-assing-staff [showModal]="showModal" [projectId]="projectId" [bugId]="currentBugId" (closeModalEvent)="onModalClosed()"> </app-assing-staff>

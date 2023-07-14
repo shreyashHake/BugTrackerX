@@ -22,4 +22,12 @@ export class BugService {
   public getBugDetails(bugId : number) : Observable<any>{
     return this.httpClient.get(`${this.PATH_OF_API}/bug/getBugDetails/${bugId}`);
   }
+
+  public assignStaffToBug(staff_id:number,bug_process_id :number){
+    return this.httpClient.put(`${this.PATH_OF_API}/bug/assignStaff/${bug_process_id}`,staff_id);
+  }
+
+  public addCommentToBug(comment:any){
+    return this.httpClient.post(`${this.PATH_OF_API}/bug/addComment/`,comment);
+  }
 }
