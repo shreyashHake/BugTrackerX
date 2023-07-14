@@ -44,7 +44,7 @@ const routes: Routes = [
   { path: 'customer/project_view/:customer_id/:project_id', component: ProjectViewComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'customer/project_view/:customer_id/:project_id/bug_view/:bug_id', component: BugViewComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'customer-profile/:userName', component: CutomerProfileComponent},
-  { path: 'project', component: ProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
+  { path: 'customer/project', component: ProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'add-project', component: AddProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
 
   { path: 'staff', component: StaffComponent, canActivate: [AuthGuard], data: { roles: ['Staff'] } }

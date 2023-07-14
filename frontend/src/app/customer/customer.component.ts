@@ -9,51 +9,49 @@ import { ProjectService } from '../_services/project.service';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent {
-  customerProfile : any;
-  
+  customerProfile: any;
+
   projects: Project[] = [];
   profileId!: number;
 
   constructor(
-    private customerService : CustomerService,
-    private projectService : ProjectService
-    ) {
-      
-     }
+    private customerService: CustomerService,
+    private projectService: ProjectService
+  ) {
+
+  }
 
   ngOnInit() {
     this.getCustomerProfile();
-  
+
   }
 
-  getCustomerProfile(){
+  getCustomerProfile() {
     this.customerService.getCustomerProfile().subscribe(
       {
-        next : (res) => {
-          console.log("Working nicely here ; " + res.customerName);
-
+        next: (res) => {
           this.customerProfile = res;
-          console.log("Customer_Profile : "+ this.customerProfile);
+          console.log("Working nicely here ; " + res.customerName);
+          console.log("Customer_Profile : " + this.customerProfile);
           this.getAllProject();
         },
-        error : (error) =>{
-          console.log("Error while fetching customer profile : "+error);
+        error: (error) => {
+          console.log("Error while fetching customer profile : " + error);
         }
       }
     )
   }
 
-  getAllProject() {
-    this.projectService.getAllProject(this.customerProfile.customerProfileId).subscribe({
-      next: (response) => {
-        this.projects = response;
-      },
+    getAllProject() {
+      this.projectService.getAllProject(this.customerProfile.customerProfileId).subscribe({
+        next: (response) => {
+          this.projects = response;
+        },
+        error: (err) => {
+          console.log(err);
 
-      error: (err) => {
-        console.log(err);
-
-      }
-    })
-  }
+        }
+      })
+    }
 
 }

@@ -34,6 +34,7 @@ import { ProjectPanelComponent } from './admin/customers/project-panel/project-p
 import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
 import { ProjectViewComponent } from './customer/project/project-view/project-view.component';
 import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
+import { AssingStaffComponent } from './admin/customers/project-panel/assing-staff/assing-staff.component';
 import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment-box.component';
 
 
@@ -65,6 +66,7 @@ import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment
     StaffPanelComponent,
     ProjectViewComponent,
     BugViewComponent,
+    AssingStaffComponent,
     CommentBoxComponent
     ],
   imports: [

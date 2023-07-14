@@ -12,12 +12,12 @@
 
         <!-- Home without login -->
         <li class="nav-item">
-          <a *ngIf="!isLoggedIn()" class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          <a *ngIf="!isLoggedIn()" class="nav-link active" aria-current="page" routerLink="/" >Home</a>
         </li>
 
         <!-- Home if Admin -->
         <li class="nav-item">
-          <a *ngIf="isAdmin()"  class="nav-link active"  routerLink="/admin">
+          <a *ngIf="isAdmin()"  class="nav-link active"  routerLink="/admin" >
             Home
           </a>
         </li>
@@ -53,7 +53,7 @@
 
         <!-- for customer -->
         <li class="nav-item">
-          <a *ngIf="isCustomer()"  class="nav-link active" aria-current="page" routerLink="/project">Project</a>
+          <a *ngIf="isCustomer()"  class="nav-link active" aria-current="page" routerLink="/customer/project">Project</a>
         </li>
 
       </ul>
@@ -61,7 +61,7 @@
         (click)="defaultUser()">
         Login
       </button>
-      <button *ngIf="isLoggedIn()" type="button" class="btn btn-danger" (click)="logout()">
+      <button *ngIf="isLoggedIn()" type="button" class="btn btn-dark" (click)="logout()">
         Logout
       </button>
     </div>

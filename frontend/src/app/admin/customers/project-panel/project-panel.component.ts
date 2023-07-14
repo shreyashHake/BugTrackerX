@@ -26,18 +26,18 @@ export class ProjectPanelComponent {
       this.projectId = params['project_id'];
       console.log("panel c : " + this.customerProfileId);
       console.log("panel p: " + this.projectId);
-    });  
+    });
     this.getCustomerProjects();
   }
 
- 
- 
+
+
 
   getCustomerProjects() {
     this.projectService.getAllProject(this.customerProfileId).subscribe(
       {
         next: (res) => {
-          
+
           this.customerProjects = res;
           console.log("customer Projects : "+this.customerProjects[0].projectDomain);
           this.getProject();
@@ -76,5 +76,9 @@ export class ProjectPanelComponent {
     )
   }
 
+  showModal = false;
 
+  onModalClosed() {
+    this.showModal = false;
+  }
 }
