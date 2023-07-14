@@ -9,7 +9,7 @@ import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './_auth/auth.guard';
@@ -35,6 +35,7 @@ import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/st
 import { ProjectViewComponent } from './customer/project/project-view/project-view.component';
 import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
 import { AssingStaffComponent } from './admin/customers/project-panel/assing-staff/assing-staff.component';
+import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment-box.component';
 
 
 @NgModule({
@@ -65,14 +66,17 @@ import { AssingStaffComponent } from './admin/customers/project-panel/assing-sta
     StaffPanelComponent,
     ProjectViewComponent,
     BugViewComponent,
-    AssingStaffComponent
+    AssingStaffComponent,
+    CommentBoxComponent
     ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+   
   ],
   providers: [
     AuthGuard,
