@@ -31,8 +31,6 @@ export class CustomerComponent {
       {
         next: (res) => {
           this.customerProfile = res;
-          console.log("Working nicely here ; " + res.customerName);
-          console.log("Customer_Profile : " + this.customerProfile);
           this.getAllProject();
         },
         error: (error) => {

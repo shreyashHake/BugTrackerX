@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/_model/Comment.model';
@@ -11,19 +12,28 @@ import { UserAuthService } from 'src/app/_services/user-auth.service';
   styleUrls: ['./bug-view.component.scss']
 })
 export class BugViewComponent {
+  showModal = false;
+  changeBugStatus!: FormGroup;
+
   customerProfileId: any;
   projectId!: any;
   bugId!: any;
   BugDetails!: any;
   commentText!: any;
- 
+
+
+  initializeForm() {
+    this.changeBugStatus = new FormGroup({
+      bugStatus: new FormControl('', Validators.required)
+    });
+  }
 
   constructor(
     private route: ActivatedRoute,
     private bugService: BugService,
-    private userAuthService:UserAuthService
+    private userAuthService: UserAuthService
   ) {
-
+    this.initializeForm();
   }
 
   ngOnInit() {
@@ -35,6 +45,16 @@ export class BugViewComponent {
       console.log("panel p: " + this.projectId);
     });
     this.getBugDetails();
+    this.initializeForm();
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  changeBugStatusMethod() {
+    let status = this.changeBugStatus.get('bugStatus')?.value;
+    alert("Changing Status : " + status);
   }
 
   getComment(comment: any) {
@@ -56,16 +76,16 @@ export class BugViewComponent {
       }
       this.bugService.addCommentToBug(comment).subscribe(
         {
-          next:(res)=>{
+          next: (res) => {
             // alert("Thread added");
             this.getBugDetails();
           },
-          error:(error)=>{
+          error: (error) => {
             alert("Failed To add Thread");
           }
         }
       )
-     
+
     }
 
   }
