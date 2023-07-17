@@ -36,6 +36,8 @@ import { ProjectViewComponent } from './customer/project/project-view/project-vi
 import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
 import { AssingStaffComponent } from './admin/customers/project-panel/assing-staff/assing-staff.component';
 import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment-box.component';
+import { ChatBoxComponent } from './customer/bug/bug-view/chat-box/chat-box.component';
+import { CommonModule, DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -67,7 +69,8 @@ import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment
     ProjectViewComponent,
     BugViewComponent,
     AssingStaffComponent,
-    CommentBoxComponent
+    CommentBoxComponent,
+    ChatBoxComponent
     ],
   imports: [
     FormsModule,
@@ -76,7 +79,7 @@ import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule,
-   
+   CommonModule
   ],
   providers: [
     AuthGuard,
@@ -85,7 +88,8 @@ import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment
       useClass: AuthInterceptor,
       multi: true
     },
-    UserService
+    UserService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

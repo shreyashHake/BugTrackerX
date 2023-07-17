@@ -4,10 +4,10 @@
       <div class="col">
         <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-3">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a routerLink="/admin">Home</a></li>
-            <li class="breadcrumb-item"><a href="admin/customers">customer</a></li>
-            <li class="breadcrumb-item"><a href="admin/customers/customer_panel/{{customerProfileId}}">customer profile </a></li>
-            <li class="breadcrumb-item active" aria-current="page">projects</li>
+            <li class="breadcrumb-item"><a routerLink="/customer">Home</a></li>
+            <li class="breadcrumb-item"><a
+                routerLink="/customer/project_view/{{customerProfileId}}/{{projectId}}">Project</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Bug</li>
           </ol>
         </nav>
       </div>
@@ -17,11 +17,14 @@
       <div class="col-lg-4">
         <div class="card mb-4">
           <div class="card-body text-center">
-            <img src="../../../../assets/images/projectIcon.png" alt="avatar"
-              class="img-fluid" style="width: 50px;">
-             <h5 class="my-3">{{BugDetails.bug_title}}</h5>
-            <p class="text-muted mb-1">{{BugDetails.bug_desc}}</p>
-            <p class="text-muted mb-4">{{BugDetails.bug_status}}</p>
+            <img src="../../../../assets/images/bugLogo.png" alt="avatar" class="img-fluid" style="width: 50px;">
+            <h5 class="my-1">{{BugDetails.bug_title}}</h5>
+            <p class="text-muted mb-2">{{BugDetails.bug_desc}}</p>
+            <p class="text-muted mb-2"><b>priority : </b>{{BugDetails.bug_priority}}</p>
+            <p class="text-muted mb-2"><b>Status : </b>{{BugDetails.bug_status}}
+              <button class="btn btn-sm btn-dark" (click)="showModal=true"><i class="bi bi-pencil-square"></i> </button>
+            </p>
+            <p class="text-muted mb-4"><b>Progress : </b>{{BugDetails.globalStatus}}</p>
             <!-- <div class="d-flex justify-content-center mb-2">
               <button type="button" class="btn btn-primary">Follow</button>
               <button type="button" class="btn btn-outline-primary ms-1">Message</button>
@@ -31,7 +34,7 @@
         <div class="card mb-4 mb-lg-0">
           <div class="card-body p-0">
             <ul class="list-group list-group-flush rounded-3">
-              <li  class="list-group-item d-flex justify-content-between align-items-center p-3"><b>Other Projects</b></li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3"><b>Other Bugs</b></li>
               <!-- <ng-container *ngIf="customerProjects.length != 0 else elseBlock">
               <li *ngFor="let customerProject of customerProjects" class="list-group-item d-flex justify-content-between align-items-center p-2">
                 <a  [routerLink]="['../',customerProject.projectId]">
@@ -46,115 +49,79 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-8"  >
+      <div class="col-lg-8">
         <div class="card" style="border: none;">
-              <section  class="chat" style="background-color: #659DBD; ">
-                  <div class=" container my-2 py-2 text-dark">
-                    <div class="row d-flex justify-content-center">
-                      <div class="col-md-11 col-lg-9 col-xl-12">
-                        <div class="d-flex flex-start mb-4">
-                          <img class="rounded-circle shadow-1-strong me-3"
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(32).webp" alt="avatar" width="45"
-                            height="45" />
-                          <div class="card w-100">
-                            <div class="card-body p-4">
-                              <div class="">
-                                <h6>Johny Cash</h6>
+          <section class="chat" style="background-color: #659DBD; ">
+            <div class=" container my-2 py-2 text-dark">
+              <div class="row d-flex justify-content-center">
+                <div class="col-md-11 col-lg-9 col-xl-12">
+                  <ng-container *ngIf="BugDetails.comments.length != 0; else elseBox">
+                    <ng-container *ngFor="let thread of BugDetails.comments">
+                      <app-chat-box [thread]="thread"></app-chat-box>
+                    </ng-container>
+                  </ng-container>
+                  <ng-template #elseBox>
+                    <div class="text-center"><b>
+                        <h5>Describe about Bug</h5>
+                      </b></div>
 
-                                <p [innerHTML]="sanitizedHtml">
+                  </ng-template>
 
-                                </p>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <div class="d-flex align-items-center">
-                                    <a href="#!" class="link-muted me-2"><i class="fas fa-thumbs-up me-1"></i>132</a>
-                                    <a href="#!" class="link-muted"><i class="fas fa-thumbs-down me-1"></i>15</a>
-                                  </div>
-                                  <p class="small">3 hours ago</p>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-
-                        <app-comment-box (passComment)="getComment($event)"></app-comment-box>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0"
-                    aria-valuemax="100"></div>
+                  <app-comment-box (passComment)="getComment($event)"></app-comment-box>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card mb-4 mb-md-0">
-              <div class="card-body">
-                <p class="mb-4"><span class="text-primary font-italic me-1">assigment</span> Project Status
-                </p>
-                <p class="mb-1" style="font-size: .77rem;">Web Design</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Website Markup</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 72%" aria-valuenow="72" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">One Page</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 89%" aria-valuenow="89" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Mobile Template</p>
-                <div class="progress rounded" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-                <p class="mt-4 mb-1" style="font-size: .77rem;">Backend API</p>
-                <div class="progress rounded mb-2" style="height: 5px;">
-                  <div class="progress-bar" role="progressbar" style="width: 66%" aria-valuenow="66" aria-valuemin="0"
-                    aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </section>
+
+
         </div>
+
       </div>
     </div>
   </div>
 </section>
+
+
+<!-- Change Bug Status Modal -->
+<div class="container">
+  <div class="modal-content">
+    <div class="modal" [ngClass]="{ 'show': showModal }" tabindex="-1" role="dialog" style="display: block;"
+      *ngIf="showModal">
+      <div class="modal-dialog" role="document">
+        <form class="mt-1" [formGroup]="changeBugStatus" (ngSubmit)="changeBugStatusMethod()">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">change Status</h5>
+              <button type="button" class="close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="bugStatus">Status</label>
+                  <select class="form-control" id="bugStatus" formControlName="bugStatus" [class.is-invalid]="
+                  changeBugStatus.get('bugStatus')?.invalid &&
+                  changeBugStatus.get('bugStatus')?.touched
+                        ">
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="Not Resolved">Not Resolved</option>
+                    <option value="Resolved">Resolved</option>
+                  </select>
+                  <div *ngIf="changeBugStatus.get('bugStatus')?.hasError('required')" class="invalid-feedback">
+                    Please select Bug Status.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+              <button type="submit" class="btn btn-primary">Change</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End -->

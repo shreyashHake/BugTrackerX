@@ -15,13 +15,6 @@ export class ProjectService {
     private userAuthUser: UserAuthService
   ) { }
   
-  private projectSubject = new BehaviorSubject<any>(null);
-  project$ = this.projectSubject.asObservable();
-
-  setProject(project: any) {
-    this.projectSubject.next(project);
-  }
-
   
   public getAllProject(profileId : number): Observable<Project[]> {
     return this.httpClient.get<Project[]>(`${this.PATH_OF_API}/customer/getCustomerProjects/${profileId}`);

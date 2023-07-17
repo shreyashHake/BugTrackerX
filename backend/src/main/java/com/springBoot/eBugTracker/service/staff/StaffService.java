@@ -1,5 +1,6 @@
 package com.springBoot.eBugTracker.service.staff;
 
+import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
 import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
 
@@ -10,4 +11,8 @@ public interface StaffService {
 
 
     List<StaffProfile> getAllStaff();
+
+    StaffProfileDTO getStaffProfile(String username);
+
+    List<BugProcessDTO> getBugsByStaff(int staffId);
 }

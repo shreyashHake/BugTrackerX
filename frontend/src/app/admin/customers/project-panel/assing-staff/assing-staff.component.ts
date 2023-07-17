@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { StaffProfile } from 'src/app/_model/staffProfile.model';
+import { BugService } from 'src/app/_services/bug.service';
 import { StaffService } from 'src/app/_services/staff.service';
 
 @Component({
@@ -15,11 +16,13 @@ export class AssingStaffComponent {
 
   @Input() showModal = false;
   @Input() projectId !: number;
+  @Input() bugId !: number;
   @Output() closeModalEvent = new EventEmitter<void>();
 
 
   constructor(
-    private staffService: StaffService
+    private staffService: StaffService,
+    private bugService : BugService
   ) {
     // this.initializeForm();
     // this.getAllStaff();
@@ -41,10 +44,17 @@ export class AssingStaffComponent {
     console.log("Staff id is : " + this.selectStaff.value.staff);
     this.staffProfileId = +this.selectStaff.value.staff;
 
-    console.log(typeof(this.selectStaff.value.staff));
-
-    // converting to number to use in bug-process . . . .
-    console.log(typeof(this.staffProfileId));
+    this.bugService.assignStaffToBug(this.staffProfileId,this.bugId).subscribe(
+      {
+        next : (res) => {
+          alert(res);
+        },
+        error : (error) => {
+          alert("Assign Staff To Bug Successfully");
+        }
+      }
+    )
+    
     this.closeModal();
   }
 
