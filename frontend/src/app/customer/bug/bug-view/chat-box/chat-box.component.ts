@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CustomerService } from 'src/app/_services/customer.service';
+import { StaffService } from 'src/app/_services/staff.service';
 
 @Component({
   selector: 'app-chat-box',
@@ -12,18 +13,19 @@ export class ChatBoxComponent {
   @Input() thread: any;
   sanitizedHtml!: SafeHtml;
   time!:any;
-  customerProfile!:any;
+  Profile!:any;
   constructor(
     private sanitizer: DomSanitizer,
     private datePipe: DatePipe,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private staffService : StaffService
   ) {
   }
 
   ngOnInit() {
     this.sanitizedHtml = this.sanitizer.bypassSecurityTrustHtml(this.thread.comment);
     this.time = this.convertToRelativeTime(this.thread.commentDateTime);
-    this.getCustomerProfile();
+    this.getProfile();
   }
 
 
@@ -50,15 +52,35 @@ export class ChatBoxComponent {
     }
   }
 
-  
+  getProfile(){
+    if(this.thread.commentBy=='staff'){
+      this.getStaffProfile();
+    }else{
+      this.getCustomerProfile();
+    }
+  }
+
   getCustomerProfile() {
     this.customerService.getCustomerProfile().subscribe(
       {
         next: (res) => {
-          this.customerProfile = res;
+          this.Profile = res;
         },
         error: (error) => {
           console.log("Error while fetching customer profile : " + error);
+        }
+      }
+    )
+  }
+
+  getStaffProfile(){
+    this.staffService.getStaffProfile(this.thread.user.userName).subscribe(
+      {
+        next: (res) => {
+          this.Profile = res;
+        },
+        error: (error) => {
+          console.log("Error while fetching staff profile : " + error);
         }
       }
     )

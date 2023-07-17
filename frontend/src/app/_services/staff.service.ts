@@ -37,4 +37,8 @@ export class StaffService {
   public getAllStaff() : Observable<StaffProfile[]> {
     return this.httpClient.get<StaffProfile[]>(`${this.PATH_OF_API}/staff/getAllStaff`);
   }
+
+  public getStaffProfile(username : string){
+    return this.httpClient.get(`${this.PATH_OF_API}/staff/getStaffProfile/${username}`);
+  }
 }

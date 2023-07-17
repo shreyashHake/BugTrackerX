@@ -1,7 +1,9 @@
 package com.springBoot.eBugTracker.controller.staff;
 
+import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
 import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
+import com.springBoot.eBugTracker.service.bug.BugService;
 import com.springBoot.eBugTracker.service.staff.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,17 @@ public class StaffController {
         return staffService.createStaffProfile(staffProfile);
     }
 
+    @GetMapping({"/getStaffProfile/{username}"})
+    public StaffProfileDTO getStaffProfile(@PathVariable String username){
+        return staffService.getStaffProfile(username);
+    }
     @GetMapping({"/getAllStaff"})
     public List<StaffProfile> getAllStaff() {
         return staffService.getAllStaff();
+    }
+
+    @GetMapping({"/getBugsByStaff/{staff_id"})
+    public List<BugProcessDTO> getBugsByStaff(@PathVariable int staff_id) {
+        return staffService.getBugsByStaff(staff_id);
     }
 }
