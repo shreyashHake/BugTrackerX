@@ -4,8 +4,7 @@
       <div class="col">
         <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-3">
           <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a routerLink="/customer">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">customer Profile</li>
+            <li class="breadcrumb-item active" aria-current="page">Home</li>
           </ol>
         </nav>
       </div>
@@ -17,13 +16,13 @@
           <div class="card-body text-center">
             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
               class="rounded-circle img-fluid" style="width: 150px;">
-              <h5 class="my-3">Staff name</h5>
-              <p class="text-muted mb-1">Staff Org</p>
-              <p class="text-muted mb-4">123456</p>
-            <div class="d-flex justify-content-center mb-2">
+              <h5 class="my-3">{{staffProfile.staffName}}</h5>
+              <p class="text-muted mb-1">{{staffProfile.staffEmail}}</p>
+              <p class="text-muted mb-4">{{staffProfile.staffPhone}}</p>
+            <!-- <div class="d-flex justify-content-center mb-2">
               <button type="button" class="btn btn-primary">Follow</button>
               <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="card mb-4 mb-lg-0">
@@ -59,30 +58,26 @@
             <div class="col-sm-11">
               <div class="d-flex justify-content-between">
                 <div>
-                  <h5>Projects</h5>
+                  <h5>Bugs</h5>
                 </div>
-                <div>
-                  <a routerLink="/add-project">
-                    <button type="button" class="btn btn-outline-dark" >Add Project</button>
-                  </a>
-                </div>
+                
               </div>
             </div>
 
             <hr>
-            <!-- <ng-container *ngIf="projects.length != 0 else elseBlock">
-              <div class="row" *ngFor="let project of projects">
+            <ng-container *ngIf="BugProcessess.length != 0 else elseBlock">
+              <div class="row" *ngFor="let bugProcess of BugProcessess">
                 <div class="col-sm-1">
-                  <i class="bi bi-folder-fill"></i>
+                  <i class="bi bi-bug-fill"></i>
                 </div>
                 <div class="col-sm-11">
-                  <a  routerLink="project_view/{{customerProfile.customerProfileId}}/{{project.projectId}}">
-                    <p class="text-muted mb-2">{{project.projectName}}</p>
+                  <a  routerLink="bug_view/{{bugProcess.bug.bug_id}}">
+                    <p class="text-muted mb-2">{{bugProcess.bug.bug_title}}</p>
                   </a>
                 </div>
                 <hr>
               </div>
-            </ng-container> -->
+            </ng-container>
             <ng-template #elseBlock>
               No Projects Available
             </ng-template>
