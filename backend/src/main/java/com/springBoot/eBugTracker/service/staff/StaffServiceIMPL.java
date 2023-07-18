@@ -55,21 +55,19 @@ public class StaffServiceIMPL implements StaffService {
     public List<BugProcessDTO> getBugsByStaff(int staffId) {
         Optional<StaffProfile> staffProfile = staffProfileRepo.findById(staffId);
         List<BugProcessDTO> bugProcessDTOS = new ArrayList<>();
-        System.out.println("Staff Profile : "+staffProfile);
-        try {
+
+        if (staffProfile.isPresent()) {
             List<BugProcess> bugProcesses = bugProcessRepo.findByStaffProfile(staffProfile.get());
-            System.out.println("Bug Processes : "+bugProcesses);
             for (BugProcess bugProcess : bugProcesses) {
-                System.out.println("Bug Process : "+bugProcess);
                 BugProcessDTO bugProcessDTO = dtoHelper.getBugProcessDto(bugProcess);
                 bugProcessDTOS.add(bugProcessDTO);
             }
-            System.out.println("Bug Process DTO : "+bugProcessDTOS);
-
-        }catch (Exception e){
-            System.out.println("No Data Found");
-            return null;
+        } else {
+            System.out.println("Staff Profile not found.");
+            // Handle the case when the staff profile is not found
         }
+
         return bugProcessDTOS;
     }
+
 }

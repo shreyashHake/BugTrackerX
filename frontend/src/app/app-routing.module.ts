@@ -21,6 +21,7 @@ import { ProjectPanelComponent } from './admin/customers/project-panel/project-p
 import { StaffPanelComponent } from './admin/staff/staff-handling/staff-panel/staff-panel.component';
 import { ProjectViewComponent } from './customer/project/project-view/project-view.component';
 import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
+import { SBugViewComponent } from './staff/sbug-view/sbug-view.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -47,7 +48,9 @@ const routes: Routes = [
   { path: 'customer/project', component: ProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'add-project', component: AddProjectComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
 
-  { path: 'staff', component: StaffComponent, canActivate: [AuthGuard], data: { roles: ['Staff'] } }
+  { path: 'staff', component: StaffComponent, canActivate: [AuthGuard], data: { roles: ['Staff'] } },
+  { path: 'staff/bug_view/:bug_id', component: SBugViewComponent, canActivate: [AuthGuard], data: { roles: ['Staff'] } },
+
 ];
 
 @NgModule({

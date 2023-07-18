@@ -23,6 +23,10 @@ export class BugService {
     return this.httpClient.get(`${this.PATH_OF_API}/bug/getBugDetails/${bugId}`);
   }
 
+  public getBugsByStaff(staff_id : number){
+    return this.httpClient.get(`${this.PATH_OF_API}/staff/getBugsByStaff/${staff_id}`);
+  }
+
   public assignStaffToBug(staff_id:number,bug_process_id :number){
     return this.httpClient.put(`${this.PATH_OF_API}/bug/assignStaff/${bug_process_id}`,staff_id);
   }

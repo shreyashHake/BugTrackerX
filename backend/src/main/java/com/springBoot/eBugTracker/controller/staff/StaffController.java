@@ -29,7 +29,7 @@ public class StaffController {
         return staffService.getAllStaff();
     }
 
-    @GetMapping({"/getBugsByStaff/{staff_id"})
+    @GetMapping({"/getBugsByStaff/{staff_id}"})
     public List<BugProcessDTO> getBugsByStaff(@PathVariable int staff_id) {
         return staffService.getBugsByStaff(staff_id);
     }
