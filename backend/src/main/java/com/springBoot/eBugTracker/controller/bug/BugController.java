@@ -25,6 +25,8 @@ public class BugController {
     public BugDetailsDTO getBugDetails(@PathVariable int bugId){
         return bugService.getBugDetails(bugId);
     }
+
+
     @PostMapping({"/addComment"})
     public CommentDTO addComment(@RequestBody Comment comment){
         return bugService.addComment(comment);
