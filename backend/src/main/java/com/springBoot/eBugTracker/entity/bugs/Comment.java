@@ -29,7 +29,7 @@ public class Comment {
     @JoinColumn(name = "userName", nullable = false, referencedColumnName = "userName")
     private User user;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bugProcessId",nullable = false)
+    @JoinColumn(name = "bugProcessId", nullable = false)
     private BugProcess bugProcess;
 
 }

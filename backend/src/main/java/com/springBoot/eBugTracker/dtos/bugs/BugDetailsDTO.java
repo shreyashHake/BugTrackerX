@@ -1,6 +1,5 @@
 package com.springBoot.eBugTracker.dtos.bugs;
 
-import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +23,6 @@ public class BugDetailsDTO {
 
     private int bugProcessId;
     private String GlobalStatus;
-//    private StaffProfileDTO staffProfile;
+    //    private StaffProfileDTO staffProfile;
     private List<CommentDTO> comments;
 }

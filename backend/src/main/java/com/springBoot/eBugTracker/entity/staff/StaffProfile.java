@@ -15,8 +15,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class StaffProfile
-{
+public class StaffProfile {
     @Id
     @GeneratedValue
     private int staffProfileId;

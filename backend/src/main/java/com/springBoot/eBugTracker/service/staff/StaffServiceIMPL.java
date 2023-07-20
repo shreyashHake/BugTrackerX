@@ -1,12 +1,9 @@
 package com.springBoot.eBugTracker.service.staff;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
-import com.springBoot.eBugTracker.dtos.customer.CustomerProjectDTO;
 import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;
 import com.springBoot.eBugTracker.entity.User;
 import com.springBoot.eBugTracker.entity.bugs.BugProcess;
-import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
-import com.springBoot.eBugTracker.entity.customer.CustomerProject;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
 import com.springBoot.eBugTracker.repository.IUserRepository;
 import com.springBoot.eBugTracker.repository.bugs.BugProcessRepo;

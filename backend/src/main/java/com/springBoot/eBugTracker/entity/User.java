@@ -1,6 +1,5 @@
 package com.springBoot.eBugTracker.entity;
 
-import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

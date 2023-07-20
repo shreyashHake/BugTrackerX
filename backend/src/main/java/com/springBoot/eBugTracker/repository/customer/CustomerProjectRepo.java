@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CustomerProjectRepo extends JpaRepository<CustomerProject,Integer> {
+public interface CustomerProjectRepo extends JpaRepository<CustomerProject, Integer> {
     List<CustomerProject> findByCustomerProfile(CustomerProfile customerProfile);
 }

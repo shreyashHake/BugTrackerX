@@ -14,12 +14,11 @@ import com.springBoot.eBugTracker.util.DtoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
-public class BugServiceIMPL implements BugService{
+public class BugServiceIMPL implements BugService {
     @Autowired
     private BugRepo bugRepo;
     @Autowired
@@ -30,21 +29,22 @@ public class BugServiceIMPL implements BugService{
     private CommentRepo commentRepo;
     @Autowired
     private DtoHelper dtoHelper;
+
     @Override
     public String assignStaff(int bugProcessId, int staffProfileId) {
-        System.out.println("bpid : "+bugProcessId+" staffId : "+staffProfileId);
+        System.out.println("bpid : " + bugProcessId + " staffId : " + staffProfileId);
         Optional<BugProcess> bugProcess = bugProcessRepo.findById(bugProcessId);
-        if(bugProcess.isEmpty()){
+        if (bugProcess.isEmpty()) {
             return "Invalid Bug";
         }
-        System.out.println("bugProcess : "+bugProcess.get());
+        System.out.println("bugProcess : " + bugProcess.get());
         Optional<StaffProfile> staffProfile = staffProfileRepo.findById(staffProfileId);
-        if (staffProfile.isEmpty()){
+        if (staffProfile.isEmpty()) {
             return "Invalid Staff";
         }
-        System.out.println("staffProfile : "+staffProfile.get());
+        System.out.println("staffProfile : " + staffProfile.get());
         bugProcess.get().setStaffProfile(staffProfile.get());
-        bugProcess.get().setGlobalStatus("Staff "+staffProfile.get().getStaffName()+" Assigned");
+        bugProcess.get().setGlobalStatus("Staff " + staffProfile.get().getStaffName() + " Assigned");
         bugProcessRepo.save(bugProcess.get());
         return "Assign Staff To Bug Successfully";
     }
@@ -54,13 +54,13 @@ public class BugServiceIMPL implements BugService{
         Optional<BugProcess> bugProcess = bugProcessRepo.findById(comment.getBugProcess().getBugProcessId());
         comment.setCommentDateTime(LocalDateTime.now());
         comment.setBugProcess(bugProcess.get());
-       return dtoHelper.getCommentDto(commentRepo.save(comment));
+        return dtoHelper.getCommentDto(commentRepo.save(comment));
     }
 
     @Override
     public BugDetailsDTO getBugDetails(int bugId) {
         Optional<Bug> bug = bugRepo.findById(bugId);
         BugProcess bugProcess = bugProcessRepo.findByBug(bug.get());
-        return dtoHelper.getBugDetailsDto(bug.get(),bugProcess);
+        return dtoHelper.getBugDetailsDto(bug.get(), bugProcess);
     }
 }
