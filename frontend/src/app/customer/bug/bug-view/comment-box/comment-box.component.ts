@@ -27,6 +27,7 @@ export class CommentBoxComponent {
     if (this.editor) {
         const commentTextValue = this.editor.getContent();
         this.passComment.emit(commentTextValue);
+        this.editor.setContent('');
     }
   }
   

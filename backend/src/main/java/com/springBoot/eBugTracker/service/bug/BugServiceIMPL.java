@@ -14,7 +14,6 @@ import com.springBoot.eBugTracker.util.DtoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -33,10 +32,12 @@ public class BugServiceIMPL implements BugService{
     @Override
     public String assignStaff(int bugProcessId, int staffProfileId) {
         System.out.println("bpid : "+bugProcessId+" staffId : "+staffProfileId);
+
         Optional<BugProcess> bugProcess = bugProcessRepo.findById(bugProcessId);
         if(bugProcess.isEmpty()){
             return "Invalid Bug";
         }
+
         System.out.println("bugProcess : "+bugProcess.get());
         Optional<StaffProfile> staffProfile = staffProfileRepo.findById(staffProfileId);
         if (staffProfile.isEmpty()){
@@ -54,7 +55,7 @@ public class BugServiceIMPL implements BugService{
         Optional<BugProcess> bugProcess = bugProcessRepo.findById(comment.getBugProcess().getBugProcessId());
         comment.setCommentDateTime(LocalDateTime.now());
         comment.setBugProcess(bugProcess.get());
-       return dtoHelper.getCommentDto(commentRepo.save(comment));
+        return dtoHelper.getCommentDto(commentRepo.save(comment));
     }
 
     @Override
@@ -63,4 +64,31 @@ public class BugServiceIMPL implements BugService{
         BugProcess bugProcess = bugProcessRepo.findByBug(bug.get());
         return dtoHelper.getBugDetailsDto(bug.get(),bugProcess);
     }
+
+    @Override
+    public void getTest(int id) {
+        Optional<BugProcess> bugProcess = bugProcessRepo.findById(id);
+        if(bugProcess.isEmpty()){
+            System.out.println("Invalid Bug");
+        }
+
+        System.out.println("bugProcess : "+bugProcess.get());
+    }
+
+    @Override
+    public String changeBugStatus(int bugId, String bugStatus) {
+        Optional<Bug> bug = bugRepo.findById(bugId);
+        if (bug.isEmpty()){
+            return "Failed to change bug status";
+        }
+        bug.get().setBugStatus(bugStatus);
+        bugRepo.save(bug.get());
+        return "Bug Status Changed Successfully";
+    }
+
+    @Override
+    public String changeGlobalBugStatus(int bugProcessId, String globalBugStatus) {
+        return null;
+    }
+
 }

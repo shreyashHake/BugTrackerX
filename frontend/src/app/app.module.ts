@@ -39,6 +39,7 @@ import { CommentBoxComponent } from './customer/bug/bug-view/comment-box/comment
 import { ChatBoxComponent } from './customer/bug/bug-view/chat-box/chat-box.component';
 import { CommonModule, DatePipe } from '@angular/common';
 import { SBugViewComponent } from './staff/sbug-view/sbug-view.component';
+import { ABugComponent } from './admin/a-bug/a-bug.component';
 
 
 @NgModule({
@@ -72,7 +73,8 @@ import { SBugViewComponent } from './staff/sbug-view/sbug-view.component';
     AssingStaffComponent,
     CommentBoxComponent,
     ChatBoxComponent,
-    SBugViewComponent
+    SBugViewComponent,
+    ABugComponent
     ],
   imports: [
     FormsModule,
