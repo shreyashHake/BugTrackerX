@@ -33,8 +33,8 @@ export class CustomerService {
       )
   }
 
-  getCustomerProfile()  : Observable<any> {
-    const userName = this.userAuthService.getUserName();
+  getCustomerProfile(userName:string)  : Observable<any> {
+    
     return this.httpClient.get(`${this.PATH_OF_API}/customer/getCustomerProfile/${userName}`);
   }
 

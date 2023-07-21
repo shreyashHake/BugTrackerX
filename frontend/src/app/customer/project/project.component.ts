@@ -4,6 +4,7 @@ import { Project } from 'src/app/_model/project.model';
 import { User } from 'src/app/_model/user.model';
 import { CustomerService } from 'src/app/_services/customer.service';
 import { ProjectService } from 'src/app/_services/project.service';
+import { UserAuthService } from 'src/app/_services/user-auth.service';
 
 @Component({
   selector: 'app-project',
@@ -15,18 +16,21 @@ export class ProjectComponent {
   showModal = false;
   profileId!: number;
   projectId!:number;
-  constructor(private router: Router, private projectService: ProjectService,
-    private customerService: CustomerService) { }
+  constructor(
+    private router: Router,
+     private projectService: ProjectService,
+    private customerService: CustomerService,
+    private userAuthService : UserAuthService
+    ) { }
 
   ngOnInit(): void {
     this.getProfile();
   }
 
   getProfile() {
-    console.log("m1")
-    this.customerService.getCustomerProfile().subscribe((response) => {
+    const userName = this.userAuthService.getUserName();
+    this.customerService.getCustomerProfile(userName).subscribe((response) => {
       this.profileId = response.customerProfileId;
-
       this.customerService.setProfileId(this.profileId);
       console.log("ID1: " + this.profileId);
       this.getAllProject();

@@ -27,18 +27,7 @@ public class BugProcess {
     @JoinColumn(name="BugId",nullable = false,referencedColumnName = "BugId")
     private Bug bug;
     @OneToMany(mappedBy = "bugProcess",cascade = CascadeType.ALL)
-    private List<Comment> comments = new ArrayList<>();;
-
-    @Override
-    public String toString() {
-        return "BugProcess{" +
-                "bugProcessId=" + bugProcessId +
-                ", GlobalStatus='" + GlobalStatus + '\'' +
-                ", staffProfile=" + (staffProfile != null ? staffProfile.getStaffProfileId() : null) +
-                ", bug=" + (bug != null ? bug.getBugId() : null) +
-                ", comments=" + comments +
-                '}';
-    }
+    private List<Comment> comments = new ArrayList<>();
 
 
 }

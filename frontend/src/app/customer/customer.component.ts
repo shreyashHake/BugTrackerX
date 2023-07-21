@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CustomerService } from '../_services/customer.service';
 import { Project } from '../_model/project.model';
 import { ProjectService } from '../_services/project.service';
+import { UserAuthService } from '../_services/user-auth.service';
 
 @Component({
   selector: 'app-customer',
@@ -16,7 +17,9 @@ export class CustomerComponent {
 
   constructor(
     private customerService: CustomerService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private userAuthService : UserAuthService
+
   ) {
 
   }
@@ -27,7 +30,8 @@ export class CustomerComponent {
   }
 
   getCustomerProfile() {
-    this.customerService.getCustomerProfile().subscribe(
+    const userName = this.userAuthService.getUserName();
+    this.customerService.getCustomerProfile(userName).subscribe(
       {
         next: (res) => {
           this.customerProfile = res;
