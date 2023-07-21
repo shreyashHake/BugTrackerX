@@ -52,7 +52,7 @@ export class LoginComponent {
 
         Toast.fire({
           icon: 'success',
-          title: 'Signed in successfully',
+          title: 'Logged in successfully',
         });
       },
       error: (error: HttpErrorResponse) => {

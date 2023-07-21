@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerProject } from 'src/app/_model/customerProject.model';
+import { Toast } from 'src/app/_model/toast.model';
 import { CustomerService } from 'src/app/_services/customer.service';
 import { ProjectService } from 'src/app/_services/project.service';
 import { StaffService } from 'src/app/_services/staff.service';
@@ -37,7 +38,7 @@ export class AddProjectComponent {
   }
 
   addProject() {
-    console.log('ID2 : ' + this.customerService.getProfileId());
+
     const customerProject: CustomerProject = {
       ...this.creatProject.value,
       customerProfile: {
@@ -47,18 +48,29 @@ export class AddProjectComponent {
     console.log(customerProject);
     this.projectService.saveProject(customerProject).subscribe({
       next: (response) => {
-        console.log('it worked' + this.creatProject.value);
-
         this.creatProject.reset();
-        this.router.navigate(['/customer']);
+        Toast.fire({
+          icon: 'success',
+          title: 'Added successfully',
+        });
+
       },
       error: (err) => {
+        Toast.fire({
+          icon: 'warning',
+          title: 'Something went wrong',
+        });
         console.log(err);
       },
     });
+    this.router.navigate(['/customer']);
   }
 
   public backToProject() {
+    Toast.fire({
+      icon: 'error',
+      title: 'Process aborted'
+    })
     this.router.navigate(['/customer']);
   }
 }

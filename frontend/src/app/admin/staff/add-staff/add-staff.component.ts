@@ -74,7 +74,7 @@ export class AddStaffComponent {
   public backToStaff() {
     Toast.fire({
       icon: 'error',
-      title: 'Adding new canceled',
+      title: 'Process aborted',
     });
     this.router.navigate(['/admin/staff-handling']);
   }
