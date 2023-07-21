@@ -15,6 +15,8 @@ import com.springBoot.eBugTracker.entity.bugs.Comment;
 import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
+import com.springBoot.eBugTracker.repository.bugs.CommentRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.List;
 
 @Service
 public class DtoHelper {
+    @Autowired
+    private CommentRepo commentRepo;
 
     public UserDTO getUserDto(User user) {
         return new UserDTO(
@@ -102,7 +106,7 @@ public class DtoHelper {
 
     public BugDetailsDTO getBugDetailsDto(Bug bug, BugProcess bugProcess) {
         List<CommentDTO> commentDTOS = new ArrayList<>();
-        for (Comment comment : bugProcess.getComments()) {
+        for(Comment comment : commentRepo.findByBugProcess(bugProcess)){
             commentDTOS.add(getCommentDto(comment));
         }
         return new BugDetailsDTO(

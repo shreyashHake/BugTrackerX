@@ -18,7 +18,6 @@ export class StaffHandlingComponent implements OnInit {
   constructor(
     private router : Router,
     private staffService: StaffService) { }
-
   ngOnInit(): void {
     this.getAllStaff();
   }

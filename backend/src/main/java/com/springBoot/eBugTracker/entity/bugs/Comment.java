@@ -20,6 +20,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentId;
     private int commentNumber;
+    @Column(length = 4000)
     private String comment;
     private String commentBy;
     @Column(columnDefinition = "TIMESTAMP")
@@ -29,7 +30,7 @@ public class Comment {
     @JoinColumn(name = "userName", nullable = false, referencedColumnName = "userName")
     private User user;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "bugProcessId", nullable = false)
+    @JoinColumn(name = "bugProcessId",nullable = false,referencedColumnName = "bugProcessId")
     private BugProcess bugProcess;
 
 }

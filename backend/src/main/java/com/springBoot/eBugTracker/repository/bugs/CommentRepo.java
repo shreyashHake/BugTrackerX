@@ -1,7 +1,11 @@
 package com.springBoot.eBugTracker.repository.bugs;
 
+import com.springBoot.eBugTracker.entity.bugs.BugProcess;
 import com.springBoot.eBugTracker.entity.bugs.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CommentRepo extends JpaRepository<Comment, Integer> {
+import java.util.List;
+
+public interface CommentRepo extends JpaRepository<Comment,Integer> {
+    List<Comment> findByBugProcess(BugProcess bugProcess);
 }
