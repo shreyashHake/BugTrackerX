@@ -20,6 +20,7 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentId;
     private int commentNumber;
+    @Column(length = 4000)
     private String comment;
     private String commentBy;
     @Column(columnDefinition = "TIMESTAMP")

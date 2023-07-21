@@ -12,4 +12,8 @@ public interface BugService {
     BugDetailsDTO getBugDetails(int bugId);
 
     void getTest(int id);
+
+    String changeBugStatus(int bugId, String bugStatus);
+
+    String changeGlobalBugStatus(int bugProcessId, String globalBugStatus);
 }
