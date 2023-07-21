@@ -1,0 +1,83 @@
+<section style="background-color: #659DBD">
+    <div class="container py-2">
+        <div class="row">
+            <div class="col">
+                <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-3">
+                    <ol class="breadcrumb mb-0">
+                        <li class="breadcrumb-item"><a routerLink="/customer">Home</a></li>
+                        <li class="breadcrumb-item"><a
+                                routerLink="/customer/project_view/{{customerProfileId}}/{{projectId}}">Project</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Bug</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card mb-4">
+                    <div class="card-body text-center">
+                        <img src="../../../../assets/images/bugLogo.png" alt="avatar" class="img-fluid"
+                            style="width: 50px;">
+                        <h5 class="my-1">{{BugDetails.bug_title}}</h5>
+                        <p class="text-muted mb-2">{{BugDetails.bug_desc}}</p>
+                        <p class="text-muted mb-2"><b>priority : </b>{{BugDetails.bug_priority}}</p>
+                        <p class="text-muted mb-2"><b>Status : </b>{{BugDetails.bug_status}}                        </p>
+                        <p class="text-muted mb-4"><b>Progress : </b>{{BugDetails.globalStatus}}</p>
+                        <!-- <div class="d-flex justify-content-center mb-2">
+                <button type="button" class="btn btn-primary">Follow</button>
+                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+              </div> -->
+                    </div>
+                </div>
+                <div class="card mb-4 mb-lg-0">
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush rounded-3">
+                            <li class="list-group-item d-flex justify-content-between align-items-center p-3"><b>Other
+                                    Bugs</b></li>
+                            <!-- <ng-container *ngIf="customerProjects.length != 0 else elseBlock">
+                <li *ngFor="let customerProject of customerProjects" class="list-group-item d-flex justify-content-between align-items-center p-2">
+                  <a  [routerLink]="['../',customerProject.projectId]">
+                    <p class="mb-0">{{customerProject.projectName}}</p>
+                  </a>
+                </li>
+                </ng-container>
+                <ng-template #elseBlock>
+                  No Projects Available
+                </ng-template> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="card" style="border: none;">
+                    <section class="chat" style="background-color: #659DBD; ">
+                        <div class=" container my-2 py-2 text-dark">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-md-11 col-lg-9 col-xl-12">
+                                    <ng-container *ngIf="BugDetails.comments.length != 0; else elseBox">
+                                        <ng-container *ngFor="let thread of BugDetails.comments">
+                                            <app-chat-box [thread]="thread"></app-chat-box>
+                                        </ng-container>
+                                    </ng-container>
+                                    <ng-template #elseBox>
+                                        <div class="text-center"><b>
+                                                <h5>No Conversation Available</h5>
+                                            </b></div>
+
+                                    </ng-template>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+

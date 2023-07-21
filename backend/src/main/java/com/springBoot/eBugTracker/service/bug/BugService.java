@@ -10,4 +10,6 @@ public interface BugService {
     CommentDTO addComment(Comment comment);
 
     BugDetailsDTO getBugDetails(int bugId);
+
+    void getTest(int id);
 }

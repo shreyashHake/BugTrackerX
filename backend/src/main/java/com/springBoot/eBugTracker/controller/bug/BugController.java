@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.*;
 public class BugController {
     @Autowired
     private BugService bugService;
-    @GetMapping({"/getTest"})
-    public String getTest(){
+    @GetMapping({"/getTest/{id}"})
+    public String getTest(@PathVariable int id){
+        bugService.getTest(id);
         return "getTest worked";
     }
+
     @PutMapping({"/assignStaff/{bugProcessId}"})
     public String assignStaff(@PathVariable int bugProcessId,@RequestBody int staffProfileId ){
         return bugService.assignStaff(bugProcessId,staffProfileId);
