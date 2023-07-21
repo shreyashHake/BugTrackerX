@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { UserAuthService } from '../_services/user-auth.service';
 import { Router } from '@angular/router';
 import { UserService } from '../_services/user.service';
+import { Toast } from '../_model/toast.model';
 
 @Component({
   selector: 'app-header',
@@ -30,6 +31,10 @@ export class HeaderComponent {
 
   public logout() {
     this.userAuthService.clearLocalStorage();
+    Toast.fire({
+      icon: 'success',
+      title: 'Logged out succesfully',
+    });
     this.router.navigate(['/']);
   }
 
