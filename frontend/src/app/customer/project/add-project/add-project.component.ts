@@ -10,7 +10,7 @@ import { UserService } from 'src/app/_services/user.service';
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.scss']
+  styleUrls: ['./add-project.component.scss'],
 })
 export class AddProjectComponent {
   creatProject!: FormGroup;
@@ -18,10 +18,10 @@ export class AddProjectComponent {
   constructor(
     private router: Router,
     private projectService: ProjectService,
-    private customerService : CustomerService
+    private customerService: CustomerService
   ) {
     this.initializeForm();
-   }
+  }
 
   initializeForm() {
     this.creatProject = new FormGroup({
@@ -36,36 +36,29 @@ export class AddProjectComponent {
     this.initializeForm();
   }
 
-
   addProject() {
-    console.log("ID2 : "+ this.customerService.getProfileId())
-    const customerProject : CustomerProject = {
-      ...this.creatProject.value ,
-      customerProfile : {
-        customerProfileId : this.customerService.getProfileId()
-      }
-    }
+    console.log('ID2 : ' + this.customerService.getProfileId());
+    const customerProject: CustomerProject = {
+      ...this.creatProject.value,
+      customerProfile: {
+        customerProfileId: this.customerService.getProfileId(),
+      },
+    };
     console.log(customerProject);
     this.projectService.saveProject(customerProject).subscribe({
       next: (response) => {
-        console.log("it worked" + this.creatProject.value);
+        console.log('it worked' + this.creatProject.value);
 
         this.creatProject.reset();
-        this.router.navigate(['/customer'])
+        this.router.navigate(['/customer']);
       },
       error: (err) => {
         console.log(err);
-      }
-    })
+      },
+    });
   }
 
   public backToProject() {
-
-    this.router.navigate((["/customer"]))
+    this.router.navigate(['/customer']);
   }
-
-
-
-
-
 }

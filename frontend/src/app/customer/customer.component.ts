@@ -36,6 +36,10 @@ export class CustomerComponent {
         next: (res) => {
           this.customerProfile = res;
           this.getAllProject();
+          this.customerService.setProfileId(this.customerProfile.customerProfileId);
+
+          console.log("newly seted id : " + this.customerService.getProfileId());
+
         },
         error: (error) => {
           console.log("Error while fetching customer profile : " + error);
@@ -45,13 +49,14 @@ export class CustomerComponent {
   }
 
     getAllProject() {
+      console.log( "Customer id : " + this.customerProfile.customerProfileId);
+
       this.projectService.getAllProject(this.customerProfile.customerProfileId).subscribe({
         next: (response) => {
           this.projects = response;
         },
         error: (err) => {
           console.log(err);
-
         }
       })
     }
