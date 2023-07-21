@@ -80,6 +80,7 @@ export class ProjectViewComponent {
   }
 
   onModalClosed() {
+    this.getCustomerProjects();
     this.showModal = false;
   }
 
