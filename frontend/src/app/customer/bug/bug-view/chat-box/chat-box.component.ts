@@ -14,6 +14,7 @@ export class ChatBoxComponent {
   sanitizedHtml!: SafeHtml;
   time!:any;
   Profile!:any;
+  profileImage:any;
   constructor(
     private sanitizer: DomSanitizer,
     private datePipe: DatePipe,
@@ -54,14 +55,16 @@ export class ChatBoxComponent {
 
   getProfile(){
     if(this.thread.commentBy=='staff'){
+      this.profileImage="../../../../../assets/images/staff.png";
       this.getStaffProfile();
     }else{
+      this.profileImage="../../../../../assets/images/person.png";
       this.getCustomerProfile();
     }
   }
 
   getCustomerProfile() {
-    this.customerService.getCustomerProfile().subscribe(
+    this.customerService.getCustomerProfile(this.thread.user.userName).subscribe(
       {
         next: (res) => {
           this.Profile = res;
