@@ -41,4 +41,9 @@ export class StaffService {
   public getStaffProfile(username : string){
     return this.httpClient.get(`${this.PATH_OF_API}/staff/getStaffProfile/${username}`);
   }
+
+  public getStaffProfileById(staff_id : number){
+    return this.httpClient.get(`${this.PATH_OF_API}/staff/getStaffProfileById/${staff_id}`);
+  }
+  
 }

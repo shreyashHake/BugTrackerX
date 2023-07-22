@@ -34,4 +34,12 @@ export class BugService {
   public addCommentToBug(comment:any){
     return this.httpClient.post(`${this.PATH_OF_API}/bug/addComment/`,comment);
   }
+
+  public changeBugStatus(bugId : number,bugStatus:string){
+    return this.httpClient.put(`${this.PATH_OF_API}/bug/changeBugStatus/${bugId}`,bugStatus);
+  }
+
+  public changeGlobalBugStatus(bugProcessId : number,GlobalBugStatus:string){
+    return this.httpClient.put(`${this.PATH_OF_API}/bug/changeGlobalBugStatus/${bugProcessId}`,GlobalBugStatus);
+  }
 }

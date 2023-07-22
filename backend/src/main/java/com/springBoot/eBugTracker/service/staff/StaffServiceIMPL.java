@@ -67,4 +67,9 @@ public class StaffServiceIMPL implements StaffService {
         return bugProcessDTOS;
     }
 
+    @Override
+    public StaffProfileDTO getStaffProfileById(int staffId) {
+        return dtoHelper.getStaffProfileDto(staffProfileRepo.findById(staffId).get());
+    }
+
 }

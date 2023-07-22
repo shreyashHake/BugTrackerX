@@ -15,4 +15,6 @@ public interface StaffService {
     StaffProfileDTO getStaffProfile(String username);
 
     List<BugProcessDTO> getBugsByStaff(int staffId);
+
+    StaffProfileDTO getStaffProfileById(int staffId);
 }
