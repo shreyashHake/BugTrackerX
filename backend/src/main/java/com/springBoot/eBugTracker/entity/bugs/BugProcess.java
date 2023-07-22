@@ -26,8 +26,7 @@ public class BugProcess {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="BugId",nullable = false,referencedColumnName = "BugId")
     private Bug bug;
-//    @OneToMany(mappedBy = "bugProcess",cascade = CascadeType.ALL)
-//    private List<Comment> comments = new ArrayList<>();
+
 
 
 }

@@ -54,7 +54,14 @@ export class BugViewComponent {
 
   changeBugStatusMethod() {
     let status = this.changeBugStatus.get('bugStatus')?.value;
-    alert("Changing Status : " + status);
+    // alert("Changing Status : " + status);
+    this.bugService.changeBugStatus(this.bugId, status).subscribe(
+      (res) => {
+        alert(res);
+      }
+    );
+    this.getBugDetails();
+    this.closeModal();
   }
 
   getComment(comment: any) {

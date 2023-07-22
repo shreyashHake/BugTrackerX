@@ -12,7 +12,7 @@ import { UserAuthService } from 'src/app/_services/user-auth.service';
 })
 export class SBugViewComponent {
   showModal = false;
-  changeBugStatus!: FormGroup;
+  changeGlobalBugStatus!: FormGroup;
 
   customerProfileId: any;
   projectId!: any;
@@ -22,8 +22,8 @@ export class SBugViewComponent {
 
 
   initializeForm() {
-    this.changeBugStatus = new FormGroup({
-      bugStatus: new FormControl('', Validators.required)
+    this.changeGlobalBugStatus = new FormGroup({
+      bugGlobalStatus: new FormControl('', Validators.required)
     });
   }
 
@@ -51,9 +51,20 @@ export class SBugViewComponent {
     this.showModal = false;
   }
 
-  changeBugStatusMethod() {
-    let status = this.changeBugStatus.get('bugStatus')?.value;
-    alert("Changing Status : " + status);
+  changeGlobalBugStatusMethod() {
+    let status = this.changeGlobalBugStatus.get('bugGlobalStatus')?.value;
+    this.bugService.changeGlobalBugStatus(this.BugDetails.bugProcessId, status).subscribe(
+      (res) => {
+        alert(res);
+      },
+      (err) => {
+        
+        this.getBugDetails();
+      }
+    );
+   
+    this.closeModal();
+    
   }
 
   getComment(comment: any) {

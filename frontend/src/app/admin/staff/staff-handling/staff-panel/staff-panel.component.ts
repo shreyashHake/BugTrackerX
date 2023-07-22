@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BugService } from 'src/app/_services/bug.service';
 import { StaffService } from 'src/app/_services/staff.service';
 import { UserAuthService } from 'src/app/_services/user-auth.service';
@@ -12,19 +13,24 @@ import { UserAuthService } from 'src/app/_services/user-auth.service';
 export class StaffPanelComponent {
   staffProfile!:any;
   BugProcessess!:any;
+  staff_id:any;
   constructor(
+    private route: ActivatedRoute,
     private staffService : StaffService,
     private bugService : BugService,
     private userAuthService : UserAuthService
   ){  }
 
   ngOnInit(){
+    this.route.params.subscribe(params => {
+      this.staff_id = params['staff_id'];
+    });
     this.getStaffProfile();
-  }
+  } 
 
   getStaffProfile(){
-    let userName = this.userAuthService.getUserName();
-    this.staffService.getStaffProfile(userName).subscribe(
+    
+    this.staffService.getStaffProfileById(this.staff_id).subscribe(
       {
         next: (res) => {
           this.staffProfile = res;

@@ -23,6 +23,7 @@ import { ProjectViewComponent } from './customer/project/project-view/project-vi
 import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
 import { SBugViewComponent } from './staff/sbug-view/sbug-view.component';
 import { ABugComponent } from './admin/a-bug/a-bug.component';
+import { ASBugComponent } from './admin/staff/staff-handling/as-bug/as-bug.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'add-staff', component: AddStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'edit-staff/:userName', component: EditStaffComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
   { path: 'admin/staff-handling/staff_panel/:staff_id', component: StaffPanelComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
+  { path: 'admin/staff-handling/staff_panel/:staff_id/bug_view/:bug_id', component: ASBugComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 
   { path: 'customer', component: CustomerComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },
   { path: 'customer/project_view/:customer_id/:project_id', component: ProjectViewComponent, canActivate: [AuthGuard], data: { roles: ['Customer'] } },

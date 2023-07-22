@@ -88,7 +88,13 @@ public class BugServiceIMPL implements BugService{
 
     @Override
     public String changeGlobalBugStatus(int bugProcessId, String globalBugStatus) {
-        return null;
+        Optional<BugProcess> bugProcess = bugProcessRepo.findById(bugProcessId);
+        if (bugProcess.isEmpty()){
+            return "Failed to change progress";
+        }
+        bugProcess.get().setGlobalStatus(globalBugStatus);
+        bugProcessRepo.save(bugProcess.get());
+        return "Bug Process Status Changed Successfully";
     }
 
 }

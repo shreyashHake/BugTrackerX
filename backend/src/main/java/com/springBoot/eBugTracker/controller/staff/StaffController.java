@@ -24,6 +24,12 @@ public class StaffController {
     public StaffProfileDTO getStaffProfile(@PathVariable String username){
         return staffService.getStaffProfile(username);
     }
+
+    @GetMapping({"/getStaffProfileById/{staffId}"})
+    public StaffProfileDTO getStaffProfileById(@PathVariable int staffId){
+        return staffService.getStaffProfileById(staffId);
+    }
+
     @GetMapping({"/getAllStaff"})
     public List<StaffProfile> getAllStaff() {
         return staffService.getAllStaff();

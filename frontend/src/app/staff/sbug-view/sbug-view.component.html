@@ -19,10 +19,10 @@
               <h5 class="my-1">{{BugDetails.bug_title}}</h5>
               <p class="text-muted mb-2">{{BugDetails.bug_desc}}</p>
               <p class="text-muted mb-2"><b>priority : </b>{{BugDetails.bug_priority}}</p>
-              <p class="text-muted mb-2"><b>Status : </b>{{BugDetails.bug_status}}
+              <p class="text-muted mb-2"><b>Status : </b>{{BugDetails.bug_status}}</p>
+              <p class="text-muted mb-4"><b>Progress : </b>{{BugDetails.globalStatus}}
                 <button class="btn btn-sm btn-dark" (click)="showModal=true"><i class="bi bi-pencil-square"></i> </button>
               </p>
-              <p class="text-muted mb-4"><b>Progress : </b>{{BugDetails.globalStatus}}</p>
               <!-- <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-primary">Follow</button>
                 <button type="button" class="btn btn-outline-primary ms-1">Message</button>
@@ -80,16 +80,16 @@
   </section>
   
   
-  <!-- Change Bug Status Modal -->
+  <!-- Change Global Bug Status Modal -->
   <div class="container">
     <div class="modal-content">
       <div class="modal" [ngClass]="{ 'show': showModal }" tabindex="-1" role="dialog" style="display: block;"
         *ngIf="showModal">
         <div class="modal-dialog" role="document">
-          <form class="mt-1" [formGroup]="changeBugStatus" (ngSubmit)="changeBugStatusMethod()">
+          <form class="mt-1" [formGroup]="changeGlobalBugStatus" (ngSubmit)="changeGlobalBugStatusMethod()">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">change Status</h5>
+                <h5 class="modal-title">Update Bug Process</h5>
                 <button type="button" class="close" (click)="closeModal()">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -97,17 +97,18 @@
               <div class="modal-body">
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="bugStatus">Status</label>
-                    <select class="form-control" id="bugStatus" formControlName="bugStatus" [class.is-invalid]="
-                    changeBugStatus.get('bugStatus')?.invalid &&
-                    changeBugStatus.get('bugStatus')?.touched
+                    <label for="bugGlobalStatus">Progress</label>
+                    <select class="form-control" id="bugStatus" formControlName="bugGlobalStatus" [class.is-invalid]="
+                    changeGlobalBugStatus.get('bugGlobalStatus')?.invalid &&
+                    changeGlobalBugStatus.get('bugGlobalStatus')?.touched
                           ">
-                      <option value="" disabled selected>Select Status</option>
-                      <option value="Not Resolved">Not Resolved</option>
-                      <option value="Resolved">Resolved</option>
+                      <option value="" disabled selected>Select Progress</option>
+                      <option value="Working on solving bug">Working on solving bug</option>
+                      <option value="Not able to solve bug">Not able to solve bug</option>
+                      <option value="Need Time to solve bug">Need Time to solve bug</option>
                     </select>
-                    <div *ngIf="changeBugStatus.get('bugStatus')?.hasError('required')" class="invalid-feedback">
-                      Please select Bug Status.
+                    <div *ngIf="changeGlobalBugStatus.get('bugGlobalStatus')?.hasError('required')" class="invalid-feedback">
+                      Please select Bug Progress.
                     </div>
                   </div>
                 </div>
