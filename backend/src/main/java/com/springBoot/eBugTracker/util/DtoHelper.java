@@ -27,12 +27,13 @@ public class DtoHelper {
     @Autowired
     private CommentRepo commentRepo;
 
-    public UserDTO getUserDto(User user){
+    public UserDTO getUserDto(User user) {
         return new UserDTO(
                 user.getUserName()
         );
     }
-    public CustomerProfileDTO getCustomerProfileDto(CustomerProfile customerProfile){
+
+    public CustomerProfileDTO getCustomerProfileDto(CustomerProfile customerProfile) {
         return new CustomerProfileDTO(
                 customerProfile.getCustomerProfileId(),
                 customerProfile.getCustomerName(),
@@ -44,7 +45,7 @@ public class DtoHelper {
         );
     }
 
-    public CustomerProjectDTO getCustomerProjectDto(CustomerProject customerProject){
+    public CustomerProjectDTO getCustomerProjectDto(CustomerProject customerProject) {
         return new CustomerProjectDTO(
                 customerProject.getProjectId(),
                 customerProject.getProjectName(),
@@ -57,7 +58,7 @@ public class DtoHelper {
         );
     }
 
-    public BugDTO getBugDto(Bug bug){
+    public BugDTO getBugDto(Bug bug) {
         return new BugDTO(
                 bug.getBugId(),
                 bug.getBugTitle(),
@@ -70,7 +71,7 @@ public class DtoHelper {
         );
     }
 
-    public StaffProfileDTO getStaffProfileDto(StaffProfile staffProfile){
+    public StaffProfileDTO getStaffProfileDto(StaffProfile staffProfile) {
         return new StaffProfileDTO(
                 staffProfile.getStaffProfileId(),
                 staffProfile.getStaffName(),
@@ -82,7 +83,7 @@ public class DtoHelper {
         );
     }
 
-    public BugProcessDTO getBugProcessDto(BugProcess bugProcess){
+    public BugProcessDTO getBugProcessDto(BugProcess bugProcess) {
         return new BugProcessDTO(
                 bugProcess.getBugProcessId(),
                 bugProcess.getGlobalStatus(),
@@ -91,7 +92,7 @@ public class DtoHelper {
         );
     }
 
-    public CommentDTO getCommentDto(Comment comment){
+    public CommentDTO getCommentDto(Comment comment) {
         return new CommentDTO(
                 comment.getCommentId(),
                 comment.getCommentNumber(),
@@ -103,7 +104,7 @@ public class DtoHelper {
         );
     }
 
-    public BugDetailsDTO getBugDetailsDto(Bug bug,BugProcess bugProcess){
+    public BugDetailsDTO getBugDetailsDto(Bug bug, BugProcess bugProcess) {
         List<CommentDTO> commentDTOS = new ArrayList<>();
         for(Comment comment : commentRepo.findByBugProcess(bugProcess)){
             commentDTOS.add(getCommentDto(comment));

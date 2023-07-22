@@ -28,6 +28,6 @@ public class Bug {
     @JsonIgnore
     private LocalDate endDate;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "projectId",nullable = false,referencedColumnName = "projectId")
+    @JoinColumn(name = "projectId", nullable = false, referencedColumnName = "projectId")
     private CustomerProject customerProject;
 }

@@ -1,4 +1,5 @@
 package com.springBoot.eBugTracker.dtos.bugs;
+
 import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

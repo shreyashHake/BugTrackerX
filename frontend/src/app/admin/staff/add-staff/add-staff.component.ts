@@ -3,17 +3,18 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Register } from 'src/app/_model/register.model';
 import { StaffProfile } from 'src/app/_model/staffProfile.model';
+import { Toast } from 'src/app/_model/toast.model';
 import { StaffService } from 'src/app/_services/staff.service';
 import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-add-staff',
   templateUrl: './add-staff.component.html',
-  styleUrls: ['./add-staff.component.scss']
+  styleUrls: ['./add-staff.component.scss'],
 })
 export class AddStaffComponent {
   registerForm!: FormGroup;
-  registerStaff !: Register;
+  registerStaff!: Register;
 
   passwordPattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{6,}$/;
 
@@ -23,7 +24,6 @@ export class AddStaffComponent {
     private router: Router
   ) {
     this.initializeForm();
-
   }
 
   initializeForm() {
@@ -31,7 +31,11 @@ export class AddStaffComponent {
       staffName: new FormControl('', Validators.required),
       staffEmail: new FormControl('', [Validators.required]),
       staffPhone: new FormControl('', [Validators.required]),
-      userPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.pattern(this.passwordPattern)])
+      userPassword: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+        Validators.pattern(this.passwordPattern),
+      ]),
     });
 
     this.registerStaff = { userName: '', userPassword: '' };
@@ -42,12 +46,10 @@ export class AddStaffComponent {
   }
 
   register() {
-
     this.registerStaff.userName = this.registerForm.value.staffEmail;
     this.registerStaff.userPassword = this.registerForm.value.userPassword;
 
-    console.log(this.registerStaff)
-
+    console.log(this.registerStaff);
 
     this.userService.registerStaff(this.registerStaff).subscribe({
       next: (response) => {
@@ -55,26 +57,30 @@ export class AddStaffComponent {
 
         this.registerForm.reset();
 
+        Toast.fire({
+          icon: 'success',
+          title: 'Staff added successfully',
+        });
+
         this.router.navigate(['/admin/staff-handling']);
       },
       error: (err) => {
         console.log(err);
-        window.alert("User name already exists");
-      }
-    })
+        window.alert('User name already exists');
+      },
+    });
   }
-
 
   public backToStaff() {
-    this.router.navigate((["/admin/staff-handling"]))
+    Toast.fire({
+      icon: 'error',
+      title: 'Process aborted',
+    });
+    this.router.navigate(['/admin/staff-handling']);
   }
 
-
-
   public createStaffProfile() {
-
-    console.log("reachedd here" + this.registerForm.value);
-
+    console.log('reachedd here' + this.registerForm.value);
 
     const profile: StaffProfile = {
       staffProfileId: 0,
@@ -83,10 +89,9 @@ export class AddStaffComponent {
       staffEmail: this.registerForm.value.staffEmail,
       isActive: true,
       user: {
-        userName: this.registerForm.value.staffEmail
-      }
-    }
-
+        userName: this.registerForm.value.staffEmail,
+      },
+    };
 
     this.staffService.createStaffProfile(profile).subscribe({
       next: (res) => {
@@ -94,9 +99,7 @@ export class AddStaffComponent {
       },
       error: (err) => {
         console.log(err);
-
-      }
-    })
+      },
+    });
   }
-
 }

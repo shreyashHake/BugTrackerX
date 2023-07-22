@@ -8,7 +8,6 @@ import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;
 import com.springBoot.eBugTracker.service.customer.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,12 +22,13 @@ public class CustomerController {
     // Customer mappings :
 
     @PostMapping({"/createCustomerProfile"})
-    public CustomerProfileDTO createCustomerProfile(@RequestBody CustomerProfile customerProfile){
+    public CustomerProfileDTO createCustomerProfile(@RequestBody CustomerProfile customerProfile) {
         return customerService.createCustomerProfile(customerProfile);
     }
+
     @PostMapping({"/createCustomerProject"})
 //    @PreAuthorize("hasRole('Customer')")
-    public CustomerProjectDTO createCustomerProject(@RequestBody CustomerProject customerProject){
+    public CustomerProjectDTO createCustomerProject(@RequestBody CustomerProject customerProject) {
         return customerService.createCustomerProject(customerProject);
     }
 
@@ -40,37 +40,38 @@ public class CustomerController {
 //    }
 
     @GetMapping({"/getCustomerProfile/{user_id}"})
-    public CustomerProfileDTO getCustomerProfile(@PathVariable String user_id){
+    public CustomerProfileDTO getCustomerProfile(@PathVariable String user_id) {
         return customerService.getCustomerProfile(user_id);
     }
 
     @GetMapping({"/getCustomerProfileById/{customer_id}"})
-    public CustomerProfileDTO getCustomerProfileById(@PathVariable int customer_id){
+    public CustomerProfileDTO getCustomerProfileById(@PathVariable int customer_id) {
         return customerService.getCustomerProfileById(customer_id);
     }
 
     @GetMapping({"/haveCustomerProfile/{username}"})
-    public boolean haveCustomerProfile(@PathVariable String username){
+    public boolean haveCustomerProfile(@PathVariable String username) {
         return customerService.haveCustomerProfile(username);
     }
+
     @GetMapping({"/getCustomerProjects/{profile_id}"})
-    public List<CustomerProjectDTO> getCustomerProjects(@PathVariable int profile_id){
+    public List<CustomerProjectDTO> getCustomerProjects(@PathVariable int profile_id) {
         return customerService.getCustomerProjects(profile_id);
     }
 
     @GetMapping({"/getAllCustomer"})
-    public List<CustomerProfileDTO> getAllCustomer(){
+    public List<CustomerProfileDTO> getAllCustomer() {
         return customerService.getAllCustomer();
     }
 
     // Bugs
     @GetMapping({"/getBugs/{project_id}"})
-    public List<BugDTO> getBugs(@PathVariable int project_id){
+    public List<BugDTO> getBugs(@PathVariable int project_id) {
         return customerService.getBugs(project_id);
     }
 
     @PostMapping({"/addBug"})
-    public BugDTO addBug(@RequestBody Bug bug){
+    public BugDTO addBug(@RequestBody Bug bug) {
         return customerService.addBug(bug);
     }
 }

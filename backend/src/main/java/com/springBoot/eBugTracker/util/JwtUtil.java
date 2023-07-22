@@ -14,9 +14,9 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
+    private static final int TOKEN_VALIDITY = 3600 * 5;
     // 1. To get username from token :
     private final String SECRET_KEY = "this_is_a_secret_key";
-    private static final int TOKEN_VALIDITY = 3600 * 5;
 
     public String getUserNameFromToken(String token) {
         return getClaimsFromToken(token, Claims::getSubject);

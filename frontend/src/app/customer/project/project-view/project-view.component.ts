@@ -87,4 +87,9 @@ export class ProjectViewComponent {
   reGetBugs() {
     this.getBugs();
   }
+
+  deleteProject(id : number) {
+    console.log(id);
+
+  }
 }

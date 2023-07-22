@@ -19,17 +19,17 @@ public class BugController {
     }
 
     @PutMapping({"/assignStaff/{bugProcessId}"})
-    public String assignStaff(@PathVariable int bugProcessId,@RequestBody int staffProfileId ){
-        return bugService.assignStaff(bugProcessId,staffProfileId);
+    public String assignStaff(@PathVariable int bugProcessId, @RequestBody int staffProfileId) {
+        return bugService.assignStaff(bugProcessId, staffProfileId);
     }
 
     @GetMapping({"/getBugDetails/{bugId}"})
-    public BugDetailsDTO getBugDetails(@PathVariable int bugId){
+    public BugDetailsDTO getBugDetails(@PathVariable int bugId) {
         return bugService.getBugDetails(bugId);
     }
 
     @PostMapping({"/addComment"})
-    public CommentDTO addComment(@RequestBody Comment comment){
+    public CommentDTO addComment(@RequestBody Comment comment) {
         return bugService.addComment(comment);
     }
 

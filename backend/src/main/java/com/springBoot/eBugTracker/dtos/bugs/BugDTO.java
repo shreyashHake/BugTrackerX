@@ -1,6 +1,5 @@
 package com.springBoot.eBugTracker.dtos.bugs;
 
-import com.springBoot.eBugTracker.dtos.customer.CustomerProjectDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

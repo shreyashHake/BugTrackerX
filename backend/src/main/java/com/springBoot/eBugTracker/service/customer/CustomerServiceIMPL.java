@@ -1,7 +1,6 @@
 package com.springBoot.eBugTracker.service.customer;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugDTO;
-import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProfileDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProjectDTO;
 import com.springBoot.eBugTracker.entity.User;
@@ -37,11 +36,12 @@ public class CustomerServiceIMPL implements CustomerService {
     private BugProcessRepo bugProcessRepo;
     @Autowired
     private DtoHelper dtoHelper;
+
     @Override
     public CustomerProfileDTO createCustomerProfile(CustomerProfile customerProfile) {
         customerProfile.setCreatedDate(LocalDate.now());
 //        System.out.println("CP 1 :"+customerProfile);
-         CustomerProfile customerProfile1 = customerProfileRepo.save(customerProfile);
+        CustomerProfile customerProfile1 = customerProfileRepo.save(customerProfile);
 //        System.out.println("CP 2 :"+customerProfile1);
 //        System.out.println("CPD : "+dtoHelper.getCustomerProfileDto(customerProfile1));
         return dtoHelper.getCustomerProfileDto(customerProfile1);
@@ -59,8 +59,8 @@ public class CustomerServiceIMPL implements CustomerService {
 
     @Override
     public BugDTO addBug(Bug bug) {
-        System.out.println("Bug 1 : "+ bug);
-        System.out.println("pro id : "+bug.getCustomerProject().getProjectId());
+        System.out.println("Bug 1 : " + bug);
+        System.out.println("pro id : " + bug.getCustomerProject().getProjectId());
 
         CustomerProject customerProject = customerProjectRepo.findById(bug.getCustomerProject().getProjectId()).get();
 //        System.out.println("Customer Project 1 : " +customerProject);
@@ -88,9 +88,9 @@ public class CustomerServiceIMPL implements CustomerService {
         CustomerProfile customerProfile = customerProfileRepo.findById(profileId).get();
 //        System.out.println("CustomerProfile : "+customerProfile);
         List<CustomerProjectDTO> customerProjectDTOS = new ArrayList<>();
-        for (CustomerProject customerProject:
+        for (CustomerProject customerProject :
                 customerProjectRepo.findByCustomerProfile(customerProfile)) {
-            customerProjectDTOS.add( dtoHelper.getCustomerProjectDto(customerProject));
+            customerProjectDTOS.add(dtoHelper.getCustomerProjectDto(customerProject));
         }
         return customerProjectDTOS;
     }
@@ -99,7 +99,7 @@ public class CustomerServiceIMPL implements CustomerService {
     public List<BugDTO> getBugs(int projectId) {
         CustomerProject customerProject = customerProjectRepo.findById(projectId).get();
         List<BugDTO> bugDTOS = new ArrayList<>();
-        for (Bug bug:
+        for (Bug bug :
                 bugRepo.findByCustomerProject(customerProject)) {
             bugDTOS.add(dtoHelper.getBugDto(bug));
         }
@@ -109,7 +109,7 @@ public class CustomerServiceIMPL implements CustomerService {
     @Override
     public boolean haveCustomerProfile(String username) {
         Optional<User> user = iUserRepository.findById(username);
-        if (user.isEmpty()){
+        if (user.isEmpty()) {
             return false;
         }
         CustomerProfile customerProfile = customerProfileRepo.findByUser(user.get());
@@ -119,7 +119,7 @@ public class CustomerServiceIMPL implements CustomerService {
     @Override
     public List<CustomerProfileDTO> getAllCustomer() {
         List<CustomerProfileDTO> customerProfileDTOS = new ArrayList<>();
-        for(CustomerProfile customerProfile : customerProfileRepo.findAll()){
+        for (CustomerProfile customerProfile : customerProfileRepo.findAll()) {
             customerProfileDTOS.add(dtoHelper.getCustomerProfileDto(customerProfile));
         }
         return customerProfileDTOS;

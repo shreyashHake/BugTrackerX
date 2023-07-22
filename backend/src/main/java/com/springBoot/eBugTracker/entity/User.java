@@ -1,6 +1,5 @@
 package com.springBoot.eBugTracker.entity;
 
-import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,6 +16,7 @@ import java.util.Set;
 @Table(name = "_user")
 public class User {
     @Id
+    @Column(unique = true)
     private String userName;
     private String userPassword;
 

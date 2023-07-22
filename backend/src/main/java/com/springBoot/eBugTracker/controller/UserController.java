@@ -5,7 +5,10 @@ import com.springBoot.eBugTracker.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 
@@ -18,13 +21,14 @@ public class UserController {
     // default 'Admin' and 'User' of the application
     @PostConstruct
     public void initAdminUser() {
-        userService.initRoleAndUser();;
+        userService.initRoleAndUser();
     }
 
     @PostMapping({"/createNewUser"})
     public User createNewUser(@RequestBody User user) {
         return userService.createNewUser(user);
     }
+
     @PostMapping({"/createNewStaff"})
     public User createNewStaff(@RequestBody User user) {
         return userService.createNewStaff(user);
@@ -32,19 +36,19 @@ public class UserController {
 
     @GetMapping({"/forAdmin"})
     @PreAuthorize("hasRole('Admin')")
-    public String forAdmin(){
+    public String forAdmin() {
         return "This is only for admin";
     }
 
     @GetMapping({"/forCustomer"})
     @PreAuthorize("hasRole('Customer')")
-    public String forUser(){
+    public String forUser() {
         return "This is for all Customer";
     }
 
     @GetMapping({"/forStaff"})
     @PreAuthorize("hasRole('Staff')")
-    public String forStaff(){
+    public String forStaff() {
         return "This is for all Staff";
     }
 }

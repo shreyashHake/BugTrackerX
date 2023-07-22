@@ -21,10 +21,10 @@ public class BugProcess {
     private int bugProcessId;
     private String GlobalStatus;
     @OneToOne
-    @JoinColumn(name = "staffProfileId",referencedColumnName = "staffProfileId")
+    @JoinColumn(name = "staffProfileId", referencedColumnName = "staffProfileId")
     private StaffProfile staffProfile;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="BugId",nullable = false,referencedColumnName = "BugId")
+    @JoinColumn(name = "BugId", nullable = false, referencedColumnName = "BugId")
     private Bug bug;
 
 
