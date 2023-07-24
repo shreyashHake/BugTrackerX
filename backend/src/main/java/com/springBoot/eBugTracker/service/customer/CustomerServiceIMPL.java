@@ -3,17 +3,20 @@ package com.springBoot.eBugTracker.service.customer;
 import com.springBoot.eBugTracker.dtos.bugs.BugDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProfileDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProjectDTO;
+import com.springBoot.eBugTracker.entity.Otp;
 import com.springBoot.eBugTracker.entity.User;
 import com.springBoot.eBugTracker.entity.bugs.Bug;
 import com.springBoot.eBugTracker.entity.bugs.BugProcess;
 import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;
 import com.springBoot.eBugTracker.repository.IUserRepository;
+import com.springBoot.eBugTracker.repository.OtpRepo;
 import com.springBoot.eBugTracker.repository.bugs.BugProcessRepo;
 import com.springBoot.eBugTracker.repository.bugs.BugRepo;
 import com.springBoot.eBugTracker.repository.customer.CustomerProfileRepo;
 import com.springBoot.eBugTracker.repository.customer.CustomerProjectRepo;
 import com.springBoot.eBugTracker.util.DtoHelper;
+import com.springBoot.eBugTracker.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 @Service
 public class CustomerServiceIMPL implements CustomerService {
@@ -36,14 +40,27 @@ public class CustomerServiceIMPL implements CustomerService {
     private BugProcessRepo bugProcessRepo;
     @Autowired
     private DtoHelper dtoHelper;
+    @Autowired
+    private MailSenderService mailSenderService;
+    @Autowired
+    private OtpRepo otpRepo;
 
     @Override
     public CustomerProfileDTO createCustomerProfile(CustomerProfile customerProfile) {
         customerProfile.setCreatedDate(LocalDate.now());
-//        System.out.println("CP 1 :"+customerProfile);
         CustomerProfile customerProfile1 = customerProfileRepo.save(customerProfile);
-//        System.out.println("CP 2 :"+customerProfile1);
-//        System.out.println("CPD : "+dtoHelper.getCustomerProfileDto(customerProfile1));
+
+//        int otp = new Random().nextInt(900000) + 100000;
+//        String body = "Hello "+customerProfile1.getCustomerName()+" ,\n Your OTP for email verification is "+otp+ " .\n ";
+//        mailSenderService.sendMail(customerProfile1.getUser().getUserName(),
+//                "E-Bug Tracker : Verify Mail ",
+//                body);
+//        Otp otp1 = new Otp(
+//                customerProfile1.getUser().getUserName(),
+//                otp
+//        );
+//        otpRepo.save(otp1);
+
         return dtoHelper.getCustomerProfileDto(customerProfile1);
     }
 
