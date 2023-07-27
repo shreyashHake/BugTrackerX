@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -17,4 +18,5 @@ public class Otp {
     @Id
     private String email;
     private int otp;
+    private LocalDate date;
 }

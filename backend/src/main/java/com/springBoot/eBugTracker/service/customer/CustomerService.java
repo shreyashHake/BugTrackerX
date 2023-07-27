@@ -6,6 +6,7 @@ import com.springBoot.eBugTracker.dtos.customer.CustomerProjectDTO;
 import com.springBoot.eBugTracker.entity.bugs.Bug;
 import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.entity.customer.CustomerProject;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -27,4 +28,6 @@ public interface CustomerService {
     List<CustomerProfileDTO> getAllCustomer();
 
     CustomerProfileDTO getCustomerProfileById(int customerId);
+
+    RedirectView verifyEmail(String email, int token);
 }

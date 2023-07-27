@@ -19,6 +19,7 @@ import com.springBoot.eBugTracker.util.DtoHelper;
 import com.springBoot.eBugTracker.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -50,16 +51,35 @@ public class CustomerServiceIMPL implements CustomerService {
         customerProfile.setCreatedDate(LocalDate.now());
         CustomerProfile customerProfile1 = customerProfileRepo.save(customerProfile);
 
-//        int otp = new Random().nextInt(900000) + 100000;
-//        String body = "Hello "+customerProfile1.getCustomerName()+" ,\n Your OTP for email verification is "+otp+ " .\n ";
-//        mailSenderService.sendMail(customerProfile1.getUser().getUserName(),
-//                "E-Bug Tracker : Verify Mail ",
-//                body);
-//        Otp otp1 = new Otp(
-//                customerProfile1.getUser().getUserName(),
-//                otp
-//        );
-//        otpRepo.save(otp1);
+        int otp = new Random().nextInt(900000) + 100000;
+        String body = "Dear "+customerProfile1.getCustomerName()+" ,\n Thank you for registering with E-Bug Tracker!" +
+                " To ensure the security of your account and complete " +
+                "the registration process, we kindly ask you to verify your email address by clicking on the link below:\n" +
+                " http://localhost:8080/customer/verifyEmail/"+customerProfile1.getUser().getUserName()+"/"+otp+"\n" +
+                " By verifying your email address, you will be able to access all the features and benefits of our platform.\n" +
+                "\n" +
+                "If you did not create an account on our platform or received this email in error, please disregard it. No further action is necessary.\n" +
+                "\n" +
+                "If you have any questions or need further assistance, please don't hesitate to contact our support team at ebugtracker.com.\n" +
+                "\n" +
+                "Thank you for choosing E-Bug Tracker!\n" +
+                "\n" +
+                "Best regards,\n" +
+                "E-Bug Tracker\n" +
+                "Customer Support Team\n" +
+                "\n" +
+                "Note: For security reasons, never ask users to provide sensitive information, such as passwords, through email verification links. The verification link should only be used to confirm the validity of the provided email address.";
+
+        mailSenderService.sendMail(customerProfile1.getUser().getUserName(),
+                "E-Bug Tracker : Account Verification - Action Required ",
+                body);
+
+        Otp otp1 = new Otp(
+                customerProfile1.getUser().getUserName(),
+                otp,
+                LocalDate.now()
+        );
+        otpRepo.save(otp1);
 
         return dtoHelper.getCustomerProfileDto(customerProfile1);
     }
@@ -145,6 +165,21 @@ public class CustomerServiceIMPL implements CustomerService {
     @Override
     public CustomerProfileDTO getCustomerProfileById(int customerId) {
         return dtoHelper.getCustomerProfileDto(customerProfileRepo.findById(customerId).get());
+    }
+
+    @Override
+    public RedirectView verifyEmail(String email, int token) {
+            Otp otp1 = otpRepo.findById(email).get();
+            System.out.println(otp1.getOtp()+" :: "+otp1.getEmail()+" :: "+token);
+            if(otp1.getOtp() == token){
+                Optional<User> user = iUserRepository.findById(email);
+                CustomerProfile customerProfile =customerProfileRepo.findByUser(user.get());
+                customerProfile.setIsActive(true);
+                customerProfileRepo.save(customerProfile);
+                return new RedirectView("http://localhost:4200/login");
+            }else {
+                return new RedirectView("http://localhost:4200/");
+            }
     }
 
 
