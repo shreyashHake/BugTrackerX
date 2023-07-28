@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class JwtResponse {
     private User user;
     private String jwtToken;
+    private boolean isActive;
 }
