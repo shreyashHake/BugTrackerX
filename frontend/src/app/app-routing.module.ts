@@ -24,6 +24,7 @@ import { BugViewComponent } from './customer/bug/bug-view/bug-view.component';
 import { SBugViewComponent } from './staff/sbug-view/sbug-view.component';
 import { ABugComponent } from './admin/a-bug/a-bug.component';
 import { ASBugComponent } from './admin/staff/staff-handling/as-bug/as-bug.component';
+import { VerifyedProfileComponent } from './customer/cutomer-profile/verifyed-profile/verifyed-profile.component';
 
 const routes: Routes = [
   { path: "", redirectTo: "home", pathMatch: "full" },
@@ -32,6 +33,8 @@ const routes: Routes = [
   { path: 'login-landing', component: LoginLandingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'forbidden', component: ForbiddenComponent },
+  { path: 'verify_profile/:isVerified', component: VerifyedProfileComponent },
+
 
   { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } },
 

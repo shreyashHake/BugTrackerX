@@ -41,7 +41,7 @@ public class JwtService implements UserDetailsService {
         final CustomerProfile customerProfile = customerProfileRepo.findByUser(user);
         final UserDetails userDetails = loadUserByUsername(userName);
         final String newGeneratedToken = jwtUtil.generateToken(userDetails);
-        
+
         return new JwtResponse(user, newGeneratedToken,customerProfile.getIsActive());
     }
 

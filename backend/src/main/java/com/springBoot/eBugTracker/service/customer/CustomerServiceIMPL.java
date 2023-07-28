@@ -176,9 +176,9 @@ public class CustomerServiceIMPL implements CustomerService {
                 CustomerProfile customerProfile =customerProfileRepo.findByUser(user.get());
                 customerProfile.setIsActive(true);
                 customerProfileRepo.save(customerProfile);
-                return new RedirectView("http://localhost:4200/login");
+                return new RedirectView("http://localhost:4200/verify_profile/true");
             }else {
-                return new RedirectView("http://localhost:4200/");
+                return new RedirectView("http://localhost:4200/verify_profile/false");
             }
     }
 

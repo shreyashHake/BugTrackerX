@@ -36,8 +36,8 @@ export class LoginComponent {
   login() {
     this.userService.login(this.formLogin.value).subscribe({
       next: (response: any) => {
-
-        if(response.isActive){
+        console.log("is "+ response.active);
+        if(response.active){
           const role = response.user.userRole[0].roleName;
 
           this.userAuthService.setRole(role);
@@ -58,8 +58,8 @@ export class LoginComponent {
           });
         }else{
           Swal.fire(
-            'Profile Not Verified',
-            'Please check your mail to verify profile',
+            'Account Not Verified',
+            'Please check your mail to verify account',
             'error'
           );
         }

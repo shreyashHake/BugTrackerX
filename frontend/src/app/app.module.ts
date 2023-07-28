@@ -41,6 +41,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { SBugViewComponent } from './staff/sbug-view/sbug-view.component';
 import { ABugComponent } from './admin/a-bug/a-bug.component';
 import { ASBugComponent } from './admin/staff/staff-handling/as-bug/as-bug.component';
+import { VerifyedProfileComponent } from './customer/cutomer-profile/verifyed-profile/verifyed-profile.component';
 
 
 @NgModule({
@@ -77,6 +78,7 @@ import { ASBugComponent } from './admin/staff/staff-handling/as-bug/as-bug.compo
     SBugViewComponent,
     ABugComponent,
     ASBugComponent,
+    VerifyedProfileComponent,
     ],
   imports: [
     FormsModule,
