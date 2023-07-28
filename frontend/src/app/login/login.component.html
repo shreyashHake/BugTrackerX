@@ -9,14 +9,14 @@
           <div class="card-body">
             <form [formGroup]="formLogin" (ngSubmit)="login()">
               <div class="form-group">
-                <label for="userName">Username</label>
-                <input type="text" class="form-control" id="email" placeholder="Enter username" name="userName"
+                <label for="userName">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" name="userName"
                   formControlName="userName" [class.is-invalid]="
                     formLogin.get('userName')?.invalid &&
                     formLogin.get('userName')?.touched
                   " />
                 <div *ngIf="formLogin.get('userName')?.hasError('required')" class="invalid-feedback">
-                  Please enter username.
+                  Please enter email.
                 </div>
               </div>
 

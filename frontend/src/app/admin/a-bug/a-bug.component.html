@@ -4,10 +4,20 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-3">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a routerLink="/customer">Home</a></li>
-                        <li class="breadcrumb-item"><a
-                                routerLink="/customer/project_view/{{customerProfileId}}/{{projectId}}">Project</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/admin">Home</a></li>
+                        <li class="breadcrumb-item">
+                          <a routerLink="/admin/customers">customer</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                          <a routerLink="/admin/customers/customer_panel/{{ customerProfileId }}">customer profile
+                          </a>
+                        </li>
+                        <li class="breadcrumb-item active">
+                            <a routerLink="/admin/customers/customer_panel/{{ customerProfileId }}/project_panel/{{projectId}}">projects
+                        </a>
+                    </li>
                         <li class="breadcrumb-item active" aria-current="page">Bug</li>
+
                     </ol>
                 </nav>
             </div>

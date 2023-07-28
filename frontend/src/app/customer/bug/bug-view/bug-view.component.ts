@@ -58,9 +58,12 @@ export class BugViewComponent {
     this.bugService.changeBugStatus(this.bugId, status).subscribe(
       (res) => {
         alert(res);
+      },
+      (err)=>{
+        this.getBugDetails();
       }
     );
-    this.getBugDetails();
+    
     this.closeModal();
   }
 

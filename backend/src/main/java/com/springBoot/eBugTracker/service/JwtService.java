@@ -3,7 +3,9 @@ package com.springBoot.eBugTracker.service;
 import com.springBoot.eBugTracker.entity.JwtRequest;
 import com.springBoot.eBugTracker.entity.JwtResponse;
 import com.springBoot.eBugTracker.entity.User;
+import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.repository.IUserRepository;
+import com.springBoot.eBugTracker.repository.customer.CustomerProfileRepo;
 import com.springBoot.eBugTracker.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,24 +25,27 @@ import java.util.Set;
 public class JwtService implements UserDetailsService {
     @Autowired
     private IUserRepository IUserRepository;
-
     @Autowired
     private JwtUtil jwtUtil;
-
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private CustomerProfileRepo customerProfileRepo;
 
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
         String userName = jwtRequest.getUserName();
         String userPassword = jwtRequest.getUserPassword();
         authenticate(userName, userPassword);
 
+        final User user = IUserRepository.findById(userName).get();
+        final CustomerProfile customerProfile = customerProfileRepo.findByUser(user);
         final UserDetails userDetails = loadUserByUsername(userName);
         final String newGeneratedToken = jwtUtil.generateToken(userDetails);
-        final User user = IUserRepository.findById(userName).get();
-
-        return new JwtResponse(user, newGeneratedToken);
+        
+        return new JwtResponse(user, newGeneratedToken,customerProfile.getIsActive());
     }
+
+
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {

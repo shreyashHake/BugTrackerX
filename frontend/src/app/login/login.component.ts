@@ -36,24 +36,35 @@ export class LoginComponent {
   login() {
     this.userService.login(this.formLogin.value).subscribe({
       next: (response: any) => {
-        const role = response.user.userRole[0].roleName;
 
-        this.userAuthService.setRole(role);
-        this.userAuthService.setUserName(response.user.userName);
-        this.userAuthService.setToken(response.jwtToken);
+        if(response.isActive){
+          const role = response.user.userRole[0].roleName;
 
-        if (role === 'Admin') {
-          this.router.navigate(['/admin']);
-        } else if (role === 'Staff') {
-          this.router.navigate(['/staff']);
-        } else {
-          this.router.navigate(['/customer']);
+          this.userAuthService.setRole(role);
+          this.userAuthService.setUserName(response.user.userName);
+          this.userAuthService.setToken(response.jwtToken);
+  
+          if (role === 'Admin') {
+            this.router.navigate(['/admin']);
+          } else if (role === 'Staff') {
+            this.router.navigate(['/staff']);
+          } else {
+            this.router.navigate(['/customer']);
+          }
+  
+          Toast.fire({
+            icon: 'success',
+            title: 'Logged in successfully',
+          });
+        }else{
+          Swal.fire(
+            'Profile Not Verified',
+            'Please check your mail to verify profile',
+            'error'
+          );
         }
 
-        Toast.fire({
-          icon: 'success',
-          title: 'Logged in successfully',
-        });
+        
       },
       error: (error: HttpErrorResponse) => {
         console.log(error.status);
