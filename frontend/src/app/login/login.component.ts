@@ -36,8 +36,8 @@ export class LoginComponent {
   login() {
     this.userService.login(this.formLogin.value).subscribe({
       next: (response: any) => {
-        console.log("is "+ response.active);
-        if(response.active){
+        // console.log("is "+ response.active);
+        if(response){
           const role = response.user.userRole[0].roleName;
 
           this.userAuthService.setRole(role);
