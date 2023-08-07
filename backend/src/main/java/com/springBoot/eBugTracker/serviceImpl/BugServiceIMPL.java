@@ -1,4 +1,4 @@
-package com.springBoot.eBugTracker.service.bug;
+package com.springBoot.eBugTracker.serviceImpl;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugDetailsDTO;
 import com.springBoot.eBugTracker.dtos.bugs.CommentDTO;
@@ -10,6 +10,7 @@ import com.springBoot.eBugTracker.repository.bugs.BugProcessRepo;
 import com.springBoot.eBugTracker.repository.bugs.BugRepo;
 import com.springBoot.eBugTracker.repository.bugs.CommentRepo;
 import com.springBoot.eBugTracker.repository.staff.StaffProfileRepo;
+import com.springBoot.eBugTracker.service.BugService;
 import com.springBoot.eBugTracker.util.DtoHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

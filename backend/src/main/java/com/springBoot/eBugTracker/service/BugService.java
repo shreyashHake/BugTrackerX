@@ -1,4 +1,4 @@
-package com.springBoot.eBugTracker.service.bug;
+package com.springBoot.eBugTracker.service;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugDetailsDTO;
 import com.springBoot.eBugTracker.dtos.bugs.CommentDTO;

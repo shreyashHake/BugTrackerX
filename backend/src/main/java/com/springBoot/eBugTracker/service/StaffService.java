@@ -1,4 +1,4 @@
-package com.springBoot.eBugTracker.service.staff;
+package com.springBoot.eBugTracker.service;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
 import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;

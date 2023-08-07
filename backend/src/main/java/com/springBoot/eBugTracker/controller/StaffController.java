@@ -1,9 +1,9 @@
-package com.springBoot.eBugTracker.controller.staff;
+package com.springBoot.eBugTracker.controller;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugProcessDTO;
 import com.springBoot.eBugTracker.dtos.staff.StaffProfileDTO;
 import com.springBoot.eBugTracker.entity.staff.StaffProfile;
-import com.springBoot.eBugTracker.service.staff.StaffService;
+import com.springBoot.eBugTracker.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;

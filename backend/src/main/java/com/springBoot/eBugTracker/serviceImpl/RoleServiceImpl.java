@@ -1,6 +1,7 @@
-package com.springBoot.eBugTracker.service;
+package com.springBoot.eBugTracker.serviceImpl;
 
 import com.springBoot.eBugTracker.entity.Role;
+import com.springBoot.eBugTracker.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

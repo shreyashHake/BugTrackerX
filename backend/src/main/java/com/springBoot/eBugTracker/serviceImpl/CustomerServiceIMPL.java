@@ -1,4 +1,4 @@
-package com.springBoot.eBugTracker.service.customer;
+package com.springBoot.eBugTracker.serviceImpl;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProfileDTO;
@@ -15,6 +15,7 @@ import com.springBoot.eBugTracker.repository.bugs.BugProcessRepo;
 import com.springBoot.eBugTracker.repository.bugs.BugRepo;
 import com.springBoot.eBugTracker.repository.customer.CustomerProfileRepo;
 import com.springBoot.eBugTracker.repository.customer.CustomerProjectRepo;
+import com.springBoot.eBugTracker.service.CustomerService;
 import com.springBoot.eBugTracker.util.DtoHelper;
 import com.springBoot.eBugTracker.util.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;

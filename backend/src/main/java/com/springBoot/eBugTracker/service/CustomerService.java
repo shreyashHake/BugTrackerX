@@ -1,4 +1,4 @@
-package com.springBoot.eBugTracker.service.customer;
+package com.springBoot.eBugTracker.service;
 
 import com.springBoot.eBugTracker.dtos.bugs.BugDTO;
 import com.springBoot.eBugTracker.dtos.customer.CustomerProfileDTO;
