@@ -5,7 +5,9 @@ import com.springBoot.eBugTracker.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 
@@ -26,28 +28,9 @@ public class UserController {
         return userService.createNewUser(user);
     }
 
+    @PreAuthorize("hasRole('Admin')")
     @PostMapping({"/createNewStaff"})
     public User createNewStaff(@RequestBody User user) {
         return userService.createNewStaff(user);
     }
-
-    @GetMapping({"/forAdmin"})
-    @PreAuthorize("hasRole('Admin')")
-    public String forAdmin() {
-        return "This is only for admin";
-    }
-
-    @GetMapping({"/forCustomer"})
-    @PreAuthorize("hasRole('Customer')")
-    public String forUser() {
-        return "This is for all Customer";
-    }
-
-    @GetMapping({"/forStaff"})
-    @PreAuthorize("hasRole('Staff')")
-    public String forStaff() {
-        return "This is for all Staff";
-    }
-
-
 }

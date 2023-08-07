@@ -32,14 +32,14 @@ public class BugServiceIMPL implements BugService {
 
     @Override
     public String assignStaff(int bugProcessId, int staffProfileId) {
-        System.out.println("bpid : "+bugProcessId+" staffId : "+staffProfileId);
+        System.out.println("bpid : " + bugProcessId + " staffId : " + staffProfileId);
 
         Optional<BugProcess> bugProcess = bugProcessRepo.findById(bugProcessId);
         if (bugProcess.isEmpty()) {
             return "Invalid Bug";
         }
 
-        System.out.println("bugProcess : "+bugProcess.get());
+        System.out.println("bugProcess : " + bugProcess.get());
         Optional<StaffProfile> staffProfile = staffProfileRepo.findById(staffProfileId);
         if (staffProfile.isEmpty()) {
             return "Invalid Staff";
@@ -63,23 +63,23 @@ public class BugServiceIMPL implements BugService {
     public BugDetailsDTO getBugDetails(int bugId) {
         Optional<Bug> bug = bugRepo.findById(bugId);
         BugProcess bugProcess = bugProcessRepo.findByBug(bug.get());
-        return dtoHelper.getBugDetailsDto(bug.get(),bugProcess);
+        return dtoHelper.getBugDetailsDto(bug.get(), bugProcess);
     }
 
     @Override
     public void getTest(int id) {
         Optional<BugProcess> bugProcess = bugProcessRepo.findById(id);
-        if(bugProcess.isEmpty()){
+        if (bugProcess.isEmpty()) {
             System.out.println("Invalid Bug");
         }
 
-        System.out.println("bugProcess : "+bugProcess.get());
+        System.out.println("bugProcess : " + bugProcess.get());
     }
 
     @Override
     public String changeBugStatus(int bugId, String bugStatus) {
         Optional<Bug> bug = bugRepo.findById(bugId);
-        if (bug.isEmpty()){
+        if (bug.isEmpty()) {
             return "Failed to change bug status";
         }
         bug.get().setBugStatus(bugStatus);
@@ -90,7 +90,7 @@ public class BugServiceIMPL implements BugService {
     @Override
     public String changeGlobalBugStatus(int bugProcessId, String globalBugStatus) {
         Optional<BugProcess> bugProcess = bugProcessRepo.findById(bugProcessId);
-        if (bugProcess.isEmpty()){
+        if (bugProcess.isEmpty()) {
             return "Failed to change progress";
         }
         bugProcess.get().setGlobalStatus(globalBugStatus);

@@ -7,8 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @Builder
@@ -26,7 +24,6 @@ public class BugProcess {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "BugId", nullable = false, referencedColumnName = "BugId")
     private Bug bug;
-
 
 
 }

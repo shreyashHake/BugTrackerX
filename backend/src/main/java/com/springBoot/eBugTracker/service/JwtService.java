@@ -3,9 +3,7 @@ package com.springBoot.eBugTracker.service;
 import com.springBoot.eBugTracker.entity.JwtRequest;
 import com.springBoot.eBugTracker.entity.JwtResponse;
 import com.springBoot.eBugTracker.entity.User;
-import com.springBoot.eBugTracker.entity.customer.CustomerProfile;
 import com.springBoot.eBugTracker.repository.IUserRepository;
-import com.springBoot.eBugTracker.repository.customer.CustomerProfileRepo;
 import com.springBoot.eBugTracker.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -43,7 +41,6 @@ public class JwtService implements UserDetailsService {
 
         return new JwtResponse(user, newGeneratedToken);
     }
-
 
 
     @Override

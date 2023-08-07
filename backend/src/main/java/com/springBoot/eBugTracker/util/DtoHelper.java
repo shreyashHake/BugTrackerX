@@ -106,7 +106,7 @@ public class DtoHelper {
 
     public BugDetailsDTO getBugDetailsDto(Bug bug, BugProcess bugProcess) {
         List<CommentDTO> commentDTOS = new ArrayList<>();
-        for(Comment comment : commentRepo.findByBugProcess(bugProcess)){
+        for (Comment comment : commentRepo.findByBugProcess(bugProcess)) {
             commentDTOS.add(getCommentDto(comment));
         }
         return new BugDetailsDTO(

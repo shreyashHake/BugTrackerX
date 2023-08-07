@@ -52,10 +52,10 @@ public class CustomerServiceIMPL implements CustomerService {
         CustomerProfile customerProfile1 = customerProfileRepo.save(customerProfile);
 
         int otp = new Random().nextInt(900000) + 100000;
-        String body = "Dear "+customerProfile1.getCustomerName()+" ,\n Thank you for registering with E-Bug Tracker!" +
+        String body = "Dear " + customerProfile1.getCustomerName() + " ,\n Thank you for registering with E-Bug Tracker!" +
                 " To ensure the security of your account and complete " +
                 "the registration process, we kindly ask you to verify your email address by clicking on the link below:\n" +
-                " http://localhost:8080/customer/verifyEmail/"+customerProfile1.getUser().getUserName()+"/"+otp+"\n" +
+                " http://localhost:8080/customer/verifyEmail/" + customerProfile1.getUser().getUserName() + "/" + otp + "\n" +
                 " By verifying your email address, you will be able to access all the features and benefits of our platform.\n" +
                 "\n" +
                 "If you did not create an account on our platform or received this email in error, please disregard it. No further action is necessary.\n" +
@@ -169,17 +169,17 @@ public class CustomerServiceIMPL implements CustomerService {
 
     @Override
     public RedirectView verifyEmail(String email, int token) {
-            Otp otp1 = otpRepo.findById(email).get();
-            System.out.println(otp1.getOtp()+" :: "+otp1.getEmail()+" :: "+token);
-            if(otp1.getOtp() == token){
-                Optional<User> user = iUserRepository.findById(email);
-                CustomerProfile customerProfile =customerProfileRepo.findByUser(user.get());
-                customerProfile.setIsActive(true);
-                customerProfileRepo.save(customerProfile);
-                return new RedirectView("http://localhost:4200/verify_profile/true");
-            }else {
-                return new RedirectView("http://localhost:4200/verify_profile/false");
-            }
+        Otp otp1 = otpRepo.findById(email).get();
+        System.out.println(otp1.getOtp() + " :: " + otp1.getEmail() + " :: " + token);
+        if (otp1.getOtp() == token) {
+            Optional<User> user = iUserRepository.findById(email);
+            CustomerProfile customerProfile = customerProfileRepo.findByUser(user.get());
+            customerProfile.setIsActive(true);
+            customerProfileRepo.save(customerProfile);
+            return new RedirectView("http://localhost:4200/verify_profile/true");
+        } else {
+            return new RedirectView("http://localhost:4200/verify_profile/false");
+        }
     }
 
 

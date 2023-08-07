@@ -1,9 +1,9 @@
 package com.springBoot.eBugTracker.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.stereotype.Service;
 
 @Service
 public class MailSenderService {
@@ -13,7 +13,7 @@ public class MailSenderService {
 
     public void sendMail(String toEmail,
                          String subject,
-                         String body){
+                         String body) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("vrushant28@gmail.com");
         message.setTo(toEmail);
