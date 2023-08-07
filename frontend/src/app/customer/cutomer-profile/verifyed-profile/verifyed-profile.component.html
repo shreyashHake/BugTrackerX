@@ -1,0 +1,24 @@
+
+
+    <div *ngIf="isVerified; else notVerified">
+        <div class="row justify-content-center m-5">
+            <div class="alert alert-success" role="alert">
+                Your Profile is Verified Successfully , kindly Login to E-BugTracker !!
+              </div>
+              <div class="text-center">
+                <a routerLink="/login"> <button type="button" class="btn btn-lg btn-dark">Login</button></a>
+              </div>
+        </div>
+    </div>
+    <ng-template #notVerified>
+        <div class="row justify-content-center m-5">
+            <div class="alert alert-danger" role="alert">
+                There is some issues while verifing your account , please contact to admin or create new profile.
+              </div>
+              <div class="text-center">
+                <a routerLink="/register"> <button type="button" class="btn btn-lg btn-dark">Create New Account</button></a>
+              </div>
+        </div>
+    </ng-template>
+
+

@@ -29,8 +29,7 @@ public class JwtService implements UserDetailsService {
     private JwtUtil jwtUtil;
     @Autowired
     private AuthenticationManager authenticationManager;
-    @Autowired
-    private CustomerProfileRepo customerProfileRepo;
+
 
     public JwtResponse createJwtToken(JwtRequest jwtRequest) throws Exception {
         String userName = jwtRequest.getUserName();
@@ -38,11 +37,11 @@ public class JwtService implements UserDetailsService {
         authenticate(userName, userPassword);
 
         final User user = IUserRepository.findById(userName).get();
-        final CustomerProfile customerProfile = customerProfileRepo.findByUser(user);
+
         final UserDetails userDetails = loadUserByUsername(userName);
         final String newGeneratedToken = jwtUtil.generateToken(userDetails);
-        
-        return new JwtResponse(user, newGeneratedToken,customerProfile.getIsActive());
+
+        return new JwtResponse(user, newGeneratedToken);
     }
 
 
