@@ -3,13 +3,17 @@ package com.springBoot.eBugTracker.serviceImpl;
 import com.springBoot.eBugTracker.entity.Role;
 import com.springBoot.eBugTracker.entity.User;
 import com.springBoot.eBugTracker.service.UserService;
+import com.springBoot.eBugTracker.util.Response;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 
+@Slf4j
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -22,15 +26,23 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
 
     public User createNewUser(User user) {
-        Role role = IRoleRepository.findById("Customer").get();
-
-        user.setUserRole(new HashSet<>(Collections.singletonList(role)));
-        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
-
-        return IUserRepository.save(user);
+        log.info("Inside:- /UserServiceImpl/createNewUser");
+        try {
+            Optional<Role> optionalRole = IRoleRepository.findById("Customer");
+            if (optionalRole.isPresent()) {
+                Role role = optionalRole.get();
+                user.setUserRole(new HashSet<>(Collections.singletonList(role)));
+                user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+                return IUserRepository.save(user);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return new User();
     }
 
     public void initRoleAndUser() {
+        log.info("Inside:- /UserServiceImpl/initRoleAndUser");
         //1. setting demo Admin :
         Role adminRole = new Role(
                 "Admin",
@@ -74,23 +86,34 @@ public class UserServiceImpl implements UserService {
 
         );
         IUserRepository.save(staff);
-
-
     }
 
     @Override
     public User createNewStaff(User user) {
-        Role role = IRoleRepository.findById("Staff").get();
-
-        user.setUserRole(new HashSet<>(Collections.singletonList(role)));
-        user.setUserPassword(getEncodedPassword(user.getUserPassword()));
-
-        return IUserRepository.save(user);
+        log.info("Inside:- /UserServiceImpl/createNewStaff");
+        try {
+            Optional<Role> optionalRole = IRoleRepository.findById("Staff");
+            if (optionalRole.isPresent()) {
+                Role role = optionalRole.get();
+                user.setUserRole(new HashSet<>(Collections.singletonList(role)));
+                user.setUserPassword(getEncodedPassword(user.getUserPassword()));
+                return IUserRepository.save(user);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return new User();
     }
 
     // to get encrypted password
     public String getEncodedPassword(String password) {
-        return passwordEncoder.encode(password);
+        log.info("Inside:- /UserServiceImpl/getEncodedPassword");
+        try {
+            return passwordEncoder.encode(password);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return Response.generalResponse();
     }
 
 }
