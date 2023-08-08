@@ -1,0 +1,45 @@
+<div class="card mb-4">
+  <div class="card-body">
+    <div class="col-sm-11">
+      <div class="d-flex justify-content-between">
+        <div>
+          <h5>Projects</h5>
+        </div>
+        <div *ngIf="isCustomer()==true">
+          <a routerLink="/add-project">
+            <button type="button" class="btn btn-outline-dark">Add Project</button>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+    <ng-container *ngIf="projects.length != 0 else elseBlock">
+      <div class="row" *ngFor="let project of projects">
+        <div class="col-sm-1">
+          <i class="bi bi-folder-fill"></i>
+        </div>
+        <ng-container *ngIf="isCustomer() else Then">
+          <div class="col-sm-11">
+            <a routerLink="project_view/{{customerProfile.customerProfileId}}/{{project.projectId}}">
+              <p class="text-muted mb-2">{{project.projectName}}</p>
+            </a>
+          </div>
+        </ng-container>
+        <ng-template #Then>
+          <div class="col-sm-11">
+            <a routerLink="project_panel/{{project.projectId}}">
+              <p class="text-muted mb-2">{{project.projectName}}</p>
+            </a>
+          </div>
+        </ng-template>
+
+        <hr>
+      </div>
+    </ng-container>
+    <ng-template #elseBlock>
+      No Projects Available
+    </ng-template>
+
+  </div>
+</div>
