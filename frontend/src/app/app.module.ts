@@ -42,6 +42,8 @@ import { SBugViewComponent } from './staff/sbug-view/sbug-view.component';
 import { ABugComponent } from './admin/a-bug/a-bug.component';
 import { ASBugComponent } from './admin/staff/staff-handling/as-bug/as-bug.component';
 import { VerifyedProfileComponent } from './customer/cutomer-profile/verifyed-profile/verifyed-profile.component';
+import { ProjectBlockComponent } from './components/project-block/project-block.component';
+import { SupportBlockComponent } from './components/support-block/support-block.component';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { VerifyedProfileComponent } from './customer/cutomer-profile/verifyed-pr
     ABugComponent,
     ASBugComponent,
     VerifyedProfileComponent,
+    ProjectBlockComponent,
+    SupportBlockComponent,
     ],
   imports: [
     FormsModule,
