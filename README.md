@@ -10,7 +10,7 @@ BugTrackerX is a web application developed using Java Spring Boot for the backen
 
 ## Technologies Used
 
-- **Backend:** Java Spring Boot
+- **Backend:** Java and Spring Boot
 - **Frontend:** Angular
 - **Database:** PostgreSQL
 
